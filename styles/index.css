@@ -3,21 +3,22 @@
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-around;
+  margin-top: 10px;
 }
 
 .platOption {
-  width: 50%;
   position: relative;
+  border-radius: 10px;
 }
 
-.open {
-  margin-top: -15px;
+.platOption.open {
+  margin-top: -2px;
 }
 
-.platOption img {
+.platOption {
   max-width: 100%;
   height: auto;
-  padding: 10px;
+  margin: 13px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -43,10 +44,27 @@
 }
 
 .platOption:hover:after {
+  animation: shine 3s ease-in;
+  animation-fill-mode: forwards;
   opacity: 1;
-  top: -30%;
-  left: -30%;
-  transition-property: left, top, opacity;
-  transition-duration: 0.7s, 0.7s, 0.15s;
-  transition-timing-function: ease;
+}
+
+@keyframes shine{
+  10% {
+    opacity: 1;
+    top: -30%;
+    left: -30%;
+    transition-property: left, top, opacity;
+    transition-duration: 0.7s, 0.7s, 0.1s;
+    transition-timing-function: ease;
+  }
+  40% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+    top: -30%;
+    left: -30%;
+    transition-property: left, top, opacity;
+  }
 }
