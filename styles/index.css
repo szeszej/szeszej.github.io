@@ -68,3 +68,7 @@
     transition-property: left, top, opacity;
   }
 }
+
+.sms20 {
+  clip-path: polygon(74% 4%, 84% 0, 100% 0, 91% 41%, 73% 40%, 53% 49%, 49% 36%, 63% 25%, 61% 6%);
+}
