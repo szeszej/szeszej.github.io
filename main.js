@@ -890,7 +890,7 @@ class CombatService {
                 this.playerService.changeLifePoints(-oppCard.attack);
             }
         });
-        this.newTurn;
+        this.newTurn();
     }
     clash(playerCard, oppCard, row) {
         if (playerCard.speed === oppCard.speed) {
