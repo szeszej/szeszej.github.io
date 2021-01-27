@@ -589,10 +589,11 @@ class HttpService {
         this.http = http;
     }
     sendData(cards, player) {
-        return this.http.put("https://learning-angular-b5596.firebaseio.com/player" + player, cards);
+        console.log(cards);
+        return this.http.put("https://recipe-book-app-bce43.firebaseio.com/recipes/player" + player + ".json", cards);
     }
     getData(player) {
-        return this.http.get("https://learning-angular-b5596.firebaseio.com/player" + player);
+        return this.http.get("https://recipe-book-app-bce43.firebaseio.com/recipes/player" + player + ".json");
     }
 }
 HttpService.ɵfac = function HttpService_Factory(t) { return new (t || HttpService)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"])); };
@@ -742,15 +743,17 @@ AbiltiesComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefine
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AppComponent", function() { return AppComponent; });
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "fXoL");
-/* harmony import */ var _combat_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./combat.service */ "TAF1");
-/* harmony import */ var _player_player_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./player/player.service */ "ufXC");
-/* harmony import */ var _battlefield_battlefield_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./battlefield/battlefield.service */ "b9KQ");
-/* harmony import */ var _http_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./http.service */ "F11b");
-/* harmony import */ var _angular_cdk_drag_drop__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/cdk/drag-drop */ "5+WD");
-/* harmony import */ var _opponent_opponent_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./opponent/opponent.component */ "+1ZF");
-/* harmony import */ var _battlefield_battlefield_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./battlefield/battlefield.component */ "93yE");
-/* harmony import */ var _player_player_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./player/player.component */ "0M9o");
+/* harmony import */ var _shared_card_card_model__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./shared/card/card.model */ "mIaL");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "fXoL");
+/* harmony import */ var _combat_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./combat.service */ "TAF1");
+/* harmony import */ var _player_player_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./player/player.service */ "ufXC");
+/* harmony import */ var _battlefield_battlefield_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./battlefield/battlefield.service */ "b9KQ");
+/* harmony import */ var _http_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./http.service */ "F11b");
+/* harmony import */ var _angular_cdk_drag_drop__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/cdk/drag-drop */ "5+WD");
+/* harmony import */ var _opponent_opponent_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./opponent/opponent.component */ "+1ZF");
+/* harmony import */ var _battlefield_battlefield_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./battlefield/battlefield.component */ "93yE");
+/* harmony import */ var _player_player_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./player/player.component */ "0M9o");
+
 
 
 
@@ -782,58 +785,66 @@ class AppComponent {
         this.playerNumber = number;
     }
     sendData() {
-        this.httpService.sendData({ melee: this.battlefieldService.getCard("melee"), ranged: this.battlefieldService.getCard("ranged"), mental: this.battlefieldService.getCard("mental") }, this.playerService.getPlayerNumber()).subscribe(reponse => this.isDataSent = true);
+        this.httpService.sendData({ melee: this.battlefieldService.getCard("melee") ? this.battlefieldService.getCard("melee") : "", ranged: this.battlefieldService.getCard("ranged") ? this.battlefieldService.getCard("ranged") : "", mental: this.battlefieldService.getCard("mental") ? this.battlefieldService.getCard("mental") : "" }, this.playerService.getPlayerNumber()).subscribe(response => {
+            this.isDataSent = true;
+            console.log(response);
+        });
     }
     getData() {
-        this.isDataReceived = true;
+        this.httpService.getData(this.playerService.getPlayerNumber() === 1 ? 2 : 1).subscribe(response => {
+            response.melee ? this.battlefieldService.setCard(new _shared_card_card_model__WEBPACK_IMPORTED_MODULE_0__["Card"](response.melee), "meleeOpp") : console.log(response);
+            response.ranged ? this.battlefieldService.setCard(new _shared_card_card_model__WEBPACK_IMPORTED_MODULE_0__["Card"](response.ranged), "rangedOpp") : console.log(response);
+            response.mental ? this.battlefieldService.setCard(new _shared_card_card_model__WEBPACK_IMPORTED_MODULE_0__["Card"](response.mental), "mentalOpp") : console.log(response);
+            this.isDataReceived = true;
+        });
     }
 }
-AppComponent.ɵfac = function AppComponent_Factory(t) { return new (t || AppComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_combat_service__WEBPACK_IMPORTED_MODULE_1__["CombatService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_player_player_service__WEBPACK_IMPORTED_MODULE_2__["PlayerService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_battlefield_battlefield_service__WEBPACK_IMPORTED_MODULE_3__["BattlefieldService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_http_service__WEBPACK_IMPORTED_MODULE_4__["HttpService"])); };
-AppComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: AppComponent, selectors: [["app-root"]], decls: 17, vars: 6, consts: [["cdkDropListGroup", "", 1, "wrapper"], [1, "buttons"], [1, "playerNumber", 3, "disabled", "click"], [1, "sendData", 3, "disabled", "click"], [1, "receiveData", 3, "disabled", "click"], [1, "combat", 3, "disabled", "click"]], template: function AppComponent_Template(rf, ctx) { if (rf & 1) {
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 0);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "div", 1);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](2, "button", 2);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function AppComponent_Template_button_click_2_listener() { return ctx.setPlayerNumber(1); });
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](3, "Player 1");
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](4, "button", 2);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function AppComponent_Template_button_click_4_listener() { return ctx.setPlayerNumber(2); });
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](5, "Player 2");
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](6, "button", 3);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function AppComponent_Template_button_click_6_listener() { return ctx.sendData(); });
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](7, "Wy\u015Blij dane");
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](8, "button", 4);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function AppComponent_Template_button_click_8_listener() { return ctx.getData(); });
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](9, "Odbierz dane");
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](10, "button", 5);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function AppComponent_Template_button_click_10_listener() { return ctx.combat(); });
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](11, "Walka!");
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](12, "p");
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](13);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](14, "app-opponent");
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](15, "app-battlefield");
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](16, "app-player");
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+AppComponent.ɵfac = function AppComponent_Factory(t) { return new (t || AppComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_combat_service__WEBPACK_IMPORTED_MODULE_2__["CombatService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_player_player_service__WEBPACK_IMPORTED_MODULE_3__["PlayerService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_battlefield_battlefield_service__WEBPACK_IMPORTED_MODULE_4__["BattlefieldService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_http_service__WEBPACK_IMPORTED_MODULE_5__["HttpService"])); };
+AppComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineComponent"]({ type: AppComponent, selectors: [["app-root"]], decls: 17, vars: 6, consts: [["cdkDropListGroup", "", 1, "wrapper"], [1, "buttons"], [1, "playerNumber", 3, "disabled", "click"], [1, "sendData", 3, "disabled", "click"], [1, "receiveData", 3, "disabled", "click"], [1, "combat", 3, "disabled", "click"]], template: function AppComponent_Template(rf, ctx) { if (rf & 1) {
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "div", 0);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](1, "div", 1);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](2, "button", 2);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function AppComponent_Template_button_click_2_listener() { return ctx.setPlayerNumber(1); });
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](3, "Player 1");
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](4, "button", 2);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function AppComponent_Template_button_click_4_listener() { return ctx.setPlayerNumber(2); });
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](5, "Player 2");
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](6, "button", 3);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function AppComponent_Template_button_click_6_listener() { return ctx.sendData(); });
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](7, "Wy\u015Blij dane");
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](8, "button", 4);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function AppComponent_Template_button_click_8_listener() { return ctx.getData(); });
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](9, "Odbierz dane");
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](10, "button", 5);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function AppComponent_Template_button_click_10_listener() { return ctx.combat(); });
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](11, "Walka!");
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](12, "p");
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](13);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](14, "app-opponent");
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](15, "app-battlefield");
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](16, "app-player");
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
     } if (rf & 2) {
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("disabled", ctx.isPlayerNumberSet);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("disabled", ctx.isPlayerNumberSet);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("disabled", !ctx.isPlayerNumberSet);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("disabled", !ctx.isDataSent);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("disabled", !ctx.isDataReceived);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](3);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"]("Player ", ctx.playerNumber, "");
-    } }, directives: [_angular_cdk_drag_drop__WEBPACK_IMPORTED_MODULE_5__["CdkDropListGroup"], _opponent_opponent_component__WEBPACK_IMPORTED_MODULE_6__["OpponentComponent"], _battlefield_battlefield_component__WEBPACK_IMPORTED_MODULE_7__["BattlefieldComponent"], _player_player_component__WEBPACK_IMPORTED_MODULE_8__["PlayerComponent"]], styles: [".wrapper[_ngcontent-%COMP%] {\r\n  display: grid;\r\n  grid-template-areas: \"opponent\" \"battlefield\" \"player\";\r\n  grid-template-rows: 20vh 60vh 20vh;\r\n  grid-template-columns: 100%;\r\n  box-sizing: border-box;\r\n  overflow: hidden;\r\n}\r\n.buttons[_ngcontent-%COMP%] {\r\n  position: absolute;\r\n  top: 2em;\r\n  left: 2em;\r\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImFwcC5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UsYUFBYTtFQUNiLHNEQUFzRDtFQUN0RCxrQ0FBa0M7RUFDbEMsMkJBQTJCO0VBQzNCLHNCQUFzQjtFQUN0QixnQkFBZ0I7QUFDbEI7QUFDQTtFQUNFLGtCQUFrQjtFQUNsQixRQUFRO0VBQ1IsU0FBUztBQUNYIiwiZmlsZSI6ImFwcC5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLndyYXBwZXIge1xyXG4gIGRpc3BsYXk6IGdyaWQ7XHJcbiAgZ3JpZC10ZW1wbGF0ZS1hcmVhczogXCJvcHBvbmVudFwiIFwiYmF0dGxlZmllbGRcIiBcInBsYXllclwiO1xyXG4gIGdyaWQtdGVtcGxhdGUtcm93czogMjB2aCA2MHZoIDIwdmg7XHJcbiAgZ3JpZC10ZW1wbGF0ZS1jb2x1bW5zOiAxMDAlO1xyXG4gIGJveC1zaXppbmc6IGJvcmRlci1ib3g7XHJcbiAgb3ZlcmZsb3c6IGhpZGRlbjtcclxufVxyXG4uYnV0dG9ucyB7XHJcbiAgcG9zaXRpb246IGFic29sdXRlO1xyXG4gIHRvcDogMmVtO1xyXG4gIGxlZnQ6IDJlbTtcclxufVxyXG4iXX0= */"] });
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](2);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("disabled", ctx.isPlayerNumberSet);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](2);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("disabled", ctx.isPlayerNumberSet);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](2);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("disabled", !ctx.isPlayerNumberSet);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](2);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("disabled", !ctx.isDataSent);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](2);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("disabled", !ctx.isDataReceived);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](3);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtextInterpolate1"]("Player ", ctx.playerNumber, "");
+    } }, directives: [_angular_cdk_drag_drop__WEBPACK_IMPORTED_MODULE_6__["CdkDropListGroup"], _opponent_opponent_component__WEBPACK_IMPORTED_MODULE_7__["OpponentComponent"], _battlefield_battlefield_component__WEBPACK_IMPORTED_MODULE_8__["BattlefieldComponent"], _player_player_component__WEBPACK_IMPORTED_MODULE_9__["PlayerComponent"]], styles: [".wrapper[_ngcontent-%COMP%] {\r\n  display: grid;\r\n  grid-template-areas: \"opponent\" \"battlefield\" \"player\";\r\n  grid-template-rows: 20vh 60vh 20vh;\r\n  grid-template-columns: 100%;\r\n  box-sizing: border-box;\r\n  overflow: hidden;\r\n}\r\n.buttons[_ngcontent-%COMP%] {\r\n  position: absolute;\r\n  top: 2em;\r\n  left: 2em;\r\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImFwcC5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UsYUFBYTtFQUNiLHNEQUFzRDtFQUN0RCxrQ0FBa0M7RUFDbEMsMkJBQTJCO0VBQzNCLHNCQUFzQjtFQUN0QixnQkFBZ0I7QUFDbEI7QUFDQTtFQUNFLGtCQUFrQjtFQUNsQixRQUFRO0VBQ1IsU0FBUztBQUNYIiwiZmlsZSI6ImFwcC5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLndyYXBwZXIge1xyXG4gIGRpc3BsYXk6IGdyaWQ7XHJcbiAgZ3JpZC10ZW1wbGF0ZS1hcmVhczogXCJvcHBvbmVudFwiIFwiYmF0dGxlZmllbGRcIiBcInBsYXllclwiO1xyXG4gIGdyaWQtdGVtcGxhdGUtcm93czogMjB2aCA2MHZoIDIwdmg7XHJcbiAgZ3JpZC10ZW1wbGF0ZS1jb2x1bW5zOiAxMDAlO1xyXG4gIGJveC1zaXppbmc6IGJvcmRlci1ib3g7XHJcbiAgb3ZlcmZsb3c6IGhpZGRlbjtcclxufVxyXG4uYnV0dG9ucyB7XHJcbiAgcG9zaXRpb246IGFic29sdXRlO1xyXG4gIHRvcDogMmVtO1xyXG4gIGxlZnQ6IDJlbTtcclxufVxyXG4iXX0= */"] });
 
 
 /***/ }),
@@ -1100,18 +1111,13 @@ DeckService.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵdefineInjec
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BattlefieldService", function() { return BattlefieldService; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "fXoL");
-/* harmony import */ var _shared_card_card_model__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../shared/card/card.model */ "mIaL");
-/* harmony import */ var _data_cards__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../data/cards */ "+bcQ");
-/* harmony import */ var _player_deck_deck_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../player/deck/deck.service */ "Zsfq");
-
-
+/* harmony import */ var _player_deck_deck_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../player/deck/deck.service */ "Zsfq");
 
 
 
 class BattlefieldService {
     constructor(deckService) {
         this.deckService = deckService;
-        this.rangedOpp = new _shared_card_card_model__WEBPACK_IMPORTED_MODULE_1__["Card"](_data_cards__WEBPACK_IMPORTED_MODULE_2__["cards"][0]);
         this.oppHp = 30;
         this.cardEmitter = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
         this.oppHpEmitter = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
@@ -1147,7 +1153,7 @@ class BattlefieldService {
         });
     }
 }
-BattlefieldService.ɵfac = function BattlefieldService_Factory(t) { return new (t || BattlefieldService)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_player_deck_deck_service__WEBPACK_IMPORTED_MODULE_3__["DeckService"])); };
+BattlefieldService.ɵfac = function BattlefieldService_Factory(t) { return new (t || BattlefieldService)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_player_deck_deck_service__WEBPACK_IMPORTED_MODULE_1__["DeckService"])); };
 BattlefieldService.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({ token: BattlefieldService, factory: BattlefieldService.ɵfac, providedIn: 'root' });
 
 
