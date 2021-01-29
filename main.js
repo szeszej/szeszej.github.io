@@ -1198,7 +1198,7 @@ class EffectsService {
     applyEffect(effect, target = '') {
         switch (effect.type) {
             case 'draw':
-                target === "player" ? this.handService.drawCards(effect.amount) : null;
+                this.handService.drawCards(effect.amount);
                 break;
             case 'healing':
                 target === 'player'
@@ -1938,7 +1938,7 @@ class BattlefieldService {
     applyBattlefiedEffect(card, row) {
         switch (card.effect.type) {
             case 'draw':
-                this.effectsService.applyEffect(card.effect);
+                row.includes("Opp") ? null : this.effectsService.applyEffect(card.effect);
                 break;
             case 'healing':
                 let healingTargets = Array.isArray(card.effect.target)
