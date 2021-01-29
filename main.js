@@ -70,337 +70,425 @@ __webpack_require__.r(__webpack_exports__);
 
 const tokens = {
     bandit: {
-        name: "Bandyta",
+        name: 'Bandyta',
         attack: 1,
         hp: 1,
         cost: 1,
-        description: "Pieniądze albo życie.",
-        type: "ally",
+        description: 'Pieniądze albo życie.',
+        type: 'ally',
         speed: 1,
     },
     zombie: {
-        name: "Zombi",
+        name: 'Zombi',
         attack: 2,
         hp: 2,
         cost: 2,
-        description: "Móóóózgi!",
-        type: "ally",
+        description: 'Móóóózgi!',
+        type: 'ally',
         speed: 1,
     },
     hound: {
-        name: "Ogar",
+        name: 'Ogar',
         attack: 3,
         hp: 3,
         cost: 3,
-        description: "Hau, hau!",
-        type: "ally",
+        description: 'Hau, hau!',
+        type: 'ally',
         speed: 1,
-    }
+    },
+    ashes: {
+        name: 'Prochy',
+        attack: 0,
+        hp: 1,
+        cost: 1,
+        description: 'Co z nich się wykluje?',
+        type: 'ally',
+        speed: 1,
+        rules: 'Śmierć: Feniks odradza się.',
+        effect: {
+            type: 'summon',
+            target: 'self',
+            card: new _shared_card_card_model__WEBPACK_IMPORTED_MODULE_0__["Card"]({
+                name: 'Odrodzony Feniks',
+                attack: 7,
+                hp: 7,
+                cost: 8,
+                description: 'Z prochu powstałeś...',
+                type: 'ally',
+                speed: 2,
+            }),
+            timing: 'death',
+        },
+    },
 };
 const cards = {
     taernianPeasant: {
-        name: "Taernijski Wieśniak",
+        name: 'Taernijski Wieśniak',
         attack: 1,
         hp: 1,
         cost: 1,
-        description: "Łapaj samogon.",
-        type: "ally",
+        description: 'Łapaj samogon.',
+        type: 'ally',
         speed: 1,
-        rules: "Zagranie: Dobierz kartę",
+        rules: 'Zagranie: Dobierz kartę',
         effect: {
-            type: "draw",
+            type: 'draw',
             amount: 1,
-            timing: "play",
-            target: "player"
-        }
+            timing: 'play',
+            target: 'player',
+        },
     },
     taernianKnight: {
-        name: "Taernijski Rycerz",
+        name: 'Taernijski Rycerz',
         attack: 2,
         hp: 3,
         cost: 3,
-        description: "Po prostu Rycerz",
-        type: "ally",
+        description: 'Po prostu Rycerz',
+        type: 'ally',
         speed: 1,
     },
     taernianBarbarian: {
-        name: "Taernijski Barbarzyńca",
+        name: 'Taernijski Barbarzyńca',
         attack: 3,
         hp: 1,
         cost: 2,
-        description: "Wali mocno aż miło",
-        type: "ally",
+        description: 'Wali mocno aż miło',
+        type: 'ally',
         speed: 1,
     },
     taernianFiremage: {
-        name: "Taernijski Mag Ognia",
+        name: 'Taernijski Mag Ognia',
         attack: 4,
         hp: 2,
         cost: 4,
-        description: "Strzeż się ognia",
-        type: "ally",
+        description: 'Strzeż się ognia',
+        type: 'ally',
         speed: 2,
     },
     taernianArcher: {
-        name: "Taernijski Łucznik",
+        name: 'Taernijski Łucznik',
         attack: 2,
         hp: 2,
         cost: 2,
-        description: "Salwa!",
-        type: "ally",
+        description: 'Salwa!',
+        type: 'ally',
         speed: 2,
     },
     taernianDruid: {
-        name: "Taernijski Druid",
+        name: 'Taernijski Druid',
         attack: 1,
         hp: 6,
         cost: 4,
-        description: "Za naturę!",
-        type: "ally",
+        description: 'Za naturę!',
+        type: 'ally',
         speed: 3,
     },
     taernianVoodoo: {
-        name: "Taernijski Voodoo",
+        name: 'Taernijski Voodoo',
         attack: 2,
         hp: 1,
         cost: 4,
-        description: "Szpila w oko!",
-        type: "ally",
+        description: 'Szpila w oko!',
+        type: 'ally',
         speed: 3,
     },
     battleOgre: {
-        name: "Ogr Bojowy",
+        name: 'Ogr Bojowy',
         attack: 5,
         hp: 5,
         cost: 5,
-        description: "Waaargh!",
-        type: "ally",
+        description: 'Waaargh!',
+        type: 'ally',
         speed: 1,
     },
     harpy: {
-        name: "Harpia",
+        name: 'Harpia',
         attack: 3,
         hp: 7,
         cost: 5,
-        description: "Łiii!",
-        type: "ally",
+        description: 'Łiii!',
+        type: 'ally',
         speed: 2,
     },
     frog: {
-        name: "Żaba",
+        name: 'Żaba',
         attack: 3,
         hp: 3,
         cost: 4,
-        description: "Skrzek!",
-        type: "ally",
+        description: 'Skrzek!',
+        type: 'ally',
         speed: 2,
     },
     librarian: {
-        name: "Bibliotekarz",
+        name: 'Bibliotekarz',
         attack: 5,
         hp: 8,
         cost: 8,
-        description: "Cisza!",
-        type: "ally",
+        description: 'Cisza!',
+        type: 'ally',
         speed: 3,
     },
     babadek: {
-        name: "Babadek",
+        name: 'Babadek',
         attack: 7,
         hp: 7,
         cost: 10,
-        description: "Gdzie moje psy?",
-        type: "ally",
+        description: 'Gdzie moje psy?',
+        type: 'ally',
         speed: 1,
-        rules: "Odkrycie: Przyzywa 3/3/wręcz Ogary na wolne przyjazne pola.",
+        rules: 'Odkrycie: Przyzywa 3/3/wręcz Ogary na wolne przyjazne pola.',
         effect: {
-            type: "summon",
-            target: "playerAllies",
+            type: 'summon',
+            target: 'playerAllies',
             card: new _shared_card_card_model__WEBPACK_IMPORTED_MODULE_0__["Card"](tokens.hound),
-            timing: "reveal"
-        }
+            timing: 'reveal',
+        },
     },
     ghadira: {
-        name: "Ghadira",
+        name: 'Ghadira',
         attack: 10,
         hp: 7,
         cost: 9,
-        description: "Kto wchodzi do mojej wieży?",
-        type: "ally",
+        description: 'Kto wchodzi do mojej wieży?',
+        type: 'ally',
         speed: 1,
-        rules: "Odkrycie: Osłabia przeciwnika w tym samym rzędzie o 4.",
+        rules: 'Odkrycie: Osłabia przeciwnika w tym samym rzędzie o 4.',
         effect: {
-            type: "weaken",
-            target: "sameRow",
+            type: 'weaken',
+            target: 'sameRow',
             amount: 4,
-            timing: "reveal"
-        }
+            timing: 'reveal',
+        },
     },
     gregorius: {
-        name: "Gregorius",
+        name: 'Gregorius',
         attack: 4,
         hp: 6,
         cost: 7,
         description: "Czy nie wyglądam jak ten typ z Gun'n'Roses?",
-        type: "ally",
+        type: 'ally',
         speed: 3,
     },
     toad: {
-        name: "Ropuch",
+        name: 'Ropuch',
         attack: 6,
         hp: 10,
         cost: 8,
-        description: "Czy to książę?",
-        type: "ally",
+        description: 'Czy to książę?',
+        type: 'ally',
         speed: 2,
     },
     wolf: {
-        name: "Wilk",
+        name: 'Wilk',
         attack: 2,
         hp: 2,
         cost: 2,
-        description: "Miś(?) 2/2 za 2.",
-        type: "ally",
+        description: 'Miś(?) 2/2 za 2.',
+        type: 'ally',
         speed: 1,
     },
     utorianAssassin: {
-        name: "Utorski Asasyn",
+        name: 'Utorski Asasyn',
         attack: 6,
         hp: 1,
         cost: 4,
-        description: "Jak się go złapie to jest frajer.",
-        type: "ally",
+        description: 'Jak się go złapie to jest frajer.',
+        type: 'ally',
         speed: 1,
     },
     taernianShieldman: {
-        name: "Taernijski Tarczownik",
+        name: 'Taernijski Tarczownik',
         attack: 2,
         hp: 10,
         cost: 6,
-        description: "I co mu zrobisz?",
-        type: "ally",
+        description: 'I co mu zrobisz?',
+        type: 'ally',
         speed: 1,
-        rules: "Walka: Leczy się za 2.",
+        rules: 'Walka: Leczy się za 2.',
         effect: {
-            type: "healing",
-            target: "self",
+            type: 'healing',
+            target: 'self',
             amount: 2,
-            timing: "combat"
-        }
+            timing: 'combat',
+        },
     },
     taernianCrossbowman: {
-        name: "Taernijski Kusznik",
+        name: 'Taernijski Kusznik',
         attack: 5,
         hp: 3,
         cost: 5,
-        description: "Wali mocniej niż z łuku.",
-        type: "ally",
+        description: 'Wali mocniej niż z łuku.',
+        type: 'ally',
         speed: 2,
     },
     utorianOgre: {
-        name: "Utorski Ogr",
+        name: 'Utorski Ogr',
         attack: 12,
         hp: 12,
         cost: 12,
-        description: "Chodząca twierdza.",
-        type: "ally",
+        description: 'Chodząca twierdza.',
+        type: 'ally',
         speed: 1,
     },
     chieftain: {
-        name: "Herszt",
+        name: 'Herszt',
         attack: 4,
         hp: 6,
         cost: 5,
-        description: "Do mnie!",
-        type: "ally",
+        description: 'Do mnie!',
+        type: 'ally',
         speed: 1,
-        rules: "Walka: Przyzywa 1/1/wręcz Bandytów na wolne przyjazne pola.",
+        rules: 'Walka: Przyzywa 1/1/wręcz Bandytów na wolne przyjazne pola.',
         effect: {
-            type: "summon",
+            type: 'summon',
             card: new _shared_card_card_model__WEBPACK_IMPORTED_MODULE_0__["Card"](tokens.bandit),
-            timing: "combat",
-            target: "playerAllies"
-        }
+            timing: 'combat',
+            target: 'playerAllies',
+        },
     },
     accursedPeasant: {
-        name: "Przeklęty Wieśniak",
+        name: 'Przeklęty Wieśniak',
         attack: 1,
         hp: 1,
         cost: 2,
-        description: "Coś mię nie tego!",
-        type: "ally",
+        description: 'Coś mię nie tego!',
+        type: 'ally',
         speed: 1,
-        rules: "Śmierć: Przyzywa 2/2/wręcz Zombie na swoje miejsce.",
+        rules: 'Śmierć: Przyzywa 2/2/wręcz Zombie na swoje miejsce.',
         effect: {
-            type: "summon",
+            type: 'summon',
             card: new _shared_card_card_model__WEBPACK_IMPORTED_MODULE_0__["Card"](tokens.zombie),
-            timing: "death",
-            target: "self"
-        }
+            timing: 'death',
+            target: 'self',
+        },
     },
     garthmog: {
-        name: "Garthmog",
+        name: 'Garthmog',
         attack: 4,
         hp: 8,
         cost: 8,
-        description: "Słyszysz tylko grzechot kości.",
-        type: "ally",
+        description: 'Słyszysz tylko grzechot kości.',
+        type: 'ally',
         speed: 3,
-        rules: "Odkrycie: Zadaje 2 obrażeń wszystkim wrogom.",
+        rules: 'Odkrycie: Zadaje 2 obrażeń wszystkim wrogom.',
         effect: {
-            type: "damage",
+            type: 'damage',
             amount: 2,
-            timing: "reveal",
-            target: ["oppAllies", "opponent"]
-        }
+            timing: 'reveal',
+            target: ['oppAllies', 'opponent'],
+        },
     },
     healer: {
-        name: "Uzdrowiciel",
+        name: 'Uzdrowiciel',
         attack: 1,
         hp: 4,
         cost: 4,
-        description: "Leczenie grupowe raz!",
-        type: "ally",
+        description: 'Leczenie grupowe raz!',
+        type: 'ally',
         speed: 3,
-        rules: "Zagranie: Leczy 2 obrażeń wszystkim przyjaznym sojusznikom.",
+        rules: 'Zagranie: Leczy 2 obrażeń wszystkim przyjaznym sojusznikom.',
         effect: {
-            type: "healing",
+            type: 'healing',
             amount: 2,
-            timing: "play",
-            target: "playerAllies"
-        }
+            timing: 'play',
+            target: 'playerAllies',
+        },
     },
     stormMage: {
-        name: "Mag Burz",
+        name: 'Mag Burz',
         attack: 1,
         hp: 3,
         cost: 4,
-        description: "Niech rozpęta się piekło!",
-        type: "ally",
+        description: 'Niech rozpęta się piekło!',
+        type: 'ally',
         speed: 2,
-        rules: "Atakuje również rząd powyżej i poniżej swojej pozycji.",
+        rules: 'Atakuje również rząd powyżej i poniżej swojej pozycji.',
         effect: {
-            type: "damage",
+            type: 'damage',
             amount: 1,
-            timing: "attack",
-            target: ["enemyUpRow", "enemyDownRow"]
-        }
+            timing: 'attack',
+            target: ['enemyUpRow', 'enemyDownRow'],
+        },
     },
     voodooWeakener: {
-        name: "Voodoo Osłabiacz",
+        name: 'Voodoo Osłabiacz',
         attack: 1,
         hp: 2,
         cost: 5,
-        description: "Niech rozpęta się piekło!",
-        type: "ally",
+        description: 'Spróbuj wywaru!',
+        type: 'ally',
         speed: 3,
-        rules: "Odkrycie: Osłabia wrogich sojuszników o 2.",
+        rules: 'Odkrycie: Osłabia wrogich sojuszników o 2.',
         effect: {
-            type: "weaken",
-            target: "oppAllies",
+            type: 'weaken',
+            target: 'oppAllies',
             amount: 2,
-            timing: "reveal"
-        }
+            timing: 'reveal',
+        },
+    },
+    standardbearer: {
+        name: 'Chorąży',
+        attack: 1,
+        hp: 1,
+        cost: 4,
+        description: 'Do mnie!',
+        type: 'ally',
+        speed: 3,
+        rules: 'Odkrycie: Zwiększa siłę pozostałych przyjaznych sojuszników o 2.',
+        effect: {
+            type: 'strengthen',
+            target: 'otherPlayerAllies',
+            amount: 2,
+            timing: 'reveal',
+        },
+    },
+    obelisk: {
+        name: 'Monolit Wiedzy',
+        attack: 0,
+        hp: 5,
+        cost: 5,
+        description: 'Ommm! Ommm! Ommm!',
+        type: 'ally',
+        speed: 3,
+        rules: 'Koniec tury: Dobierz kartę.',
+        effect: {
+            type: 'draw',
+            target: 'player',
+            amount: 1,
+            timing: 'eot',
+        },
+    },
+    explodingBarrel: {
+        name: 'Beczka z Prochem',
+        attack: 0,
+        hp: 4,
+        cost: 4,
+        description: 'Kabum!',
+        type: 'ally',
+        speed: 3,
+        rules: 'Śmierć: Zadaj WSZYSTKIM stronnikom 4 obrażeń.',
+        effect: {
+            type: 'damage',
+            target: ['playerAllies', 'oppAllies'],
+            amount: 4,
+            timing: 'death',
+        },
+    },
+    phoenix: {
+        name: 'Feniks',
+        attack: 7,
+        hp: 7,
+        cost: 8,
+        description: 'Wraca z popiołów!',
+        type: 'ally',
+        speed: 2,
+        rules: 'Śmierć: Zamienia się w popiół, z którego jednorazowo się odradza.',
+        effect: {
+            type: 'summon',
+            target: 'self',
+            card: new _shared_card_card_model__WEBPACK_IMPORTED_MODULE_0__["Card"](tokens.ashes),
+            timing: 'death',
+        },
     },
 };
 const deck = [
@@ -410,9 +498,9 @@ const deck = [
     cards.taernianKnight,
     cards.taernianArcher,
     cards.taernianArcher,
+    cards.obelisk,
     cards.taernianFiremage,
-    cards.taernianFiremage,
-    cards.taernianBarbarian,
+    cards.explodingBarrel,
     cards.taernianBarbarian,
     cards.taernianDruid,
     cards.taernianDruid,
@@ -420,9 +508,9 @@ const deck = [
     cards.taernianVoodoo,
     cards.frog,
     cards.frog,
+    cards.standardbearer,
     cards.battleOgre,
-    cards.battleOgre,
-    cards.harpy,
+    cards.phoenix,
     cards.harpy,
     cards.wolf,
     cards.wolf,
@@ -443,7 +531,7 @@ const deck = [
     cards.taernianShieldman,
     cards.taernianShieldman,
     cards.taernianCrossbowman,
-    cards.taernianCrossbowman
+    cards.taernianCrossbowman,
 ];
 
 
@@ -1110,7 +1198,7 @@ class EffectsService {
     applyEffect(effect, target = '') {
         switch (effect.type) {
             case 'draw':
-                this.handService.drawCards(effect.amount);
+                target === "player" ? this.handService.drawCards(effect.amount) : null;
                 break;
             case 'healing':
                 target === 'player'
@@ -1209,13 +1297,13 @@ class CombatService {
             let oppCard = this.battlefieldService.getCard(row + 'Opp');
             //sprawdzamy czy sa efekty na poczatku walki
             if (playerCard && playerCard.effect && ((playerCard.effect.timing === "reveal" && !playerCard.revealed) || playerCard.effect.timing === "combat")) {
+                console.log(`${playerCard.name} używa zdolności na początku walki ${playerCard.effect.type} na ${playerCard.effect.target}`);
                 this.battlefieldService.applyBattlefiedEffect(playerCard, row);
                 this.battlefieldService.markAsRevealed(row);
-                console.log(`${playerCard.name} używa zdolności ${playerCard.effect.type} na ${playerCard.effect.target}`);
             }
             else if (oppCard && oppCard.effect && ((oppCard.effect.timing === "reveal" && !oppCard.revealed) || oppCard.effect.timing === "combat")) {
+                console.log(`${oppCard.name} używa zdolności na początku walki ${oppCard.effect.type} na ${oppCard.effect.target}`);
                 this.battlefieldService.applyBattlefiedEffect(oppCard, row + 'Opp');
-                console.log(`${oppCard.name} używa zdolności ${oppCard.effect.type} na ${oppCard.effect.target}`);
                 this.battlefieldService.markAsRevealed(row + 'Opp');
             }
             //po efektach sprawdzam sba
@@ -1227,9 +1315,11 @@ class CombatService {
             let oppCard = this.battlefieldService.getCard(row + 'Opp');
             //sprawdzamy czy są efekty podczas ataku i je aplikujemy
             if (playerCard && playerCard.effect && playerCard.effect.timing === "attack") {
+                console.log(`${playerCard.name} używa zdolności na ataku ${playerCard.effect.type} na ${playerCard.effect.target}`);
                 this.battlefieldService.applyBattlefiedEffect(playerCard, row);
             }
             else if (oppCard && oppCard.effect && oppCard.effect.timing === "attack") {
+                console.log(`${oppCard.name} używa zdolności na ataku ${oppCard.effect.type} na ${oppCard.effect.target}`);
                 this.battlefieldService.applyBattlefiedEffect(oppCard, row + 'Opp');
             }
             //właściwe ataki
@@ -1238,12 +1328,30 @@ class CombatService {
                     this.clash(playerCard, oppCard, row);
                 }
                 else {
+                    console.log(`${playerCard.name} atakuje przeciwnika za ${playerCard.attack} obrażeń.`);
                     this.opponentService.changeOppHp(-playerCard.attack);
                 }
             }
             else if (oppCard) {
                 this.playerService.changeLifePoints(-oppCard.attack);
+                console.log(`${oppCard.name} atakuje przeciwnika za ${oppCard.attack} obrażeń.`);
             }
+            this.battlefieldService.buryTheFallen();
+        });
+        //sprawdzamy czy są efekty eot i je aplikujemy:
+        rows.forEach((row) => {
+            let playerCard = this.battlefieldService.getCard(row);
+            let oppCard = this.battlefieldService.getCard(row + 'Opp');
+            //sprawdzamy czy sa efekty na poczatku walki
+            if (playerCard && playerCard.effect && playerCard.effect.timing === "eot") {
+                this.battlefieldService.applyBattlefiedEffect(playerCard, row);
+                console.log(`${playerCard.name} używa zdolności EOT ${playerCard.effect.type} na ${playerCard.effect.target}`);
+            }
+            else if (oppCard && oppCard.effect && oppCard.effect.timing === "eot") {
+                this.battlefieldService.applyBattlefiedEffect(oppCard, row + 'Opp');
+                console.log(`${oppCard.name} używa zdolności EOT ${oppCard.effect.type} na ${oppCard.effect.target}`);
+            }
+            //po efektach sprawdzam sba
             this.battlefieldService.buryTheFallen();
         });
         this.turnService.nextTurn();
@@ -1839,7 +1947,7 @@ class BattlefieldService {
                 console.log(`Cele zdolności to ${healingTargets}`);
                 healingTargets.forEach((target) => target === 'player' || target === 'opponent'
                     ? this.effectsService.applyEffect(card.effect, target)
-                    : this[target] && this.changeCardHp(card.effect.amount, target));
+                    : this[target] ? this.changeCardHp(card.effect.amount, target) : null);
                 break;
             case 'damage':
                 let damageTargets = Array.isArray(card.effect.target)
@@ -1848,16 +1956,21 @@ class BattlefieldService {
                 console.log(`Cele zdolności to ${damageTargets}`);
                 damageTargets.forEach((target) => target === 'player' || target === 'opponent'
                     ? this.effectsService.applyEffect(card.effect, target)
-                    : this[target] && this.changeCardHp(-card.effect.amount, target));
+                    : this[target] ? this.changeCardHp(-card.effect.amount, target) : null);
                 break;
             case 'weaken':
                 let weakenTargets = Array.isArray(card.effect.target)
                     ? card.effect.target.reduce((allTargets, currentTarget) => allTargets = allTargets.concat(this.calculateTargets(row, currentTarget)), [])
                     : this.calculateTargets(row, card.effect.target);
                 console.log(`Cele zdolności to ${weakenTargets}`);
-                weakenTargets.forEach((target) => target === 'player' || target === 'opponent'
-                    ? this.effectsService.applyEffect(card.effect, target)
-                    : this[target] && this.changeCardAttack(-card.effect.amount, target));
+                weakenTargets.forEach((target) => this[target] ? this.changeCardAttack(-card.effect.amount, target) : null);
+                break;
+            case 'strengthen':
+                let strengthenTargets = Array.isArray(card.effect.target)
+                    ? card.effect.target.reduce((allTargets, currentTarget) => allTargets = allTargets.concat(this.calculateTargets(row, currentTarget)), [])
+                    : this.calculateTargets(row, card.effect.target);
+                console.log(`Cele zdolności to ${strengthenTargets}`);
+                strengthenTargets.forEach((target) => this[target] ? this.changeCardAttack(card.effect.amount, target) : null);
                 break;
             case 'summon':
                 let summonTargets = Array.isArray(card.effect.target)
