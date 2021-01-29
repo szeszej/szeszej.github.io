@@ -27,36 +27,103 @@ OpponentComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefine
 
 /***/ }),
 
-/***/ "+bcQ":
-/*!*******************************!*\
-  !*** ./src/app/data/cards.ts ***!
-  \*******************************/
-/*! exports provided: cards */
+/***/ "+R9O":
+/*!*******************************************************************!*\
+  !*** ./src/app/opponent/opponent-hand/opponent-hand.component.ts ***!
+  \*******************************************************************/
+/*! exports provided: OpponentHandComponent */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "OpponentHandComponent", function() { return OpponentHandComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "fXoL");
+
+class OpponentHandComponent {
+    constructor() { }
+    ngOnInit() {
+    }
+}
+OpponentHandComponent.ɵfac = function OpponentHandComponent_Factory(t) { return new (t || OpponentHandComponent)(); };
+OpponentHandComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: OpponentHandComponent, selectors: [["app-opponent-hand"]], decls: 2, vars: 0, template: function OpponentHandComponent_Template(rf, ctx) { if (rf & 1) {
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "p");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](1, "opponent-hand works!");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+    } }, styles: ["\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJvcHBvbmVudC1oYW5kLmNvbXBvbmVudC5jc3MifQ== */"] });
+
+
+/***/ }),
+
+/***/ "+bcQ":
+/*!*******************************!*\
+  !*** ./src/app/data/cards.ts ***!
+  \*******************************/
+/*! exports provided: tokens, cards, deck */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "tokens", function() { return tokens; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "cards", function() { return cards; });
-const cards = [
-    {
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deck", function() { return deck; });
+/* harmony import */ var _shared_card_card_model__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../shared/card/card.model */ "mIaL");
+
+const tokens = {
+    bandit: {
+        name: "Bandyta",
+        attack: 1,
+        hp: 1,
+        cost: 1,
+        description: "Pieniądze albo życie.",
+        type: "ally",
+        speed: 1,
+    },
+    zombie: {
+        name: "Zombi",
+        attack: 2,
+        hp: 2,
+        cost: 2,
+        description: "Móóóózgi!",
+        type: "ally",
+        speed: 1,
+    },
+    hound: {
+        name: "Ogar",
+        attack: 3,
+        hp: 3,
+        cost: 3,
+        description: "Hau, hau!",
+        type: "ally",
+        speed: 1,
+    }
+};
+const cards = {
+    taernianPeasant: {
         name: "Taernijski Wieśniak",
         attack: 1,
         hp: 1,
         cost: 1,
-        description: "Zwykły wieśniak",
+        description: "Łapaj samogon.",
         type: "ally",
         speed: 1,
+        rules: "Zagranie: Dobierz kartę",
+        effect: {
+            type: "draw",
+            amount: 1,
+            timing: "play",
+            target: "player"
+        }
     },
-    {
+    taernianKnight: {
         name: "Taernijski Rycerz",
         attack: 2,
-        hp: 4,
+        hp: 3,
         cost: 3,
         description: "Po prostu Rycerz",
         type: "ally",
         speed: 1,
     },
-    {
+    taernianBarbarian: {
         name: "Taernijski Barbarzyńca",
         attack: 3,
         hp: 1,
@@ -65,7 +132,7 @@ const cards = [
         type: "ally",
         speed: 1,
     },
-    {
+    taernianFiremage: {
         name: "Taernijski Mag Ognia",
         attack: 4,
         hp: 2,
@@ -74,7 +141,7 @@ const cards = [
         type: "ally",
         speed: 2,
     },
-    {
+    taernianArcher: {
         name: "Taernijski Łucznik",
         attack: 2,
         hp: 2,
@@ -83,7 +150,7 @@ const cards = [
         type: "ally",
         speed: 2,
     },
-    {
+    taernianDruid: {
         name: "Taernijski Druid",
         attack: 1,
         hp: 6,
@@ -92,7 +159,7 @@ const cards = [
         type: "ally",
         speed: 3,
     },
-    {
+    taernianVoodoo: {
         name: "Taernijski Voodoo",
         attack: 2,
         hp: 1,
@@ -101,7 +168,7 @@ const cards = [
         type: "ally",
         speed: 3,
     },
-    {
+    battleOgre: {
         name: "Ogr Bojowy",
         attack: 5,
         hp: 5,
@@ -110,7 +177,7 @@ const cards = [
         type: "ally",
         speed: 1,
     },
-    {
+    harpy: {
         name: "Harpia",
         attack: 3,
         hp: 7,
@@ -119,7 +186,7 @@ const cards = [
         type: "ally",
         speed: 2,
     },
-    {
+    frog: {
         name: "Żaba",
         attack: 3,
         hp: 3,
@@ -128,7 +195,7 @@ const cards = [
         type: "ally",
         speed: 2,
     },
-    {
+    librarian: {
         name: "Bibliotekarz",
         attack: 5,
         hp: 8,
@@ -137,16 +204,23 @@ const cards = [
         type: "ally",
         speed: 3,
     },
-    {
+    babadek: {
         name: "Babadek",
         attack: 7,
         hp: 7,
-        cost: 7,
+        cost: 10,
         description: "Gdzie moje psy?",
         type: "ally",
         speed: 1,
+        rules: "Odkrycie: Przyzywa 3/3/wręcz Ogary na wolne przyjazne pola.",
+        effect: {
+            type: "summon",
+            target: "playerAllies",
+            card: new _shared_card_card_model__WEBPACK_IMPORTED_MODULE_0__["Card"](tokens.hound),
+            timing: "reveal"
+        }
     },
-    {
+    ghadira: {
         name: "Ghadira",
         attack: 10,
         hp: 7,
@@ -154,17 +228,24 @@ const cards = [
         description: "Kto wchodzi do mojej wieży?",
         type: "ally",
         speed: 1,
+        rules: "Odkrycie: Osłabia przeciwnika w tym samym rzędzie o 4.",
+        effect: {
+            type: "weaken",
+            target: "sameRow",
+            amount: 4,
+            timing: "reveal"
+        }
     },
-    {
+    gregorius: {
         name: "Gregorius",
         attack: 4,
         hp: 6,
         cost: 7,
-        description: "Kto wchodzi do mojej wieży?",
+        description: "Czy nie wyglądam jak ten typ z Gun'n'Roses?",
         type: "ally",
         speed: 3,
     },
-    {
+    toad: {
         name: "Ropuch",
         attack: 6,
         hp: 10,
@@ -173,25 +254,25 @@ const cards = [
         type: "ally",
         speed: 2,
     },
-    {
-        name: "Niedźwiedź",
+    wolf: {
+        name: "Wilk",
         attack: 2,
         hp: 2,
         cost: 2,
-        description: "Miś 2/2 za 2.",
+        description: "Miś(?) 2/2 za 2.",
         type: "ally",
         speed: 1,
     },
-    {
+    utorianAssassin: {
         name: "Utorski Asasyn",
-        attack: 8,
+        attack: 6,
         hp: 1,
         cost: 4,
         description: "Jak się go złapie to jest frajer.",
         type: "ally",
         speed: 1,
     },
-    {
+    taernianShieldman: {
         name: "Taernijski Tarczownik",
         attack: 2,
         hp: 10,
@@ -199,8 +280,15 @@ const cards = [
         description: "I co mu zrobisz?",
         type: "ally",
         speed: 1,
+        rules: "Walka: Leczy się za 2.",
+        effect: {
+            type: "healing",
+            target: "self",
+            amount: 2,
+            timing: "combat"
+        }
     },
-    {
+    taernianCrossbowman: {
         name: "Taernijski Kusznik",
         attack: 5,
         hp: 3,
@@ -209,7 +297,7 @@ const cards = [
         type: "ally",
         speed: 2,
     },
-    {
+    utorianOgre: {
         name: "Utorski Ogr",
         attack: 12,
         hp: 12,
@@ -218,6 +306,144 @@ const cards = [
         type: "ally",
         speed: 1,
     },
+    chieftain: {
+        name: "Herszt",
+        attack: 4,
+        hp: 6,
+        cost: 5,
+        description: "Do mnie!",
+        type: "ally",
+        speed: 1,
+        rules: "Walka: Przyzywa 1/1/wręcz Bandytów na wolne przyjazne pola.",
+        effect: {
+            type: "summon",
+            card: new _shared_card_card_model__WEBPACK_IMPORTED_MODULE_0__["Card"](tokens.bandit),
+            timing: "combat",
+            target: "playerAllies"
+        }
+    },
+    accursedPeasant: {
+        name: "Przeklęty Wieśniak",
+        attack: 1,
+        hp: 1,
+        cost: 2,
+        description: "Coś mię nie tego!",
+        type: "ally",
+        speed: 1,
+        rules: "Śmierć: Przyzywa 2/2/wręcz Zombie na swoje miejsce.",
+        effect: {
+            type: "summon",
+            card: new _shared_card_card_model__WEBPACK_IMPORTED_MODULE_0__["Card"](tokens.zombie),
+            timing: "death",
+            target: "self"
+        }
+    },
+    garthmog: {
+        name: "Garthmog",
+        attack: 4,
+        hp: 8,
+        cost: 8,
+        description: "Słyszysz tylko grzechot kości.",
+        type: "ally",
+        speed: 3,
+        rules: "Odkrycie: Zadaje 2 obrażeń wszystkim wrogom.",
+        effect: {
+            type: "damage",
+            amount: 2,
+            timing: "reveal",
+            target: ["oppAllies", "opponent"]
+        }
+    },
+    healer: {
+        name: "Uzdrowiciel",
+        attack: 1,
+        hp: 4,
+        cost: 4,
+        description: "Leczenie grupowe raz!",
+        type: "ally",
+        speed: 3,
+        rules: "Zagranie: Leczy 2 obrażeń wszystkim przyjaznym sojusznikom.",
+        effect: {
+            type: "healing",
+            amount: 2,
+            timing: "play",
+            target: "playerAllies"
+        }
+    },
+    stormMage: {
+        name: "Mag Burz",
+        attack: 1,
+        hp: 3,
+        cost: 4,
+        description: "Niech rozpęta się piekło!",
+        type: "ally",
+        speed: 2,
+        rules: "Atakuje również rząd powyżej i poniżej swojej pozycji.",
+        effect: {
+            type: "damage",
+            amount: 1,
+            timing: "attack",
+            target: ["enemyUpRow", "enemyDownRow"]
+        }
+    },
+    voodooWeakener: {
+        name: "Voodoo Osłabiacz",
+        attack: 1,
+        hp: 2,
+        cost: 5,
+        description: "Niech rozpęta się piekło!",
+        type: "ally",
+        speed: 3,
+        rules: "Odkrycie: Osłabia wrogich sojuszników o 2.",
+        effect: {
+            type: "weaken",
+            target: "oppAllies",
+            amount: 2,
+            timing: "reveal"
+        }
+    },
+};
+const deck = [
+    cards.taernianPeasant,
+    cards.taernianPeasant,
+    cards.taernianKnight,
+    cards.taernianKnight,
+    cards.taernianArcher,
+    cards.taernianArcher,
+    cards.taernianFiremage,
+    cards.taernianFiremage,
+    cards.taernianBarbarian,
+    cards.taernianBarbarian,
+    cards.taernianDruid,
+    cards.taernianDruid,
+    cards.taernianVoodoo,
+    cards.taernianVoodoo,
+    cards.frog,
+    cards.frog,
+    cards.battleOgre,
+    cards.battleOgre,
+    cards.harpy,
+    cards.harpy,
+    cards.wolf,
+    cards.wolf,
+    cards.librarian,
+    cards.babadek,
+    cards.ghadira,
+    cards.gregorius,
+    cards.chieftain,
+    cards.healer,
+    cards.utorianOgre,
+    cards.stormMage,
+    cards.stormMage,
+    cards.garthmog,
+    cards.accursedPeasant,
+    cards.accursedPeasant,
+    cards.voodooWeakener,
+    cards.toad,
+    cards.taernianShieldman,
+    cards.taernianShieldman,
+    cards.taernianCrossbowman,
+    cards.taernianCrossbowman
 ];
 
 
@@ -296,31 +522,79 @@ function HandComponent_app_card_0_Template(rf, ctx) { if (rf & 1) {
 } if (rf & 2) {
     const card_r1 = ctx.$implicit;
     const i_r2 = ctx.index;
-    const ctx_r0 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("card", card_r1)("ngStyle", ctx_r0.calculateRotation(i_r2))("cdkDragData", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpureFunction2"](3, _c0, card_r1, i_r2));
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("card", card_r1)("cdkDragData", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpureFunction2"](2, _c0, card_r1, i_r2));
 } }
 class HandComponent {
     constructor(handService) {
         this.handService = handService;
         this.cards = [];
+        this.handService.handSubject.subscribe(data => this.cards = data);
     }
     ngOnInit() {
         this.handService.drawCards(4);
     }
-    ngDoCheck() {
-        this.cards = this.handService.getHand();
-    }
-    calculateRotation(index) {
-        let steps = 90 / this.cards.length;
-        return { transform: `rotate(${-45 + steps * index}deg)` };
+    ngOnDestroy() {
+        this.handService.handSubject.unsubscribe();
     }
 }
 HandComponent.ɵfac = function HandComponent_Factory(t) { return new (t || HandComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_hand_service__WEBPACK_IMPORTED_MODULE_1__["HandService"])); };
-HandComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: HandComponent, selectors: [["app-hand"]], decls: 1, vars: 1, consts: [["cdkDrag", "", 3, "card", "ngStyle", "cdkDragData", 4, "ngFor", "ngForOf"], ["cdkDrag", "", 3, "card", "ngStyle", "cdkDragData"]], template: function HandComponent_Template(rf, ctx) { if (rf & 1) {
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](0, HandComponent_app_card_0_Template, 1, 6, "app-card", 0);
+HandComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: HandComponent, selectors: [["app-hand"]], decls: 1, vars: 1, consts: [["cdkDrag", "", 3, "card", "cdkDragData", 4, "ngFor", "ngForOf"], ["cdkDrag", "", 3, "card", "cdkDragData"]], template: function HandComponent_Template(rf, ctx) { if (rf & 1) {
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](0, HandComponent_app_card_0_Template, 1, 5, "app-card", 0);
     } if (rf & 2) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngForOf", ctx.cards);
-    } }, directives: [_angular_common__WEBPACK_IMPORTED_MODULE_2__["NgForOf"], _shared_card_card_component__WEBPACK_IMPORTED_MODULE_3__["CardComponent"], _angular_cdk_drag_drop__WEBPACK_IMPORTED_MODULE_4__["CdkDrag"], _angular_common__WEBPACK_IMPORTED_MODULE_2__["NgStyle"]], styles: ["[_nghost-%COMP%] {\r\n  grid-area: hand;\r\n  display: flex;\r\n  justify-content: center;\r\n  padding: 1em;\r\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImhhbmQuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLGVBQWU7RUFDZixhQUFhO0VBQ2IsdUJBQXVCO0VBQ3ZCLFlBQVk7QUFDZCIsImZpbGUiOiJoYW5kLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyI6aG9zdCB7XHJcbiAgZ3JpZC1hcmVhOiBoYW5kO1xyXG4gIGRpc3BsYXk6IGZsZXg7XHJcbiAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XHJcbiAgcGFkZGluZzogMWVtO1xyXG59XHJcbiJdfQ== */"] });
+    } }, directives: [_angular_common__WEBPACK_IMPORTED_MODULE_2__["NgForOf"], _shared_card_card_component__WEBPACK_IMPORTED_MODULE_3__["CardComponent"], _angular_cdk_drag_drop__WEBPACK_IMPORTED_MODULE_4__["CdkDrag"]], styles: ["[_nghost-%COMP%] {\r\n  grid-area: hand;\r\n  display: flex;\r\n  justify-content: space-evenly;\r\n  padding: 1em;\r\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImhhbmQuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLGVBQWU7RUFDZixhQUFhO0VBQ2IsNkJBQTZCO0VBQzdCLFlBQVk7QUFDZCIsImZpbGUiOiJoYW5kLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyI6aG9zdCB7XHJcbiAgZ3JpZC1hcmVhOiBoYW5kO1xyXG4gIGRpc3BsYXk6IGZsZXg7XHJcbiAganVzdGlmeS1jb250ZW50OiBzcGFjZS1ldmVubHk7XHJcbiAgcGFkZGluZzogMWVtO1xyXG59XHJcbiJdfQ== */"] });
+
+
+/***/ }),
+
+/***/ "3jE/":
+/*!**********************************************!*\
+  !*** ./src/app/opponent/opponent.service.ts ***!
+  \**********************************************/
+/*! exports provided: OpponentService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "OpponentService", function() { return OpponentService; });
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! rxjs */ "qCKp");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "fXoL");
+
+
+class OpponentService {
+    constructor() {
+        this.oppDeckSize = 36;
+        this.oppHandSize = 4;
+        this.oppHp = 30;
+        this.oppHpEmitter = new rxjs__WEBPACK_IMPORTED_MODULE_0__["Subject"]();
+        this.oppHandSizeEmitter = new rxjs__WEBPACK_IMPORTED_MODULE_0__["Subject"]();
+        this.oppDeckSizeEmitter = new rxjs__WEBPACK_IMPORTED_MODULE_0__["Subject"]();
+    }
+    getOppHp() {
+        return this.oppHp;
+    }
+    changeOppHp(number) {
+        console.log(`Życie przeciwnika zmienia się z ${this.oppHp} na ${this.oppHp + number}`);
+        this.oppHp += number;
+        this.oppHpEmitter.next(this.oppHp);
+    }
+    getOppHandSize() {
+        return this.oppHandSize;
+    }
+    setOppHandSize(number) {
+        this.oppHandSize = number;
+        this.oppHandSizeEmitter.next(number);
+    }
+    getOppDeckSize() {
+        return this.oppDeckSize;
+    }
+    setOppDeckSize(number) {
+        this.oppDeckSize = number;
+        this.oppDeckSizeEmitter.next(number);
+    }
+}
+OpponentService.ɵfac = function OpponentService_Factory(t) { return new (t || OpponentService)(); };
+OpponentService.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineInjectable"]({ token: OpponentService, factory: OpponentService.ɵfac, providedIn: 'root' });
 
 
 /***/ }),
@@ -376,15 +650,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "fXoL");
 /* harmony import */ var _battlefield_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./battlefield.service */ "b9KQ");
 /* harmony import */ var _player_hand_hand_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../player/hand/hand.service */ "THtM");
-/* harmony import */ var _player_player_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../player/player.service */ "ufXC");
-/* harmony import */ var _player_avatar_player_avatar_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./player-avatar/player-avatar.component */ "g6fd");
-/* harmony import */ var _mental_mental_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./mental/mental.component */ "Dm1F");
-/* harmony import */ var _angular_cdk_drag_drop__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/cdk/drag-drop */ "5+WD");
-/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/common */ "ofXK");
-/* harmony import */ var _ranged_ranged_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./ranged/ranged.component */ "F6y0");
-/* harmony import */ var _melee_melee_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./melee/melee.component */ "tFtR");
-/* harmony import */ var _opponent_avatar_opponent_avatar_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./opponent-avatar/opponent-avatar.component */ "6TkF");
-/* harmony import */ var _shared_card_card_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../shared/card/card.component */ "Fe25");
+/* harmony import */ var _player_action_points_action_points_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../player/action-points/action-points.service */ "MbUL");
+/* harmony import */ var _opponent_opponent_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../opponent/opponent.service */ "3jE/");
+/* harmony import */ var _player_avatar_player_avatar_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./player-avatar/player-avatar.component */ "g6fd");
+/* harmony import */ var _mental_mental_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./mental/mental.component */ "Dm1F");
+/* harmony import */ var _angular_cdk_drag_drop__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/cdk/drag-drop */ "5+WD");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/common */ "ofXK");
+/* harmony import */ var _ranged_ranged_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./ranged/ranged.component */ "F6y0");
+/* harmony import */ var _melee_melee_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./melee/melee.component */ "tFtR");
+/* harmony import */ var _opponent_avatar_opponent_avatar_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./opponent-avatar/opponent-avatar.component */ "6TkF");
+/* harmony import */ var _shared_card_card_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../shared/card/card.component */ "Fe25");
+
 
 
 
@@ -416,10 +692,11 @@ function BattlefieldComponent_app_card_9_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("card", ctx_r2.melee);
 } }
 class BattlefieldComponent {
-    constructor(battlefieldService, handService, playerService) {
+    constructor(battlefieldService, handService, actionsPointsService, opponentService) {
         this.battlefieldService = battlefieldService;
         this.handService = handService;
-        this.playerService = playerService;
+        this.actionsPointsService = actionsPointsService;
+        this.opponentService = opponentService;
         this.melee = null;
         this.ranged = null;
         this.mental = null;
@@ -430,24 +707,28 @@ class BattlefieldComponent {
         this.showRanged = true;
         this.showMelee = true;
         this.battlefieldService.cardEmitter.subscribe((arg) => this[arg.row] = arg.card);
-        this.battlefieldService.oppHpEmitter.subscribe((arg) => this.oppHP = arg);
+        this.opponentService.oppHpEmitter.subscribe((arg) => this.oppHP = arg);
     }
     ngOnInit() {
-        this.oppHP = this.battlefieldService.getOppHp();
+        this.oppHP = this.opponentService.getOppHp();
         this.rangedOpp = this.battlefieldService.getCard("rangedOpp");
     }
     drop(event) {
         this.showMental = true;
         this.showRanged = true;
         this.showMelee = true;
-        if ((event.container.data === "melee" || event.container.data === "ranged" || event.container.data === "mental") && event.item.data.card.cost <= this.playerService.getActionPoints().current) {
-            this.playerService.payCosts(event.item.data.card.cost);
-            this.battlefieldService.setCard(event.item.data.card, event.container.data);
+        if ((event.container.data === "melee" || event.container.data === "ranged" || event.container.data === "mental") && event.item.data.card.cost <= this.actionsPointsService.getActionPoints().current) {
+            this.actionsPointsService.payCosts(event.item.data.card.cost);
+            this.battlefieldService.setPlayerCard(event.item.data.card, event.container.data);
             this.handService.removeCard(event.item.data.index);
         }
     }
+    ngOnDestroy() {
+        this.battlefieldService.cardEmitter.unsubscribe();
+        this.opponentService.oppHpEmitter.unsubscribe();
+    }
 }
-BattlefieldComponent.ɵfac = function BattlefieldComponent_Factory(t) { return new (t || BattlefieldComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_battlefield_service__WEBPACK_IMPORTED_MODULE_1__["BattlefieldService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_player_hand_hand_service__WEBPACK_IMPORTED_MODULE_2__["HandService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_player_player_service__WEBPACK_IMPORTED_MODULE_3__["PlayerService"])); };
+BattlefieldComponent.ɵfac = function BattlefieldComponent_Factory(t) { return new (t || BattlefieldComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_battlefield_service__WEBPACK_IMPORTED_MODULE_1__["BattlefieldService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_player_hand_hand_service__WEBPACK_IMPORTED_MODULE_2__["HandService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_player_action_points_action_points_service__WEBPACK_IMPORTED_MODULE_3__["ActionsPointsService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_opponent_opponent_service__WEBPACK_IMPORTED_MODULE_4__["OpponentService"])); };
 BattlefieldComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: BattlefieldComponent, selectors: [["app-battlefield"]], decls: 11, vars: 13, consts: [[3, "card", "oppCard"], ["cdkDropList", "", 1, "playerCard", 3, "cdkDropListData", "cdkDropListDropped", "cdkDropListEntered", "cdkDropListExited"], [3, "card", 4, "ngIf"], [3, "playerHp"], [3, "card"]], template: function BattlefieldComponent_Template(rf, ctx) { if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](0, "app-player-avatar");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "app-mental", 0);
@@ -490,7 +771,7 @@ BattlefieldComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdef
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", ctx.melee && ctx.showMelee);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("playerHp", ctx.oppHP);
-    } }, directives: [_player_avatar_player_avatar_component__WEBPACK_IMPORTED_MODULE_4__["PlayerAvatarComponent"], _mental_mental_component__WEBPACK_IMPORTED_MODULE_5__["MentalComponent"], _angular_cdk_drag_drop__WEBPACK_IMPORTED_MODULE_6__["CdkDropList"], _angular_common__WEBPACK_IMPORTED_MODULE_7__["NgIf"], _ranged_ranged_component__WEBPACK_IMPORTED_MODULE_8__["RangedComponent"], _melee_melee_component__WEBPACK_IMPORTED_MODULE_9__["MeleeComponent"], _opponent_avatar_opponent_avatar_component__WEBPACK_IMPORTED_MODULE_10__["OpponentAvatarComponent"], _shared_card_card_component__WEBPACK_IMPORTED_MODULE_11__["CardComponent"]], styles: ["[_nghost-%COMP%] {\r\n  grid-area: battlefield;\r\n  display: grid;\r\n  grid-template-areas: \"player mental opponent\" \"player ranged opponent\" \"player melee opponent\";\r\n  grid-template-columns: 20vw 60vw 20vw;\r\n  grid-auto-rows: 33% 33% 33%\r\n}\r\n\r\n.playerCard[_ngcontent-%COMP%] {\r\n  border: 1px solid green;\r\n  height: 10em;\r\n  width: 8em;\r\n  display: flex;\r\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImJhdHRsZWZpZWxkLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRSxzQkFBc0I7RUFDdEIsYUFBYTtFQUNiLDhGQUE4RjtFQUM5RixxQ0FBcUM7RUFDckM7QUFDRjs7QUFFQTtFQUNFLHVCQUF1QjtFQUN2QixZQUFZO0VBQ1osVUFBVTtFQUNWLGFBQWE7QUFDZiIsImZpbGUiOiJiYXR0bGVmaWVsZC5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiOmhvc3Qge1xyXG4gIGdyaWQtYXJlYTogYmF0dGxlZmllbGQ7XHJcbiAgZGlzcGxheTogZ3JpZDtcclxuICBncmlkLXRlbXBsYXRlLWFyZWFzOiBcInBsYXllciBtZW50YWwgb3Bwb25lbnRcIiBcInBsYXllciByYW5nZWQgb3Bwb25lbnRcIiBcInBsYXllciBtZWxlZSBvcHBvbmVudFwiO1xyXG4gIGdyaWQtdGVtcGxhdGUtY29sdW1uczogMjB2dyA2MHZ3IDIwdnc7XHJcbiAgZ3JpZC1hdXRvLXJvd3M6IDMzJSAzMyUgMzMlXHJcbn1cclxuXHJcbi5wbGF5ZXJDYXJkIHtcclxuICBib3JkZXI6IDFweCBzb2xpZCBncmVlbjtcclxuICBoZWlnaHQ6IDEwZW07XHJcbiAgd2lkdGg6IDhlbTtcclxuICBkaXNwbGF5OiBmbGV4O1xyXG59XHJcbiJdfQ== */"] });
+    } }, directives: [_player_avatar_player_avatar_component__WEBPACK_IMPORTED_MODULE_5__["PlayerAvatarComponent"], _mental_mental_component__WEBPACK_IMPORTED_MODULE_6__["MentalComponent"], _angular_cdk_drag_drop__WEBPACK_IMPORTED_MODULE_7__["CdkDropList"], _angular_common__WEBPACK_IMPORTED_MODULE_8__["NgIf"], _ranged_ranged_component__WEBPACK_IMPORTED_MODULE_9__["RangedComponent"], _melee_melee_component__WEBPACK_IMPORTED_MODULE_10__["MeleeComponent"], _opponent_avatar_opponent_avatar_component__WEBPACK_IMPORTED_MODULE_11__["OpponentAvatarComponent"], _shared_card_card_component__WEBPACK_IMPORTED_MODULE_12__["CardComponent"]], styles: ["[_nghost-%COMP%] {\r\n  grid-area: battlefield;\r\n  display: grid;\r\n  grid-template-areas: \"player mental opponent\" \"player ranged opponent\" \"player melee opponent\";\r\n  grid-template-columns: 20vw 60vw 20vw;\r\n  grid-auto-rows: 33% 33% 33%\r\n}\r\n\r\n.playerCard[_ngcontent-%COMP%] {\r\n  border: 1px solid green;\r\n  height: 10em;\r\n  width: 8em;\r\n  display: flex;\r\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImJhdHRsZWZpZWxkLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRSxzQkFBc0I7RUFDdEIsYUFBYTtFQUNiLDhGQUE4RjtFQUM5RixxQ0FBcUM7RUFDckM7QUFDRjs7QUFFQTtFQUNFLHVCQUF1QjtFQUN2QixZQUFZO0VBQ1osVUFBVTtFQUNWLGFBQWE7QUFDZiIsImZpbGUiOiJiYXR0bGVmaWVsZC5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiOmhvc3Qge1xyXG4gIGdyaWQtYXJlYTogYmF0dGxlZmllbGQ7XHJcbiAgZGlzcGxheTogZ3JpZDtcclxuICBncmlkLXRlbXBsYXRlLWFyZWFzOiBcInBsYXllciBtZW50YWwgb3Bwb25lbnRcIiBcInBsYXllciByYW5nZWQgb3Bwb25lbnRcIiBcInBsYXllciBtZWxlZSBvcHBvbmVudFwiO1xyXG4gIGdyaWQtdGVtcGxhdGUtY29sdW1uczogMjB2dyA2MHZ3IDIwdnc7XHJcbiAgZ3JpZC1hdXRvLXJvd3M6IDMzJSAzMyUgMzMlXHJcbn1cclxuXHJcbi5wbGF5ZXJDYXJkIHtcclxuICBib3JkZXI6IDFweCBzb2xpZCBncmVlbjtcclxuICBoZWlnaHQ6IDEwZW07XHJcbiAgd2lkdGg6IDhlbTtcclxuICBkaXNwbGF5OiBmbGV4O1xyXG59XHJcbiJdfQ== */"] });
 
 
 /***/ }),
@@ -570,38 +851,6 @@ MentalComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineCo
 
 /***/ }),
 
-/***/ "F11b":
-/*!*********************************!*\
-  !*** ./src/app/http.service.ts ***!
-  \*********************************/
-/*! exports provided: HttpService */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HttpService", function() { return HttpService; });
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "fXoL");
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ "tk/3");
-
-
-class HttpService {
-    constructor(http) {
-        this.http = http;
-    }
-    sendData(cards, player) {
-        console.log(cards);
-        return this.http.put("https://recipe-book-app-bce43.firebaseio.com/recipes/player" + player + ".json", cards);
-    }
-    getData(player) {
-        return this.http.get("https://recipe-book-app-bce43.firebaseio.com/recipes/player" + player + ".json");
-    }
-}
-HttpService.ɵfac = function HttpService_Factory(t) { return new (t || HttpService)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"])); };
-HttpService.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({ token: HttpService, factory: HttpService.ɵfac, providedIn: 'root' });
-
-
-/***/ }),
-
 /***/ "F6y0":
 /*!********************************************************!*\
   !*** ./src/app/battlefield/ranged/ranged.component.ts ***!
@@ -660,36 +909,92 @@ RangedComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineCo
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CardComponent", function() { return CardComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "fXoL");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common */ "ofXK");
 
+
+function CardComponent_div_14_Template(rf, ctx) { if (rf & 1) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 10);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "div", 1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](2);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](3, "div", 2);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](4, "img", 3);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](5, "div", 4);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](6, "div", 5);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](7);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](8, "div", 6);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](9);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](10, "div", 7);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](11);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](12, "div", 8);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](13, "img", 3);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](14, "div", 11);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](15);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](16, "div", 12);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](17);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+} if (rf & 2) {
+    const ctx_r0 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](ctx_r0.card.name);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("src", ctx_r0.card.image, _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵsanitizeUrl"]);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](3);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](ctx_r0.card.maxAttack);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](ctx_r0.card.maxHp);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](ctx_r0.card.cost);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("src", "assets/images/zones/" + ctx_r0.card.speed + ".svg", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵsanitizeUrl"]);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](ctx_r0.card.rules);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](ctx_r0.card.description);
+} }
 class CardComponent {
-    constructor() { }
+    constructor() {
+        this.showTooltip = false;
+    }
     ngOnInit() {
     }
 }
 CardComponent.ɵfac = function CardComponent_Factory(t) { return new (t || CardComponent)(); };
-CardComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: CardComponent, selectors: [["app-card"]], inputs: { card: "card" }, decls: 13, vars: 6, consts: [[1, "name"], [1, "image"], ["alt", "card image", 3, "src"], [1, "stats"], [1, "attack"], [1, "hp"], [1, "cost"], [1, "speed"]], template: function CardComponent_Template(rf, ctx) { if (rf & 1) {
+CardComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: CardComponent, selectors: [["app-card"]], inputs: { card: "card" }, decls: 15, vars: 7, consts: [[1, "card", 3, "mouseenter", "mouseleave", "mousedown"], [1, "name"], [1, "image"], ["alt", "card image", 3, "src"], [1, "stats"], [1, "attack"], [1, "hp"], [1, "cost"], [1, "speed"], ["class", "cardTooltip", 4, "ngIf"], [1, "cardTooltip"], [1, "rules"], [1, "description"]], template: function CardComponent_Template(rf, ctx) { if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 0);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](1);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("mouseenter", function CardComponent_Template_div_mouseenter_0_listener() { return ctx.showTooltip = true; })("mouseleave", function CardComponent_Template_div_mouseleave_0_listener() { return ctx.showTooltip = false; })("mousedown", function CardComponent_Template_div_mousedown_0_listener() { return ctx.showTooltip = false; });
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "div", 1);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](2);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](2, "div", 1);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](3, "img", 2);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](3, "div", 2);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](4, "img", 3);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](4, "div", 3);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](5, "div", 4);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](6);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](6, "div", 5);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](7);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](7, "div", 5);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](8);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](8, "div", 6);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](9);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](9, "div", 6);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](10);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](10, "div", 7);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](11);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](11, "div", 7);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](12, "img", 2);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](12, "div", 8);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](13, "img", 3);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](14, CardComponent_div_14_Template, 18, 8, "div", 9);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
     } if (rf & 2) {
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](ctx.card.name);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("src", ctx.card.image, _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵsanitizeUrl"]);
@@ -701,7 +1006,51 @@ CardComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComp
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](ctx.card.cost);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("src", "assets/images/zones/" + ctx.card.speed + ".svg", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵsanitizeUrl"]);
-    } }, styles: ["[_nghost-%COMP%] {\r\n  height: 10em;\r\n  width: 8em;\r\n  border: 1px solid black;\r\n  position: relative;\r\n}\r\n\r\n.name[_ngcontent-%COMP%] {\r\n  font-size: 0.75em;\r\n  text-align: center;\r\n}\r\n\r\n.image[_ngcontent-%COMP%] {\r\n  width: 90%;\r\n  border: 1px solid black;\r\n  margin: 0 auto;\r\n  max-height: 8em;\r\n}\r\n\r\n.stats[_ngcontent-%COMP%] {\r\n  position: absolute;\r\n  top: 2em;\r\n  left: -0.5em;\r\n  width: 1em;\r\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNhcmQuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLFlBQVk7RUFDWixVQUFVO0VBQ1YsdUJBQXVCO0VBQ3ZCLGtCQUFrQjtBQUNwQjs7QUFFQTtFQUNFLGlCQUFpQjtFQUNqQixrQkFBa0I7QUFDcEI7O0FBRUE7RUFDRSxVQUFVO0VBQ1YsdUJBQXVCO0VBQ3ZCLGNBQWM7RUFDZCxlQUFlO0FBQ2pCOztBQUVBO0VBQ0Usa0JBQWtCO0VBQ2xCLFFBQVE7RUFDUixZQUFZO0VBQ1osVUFBVTtBQUNaIiwiZmlsZSI6ImNhcmQuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIjpob3N0IHtcclxuICBoZWlnaHQ6IDEwZW07XHJcbiAgd2lkdGg6IDhlbTtcclxuICBib3JkZXI6IDFweCBzb2xpZCBibGFjaztcclxuICBwb3NpdGlvbjogcmVsYXRpdmU7XHJcbn1cclxuXHJcbi5uYW1lIHtcclxuICBmb250LXNpemU6IDAuNzVlbTtcclxuICB0ZXh0LWFsaWduOiBjZW50ZXI7XHJcbn1cclxuXHJcbi5pbWFnZSB7XHJcbiAgd2lkdGg6IDkwJTtcclxuICBib3JkZXI6IDFweCBzb2xpZCBibGFjaztcclxuICBtYXJnaW46IDAgYXV0bztcclxuICBtYXgtaGVpZ2h0OiA4ZW07XHJcbn1cclxuXHJcbi5zdGF0cyB7XHJcbiAgcG9zaXRpb246IGFic29sdXRlO1xyXG4gIHRvcDogMmVtO1xyXG4gIGxlZnQ6IC0wLjVlbTtcclxuICB3aWR0aDogMWVtO1xyXG59XHJcbiJdfQ== */"] });
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", ctx.showTooltip);
+    } }, directives: [_angular_common__WEBPACK_IMPORTED_MODULE_1__["NgIf"]], styles: [".card[_ngcontent-%COMP%] {\r\n  height: 10em;\r\n  width: 8em;\r\n  border: 1px solid black;\r\n  position: relative;\r\n  border-radius: 5px;\r\n}\r\n\r\n.name[_ngcontent-%COMP%] {\r\n  font-size: 0.75em;\r\n  text-align: center;\r\n  background-color:rgba(0, 0, 0, 0);\r\n}\r\n\r\n.image[_ngcontent-%COMP%] {\r\n  width: 90%;\r\n  border: 1px solid black;\r\n  margin: 0 auto;\r\n  max-height: 8em;\r\n}\r\n\r\n.stats[_ngcontent-%COMP%] {\r\n  position: absolute;\r\n  top: 2em;\r\n  left: -0.5em;\r\n  width: 1em;\r\n}\r\n\r\n.attack[_ngcontent-%COMP%] {\r\n  border-radius: 50%;\r\n  background-color: red;\r\n  text-align: center;\r\n}\r\n\r\n.hp[_ngcontent-%COMP%] {\r\n  border-radius: 50%;\r\n  background-color: green;\r\n  text-align: center;\r\n}\r\n\r\n.cost[_ngcontent-%COMP%] {\r\n  border-radius: 50%;\r\n  background-color: blue;\r\n  text-align: center;\r\n}\r\n\r\n.cardTooltip[_ngcontent-%COMP%] {\r\n  height: auto;\r\n  width: 8em;\r\n  border: 1px solid black;\r\n  position: absolute;\r\n  bottom: 99%;\r\n  left: 99%;\r\n  z-index: 3;\r\n}\r\n\r\n.rules[_ngcontent-%COMP%] {\r\n  text-align: left;\r\n  padding: 2px;\r\n  font-size: 0.75em;\r\n}\r\n\r\n.description[_ngcontent-%COMP%] {\r\n  text-align: left;\r\n  padding: 2px;\r\n  font-style: italic;\r\n  font-size: 0.75em;\r\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNhcmQuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLFlBQVk7RUFDWixVQUFVO0VBQ1YsdUJBQXVCO0VBQ3ZCLGtCQUFrQjtFQUNsQixrQkFBa0I7QUFDcEI7O0FBRUE7RUFDRSxpQkFBaUI7RUFDakIsa0JBQWtCO0VBQ2xCLGlDQUFpQztBQUNuQzs7QUFFQTtFQUNFLFVBQVU7RUFDVix1QkFBdUI7RUFDdkIsY0FBYztFQUNkLGVBQWU7QUFDakI7O0FBRUE7RUFDRSxrQkFBa0I7RUFDbEIsUUFBUTtFQUNSLFlBQVk7RUFDWixVQUFVO0FBQ1o7O0FBRUE7RUFDRSxrQkFBa0I7RUFDbEIscUJBQXFCO0VBQ3JCLGtCQUFrQjtBQUNwQjs7QUFFQTtFQUNFLGtCQUFrQjtFQUNsQix1QkFBdUI7RUFDdkIsa0JBQWtCO0FBQ3BCOztBQUVBO0VBQ0Usa0JBQWtCO0VBQ2xCLHNCQUFzQjtFQUN0QixrQkFBa0I7QUFDcEI7O0FBRUE7RUFDRSxZQUFZO0VBQ1osVUFBVTtFQUNWLHVCQUF1QjtFQUN2QixrQkFBa0I7RUFDbEIsV0FBVztFQUNYLFNBQVM7RUFDVCxVQUFVO0FBQ1o7O0FBRUE7RUFDRSxnQkFBZ0I7RUFDaEIsWUFBWTtFQUNaLGlCQUFpQjtBQUNuQjs7QUFFQTtFQUNFLGdCQUFnQjtFQUNoQixZQUFZO0VBQ1osa0JBQWtCO0VBQ2xCLGlCQUFpQjtBQUNuQiIsImZpbGUiOiJjYXJkLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIuY2FyZCB7XHJcbiAgaGVpZ2h0OiAxMGVtO1xyXG4gIHdpZHRoOiA4ZW07XHJcbiAgYm9yZGVyOiAxcHggc29saWQgYmxhY2s7XHJcbiAgcG9zaXRpb246IHJlbGF0aXZlO1xyXG4gIGJvcmRlci1yYWRpdXM6IDVweDtcclxufVxyXG5cclxuLm5hbWUge1xyXG4gIGZvbnQtc2l6ZTogMC43NWVtO1xyXG4gIHRleHQtYWxpZ246IGNlbnRlcjtcclxuICBiYWNrZ3JvdW5kLWNvbG9yOnJnYmEoMCwgMCwgMCwgMCk7XHJcbn1cclxuXHJcbi5pbWFnZSB7XHJcbiAgd2lkdGg6IDkwJTtcclxuICBib3JkZXI6IDFweCBzb2xpZCBibGFjaztcclxuICBtYXJnaW46IDAgYXV0bztcclxuICBtYXgtaGVpZ2h0OiA4ZW07XHJcbn1cclxuXHJcbi5zdGF0cyB7XHJcbiAgcG9zaXRpb246IGFic29sdXRlO1xyXG4gIHRvcDogMmVtO1xyXG4gIGxlZnQ6IC0wLjVlbTtcclxuICB3aWR0aDogMWVtO1xyXG59XHJcblxyXG4uYXR0YWNrIHtcclxuICBib3JkZXItcmFkaXVzOiA1MCU7XHJcbiAgYmFja2dyb3VuZC1jb2xvcjogcmVkO1xyXG4gIHRleHQtYWxpZ246IGNlbnRlcjtcclxufVxyXG5cclxuLmhwIHtcclxuICBib3JkZXItcmFkaXVzOiA1MCU7XHJcbiAgYmFja2dyb3VuZC1jb2xvcjogZ3JlZW47XHJcbiAgdGV4dC1hbGlnbjogY2VudGVyO1xyXG59XHJcblxyXG4uY29zdCB7XHJcbiAgYm9yZGVyLXJhZGl1czogNTAlO1xyXG4gIGJhY2tncm91bmQtY29sb3I6IGJsdWU7XHJcbiAgdGV4dC1hbGlnbjogY2VudGVyO1xyXG59XHJcblxyXG4uY2FyZFRvb2x0aXAge1xyXG4gIGhlaWdodDogYXV0bztcclxuICB3aWR0aDogOGVtO1xyXG4gIGJvcmRlcjogMXB4IHNvbGlkIGJsYWNrO1xyXG4gIHBvc2l0aW9uOiBhYnNvbHV0ZTtcclxuICBib3R0b206IDk5JTtcclxuICBsZWZ0OiA5OSU7XHJcbiAgei1pbmRleDogMztcclxufVxyXG5cclxuLnJ1bGVzIHtcclxuICB0ZXh0LWFsaWduOiBsZWZ0O1xyXG4gIHBhZGRpbmc6IDJweDtcclxuICBmb250LXNpemU6IDAuNzVlbTtcclxufVxyXG5cclxuLmRlc2NyaXB0aW9uIHtcclxuICB0ZXh0LWFsaWduOiBsZWZ0O1xyXG4gIHBhZGRpbmc6IDJweDtcclxuICBmb250LXN0eWxlOiBpdGFsaWM7XHJcbiAgZm9udC1zaXplOiAwLjc1ZW07XHJcbn1cclxuIl19 */"] });
+
+
+/***/ }),
+
+/***/ "Ib5z":
+/*!****************************************!*\
+  !*** ./src/app/shared/turn.service.ts ***!
+  \****************************************/
+/*! exports provided: TurnService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TurnService", function() { return TurnService; });
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! rxjs */ "qCKp");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "fXoL");
+/* harmony import */ var _player_action_points_action_points_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../player/action-points/action-points.service */ "MbUL");
+/* harmony import */ var _player_hand_hand_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../player/hand/hand.service */ "THtM");
+
+
+
+
+class TurnService {
+    constructor(actionsPointsService, handService) {
+        this.actionsPointsService = actionsPointsService;
+        this.handService = handService;
+        this.turn = 1;
+        this.turnSubject = new rxjs__WEBPACK_IMPORTED_MODULE_0__["Subject"]();
+    }
+    getTurn() {
+        return this.turn;
+    }
+    nextTurn() {
+        this.turn += 1;
+        this.actionsPointsService.addActionPoints(1);
+        this.actionsPointsService.refreshActionPoints();
+        this.handService.drawCards(1);
+        this.turnSubject.next(this.turn);
+    }
+}
+TurnService.ɵfac = function TurnService_Factory(t) { return new (t || TurnService)(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵinject"](_player_action_points_action_points_service__WEBPACK_IMPORTED_MODULE_2__["ActionsPointsService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵinject"](_player_hand_hand_service__WEBPACK_IMPORTED_MODULE_3__["HandService"])); };
+TurnService.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineInjectable"]({ token: TurnService, factory: TurnService.ɵfac, providedIn: 'root' });
 
 
 /***/ }),
@@ -733,6 +1082,210 @@ AbiltiesComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefine
 
 /***/ }),
 
+/***/ "KvzL":
+/*!*******************************************!*\
+  !*** ./src/app/shared/effects.service.ts ***!
+  \*******************************************/
+/*! exports provided: EffectsService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "EffectsService", function() { return EffectsService; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "fXoL");
+/* harmony import */ var _player_hand_hand_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../player/hand/hand.service */ "THtM");
+/* harmony import */ var _player_player_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../player/player.service */ "ufXC");
+/* harmony import */ var _opponent_opponent_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../opponent/opponent.service */ "3jE/");
+
+
+
+
+// import { Card } from "../shared/card/card.model"
+class EffectsService {
+    constructor(handService, playerService, opponentService) {
+        this.handService = handService;
+        this.playerService = playerService;
+        this.opponentService = opponentService;
+    }
+    applyEffect(effect, target = '') {
+        switch (effect.type) {
+            case 'draw':
+                this.handService.drawCards(effect.amount);
+                break;
+            case 'healing':
+                target === 'player'
+                    ? this.playerService.changeLifePoints(effect.amount)
+                    : this.opponentService.changeOppHp(effect.amount);
+                break;
+            case 'damage':
+                target === 'player'
+                    ? this.playerService.changeLifePoints(-effect.amount)
+                    : this.opponentService.changeOppHp(-effect.amount);
+                break;
+            default:
+                break;
+        }
+    }
+}
+EffectsService.ɵfac = function EffectsService_Factory(t) { return new (t || EffectsService)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_player_hand_hand_service__WEBPACK_IMPORTED_MODULE_1__["HandService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_player_player_service__WEBPACK_IMPORTED_MODULE_2__["PlayerService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_opponent_opponent_service__WEBPACK_IMPORTED_MODULE_3__["OpponentService"])); };
+EffectsService.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({ token: EffectsService, factory: EffectsService.ɵfac, providedIn: 'root' });
+
+
+/***/ }),
+
+/***/ "MbUL":
+/*!***************************************************************!*\
+  !*** ./src/app/player/action-points/action-points.service.ts ***!
+  \***************************************************************/
+/*! exports provided: ActionsPointsService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ActionsPointsService", function() { return ActionsPointsService; });
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! rxjs */ "qCKp");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "fXoL");
+
+
+class ActionsPointsService {
+    constructor() {
+        this.maxActionPoints = 3;
+        this.currentActionPoints = 3;
+        this.actionPointsSubject = new rxjs__WEBPACK_IMPORTED_MODULE_0__["Subject"]();
+    }
+    getActionPoints() {
+        return { current: this.currentActionPoints, max: this.maxActionPoints };
+    }
+    addActionPoints(number) {
+        this.maxActionPoints === 12 ? this.maxActionPoints += 0 : this.maxActionPoints += number;
+    }
+    payCosts(number) {
+        this.currentActionPoints -= number;
+        this.actionPointsSubject.next({ max: this.maxActionPoints, current: this.currentActionPoints });
+    }
+    refreshActionPoints() {
+        this.currentActionPoints = this.maxActionPoints;
+        this.actionPointsSubject.next({ max: this.maxActionPoints, current: this.currentActionPoints });
+    }
+}
+ActionsPointsService.ɵfac = function ActionsPointsService_Factory(t) { return new (t || ActionsPointsService)(); };
+ActionsPointsService.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineInjectable"]({ token: ActionsPointsService, factory: ActionsPointsService.ɵfac, providedIn: 'root' });
+
+
+/***/ }),
+
+/***/ "QCuA":
+/*!******************************************!*\
+  !*** ./src/app/shared/combat.service.ts ***!
+  \******************************************/
+/*! exports provided: CombatService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CombatService", function() { return CombatService; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "fXoL");
+/* harmony import */ var _battlefield_battlefield_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../battlefield/battlefield.service */ "b9KQ");
+/* harmony import */ var _player_player_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../player/player.service */ "ufXC");
+/* harmony import */ var _turn_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./turn.service */ "Ib5z");
+/* harmony import */ var _opponent_opponent_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../opponent/opponent.service */ "3jE/");
+
+
+
+
+
+class CombatService {
+    constructor(battlefieldService, playerService, turnService, opponentService) {
+        this.battlefieldService = battlefieldService;
+        this.playerService = playerService;
+        this.turnService = turnService;
+        this.opponentService = opponentService;
+    }
+    commenceCombat() {
+        const rows = ['mental', 'ranged', 'melee'];
+        //efekty na początku walki albo na reveal
+        rows.forEach((row) => {
+            let playerCard = this.battlefieldService.getCard(row);
+            let oppCard = this.battlefieldService.getCard(row + 'Opp');
+            //sprawdzamy czy sa efekty na poczatku walki
+            if (playerCard && playerCard.effect && ((playerCard.effect.timing === "reveal" && !playerCard.revealed) || playerCard.effect.timing === "combat")) {
+                this.battlefieldService.applyBattlefiedEffect(playerCard, row);
+                this.battlefieldService.markAsRevealed(row);
+                console.log(`${playerCard.name} używa zdolności ${playerCard.effect.type} na ${playerCard.effect.target}`);
+            }
+            else if (oppCard && oppCard.effect && ((oppCard.effect.timing === "reveal" && !oppCard.revealed) || oppCard.effect.timing === "combat")) {
+                this.battlefieldService.applyBattlefiedEffect(oppCard, row + 'Opp');
+                console.log(`${oppCard.name} używa zdolności ${oppCard.effect.type} na ${oppCard.effect.target}`);
+                this.battlefieldService.markAsRevealed(row + 'Opp');
+            }
+            //po efektach sprawdzam sba
+            this.battlefieldService.buryTheFallen();
+        });
+        //właściwe ataki
+        rows.forEach((row) => {
+            let playerCard = this.battlefieldService.getCard(row);
+            let oppCard = this.battlefieldService.getCard(row + 'Opp');
+            //sprawdzamy czy są efekty podczas ataku i je aplikujemy
+            if (playerCard && playerCard.effect && playerCard.effect.timing === "attack") {
+                this.battlefieldService.applyBattlefiedEffect(playerCard, row);
+            }
+            else if (oppCard && oppCard.effect && oppCard.effect.timing === "attack") {
+                this.battlefieldService.applyBattlefiedEffect(oppCard, row + 'Opp');
+            }
+            //właściwe ataki
+            if (playerCard) {
+                if (oppCard) {
+                    this.clash(playerCard, oppCard, row);
+                }
+                else {
+                    this.opponentService.changeOppHp(-playerCard.attack);
+                }
+            }
+            else if (oppCard) {
+                this.playerService.changeLifePoints(-oppCard.attack);
+            }
+            this.battlefieldService.buryTheFallen();
+        });
+        this.turnService.nextTurn();
+    }
+    clash(playerCard, oppCard, row) {
+        if (playerCard.speed === oppCard.speed) {
+            //jeśli karty mają taką samą szybkość, to biją w siebie nawzajem, a dopiero potem sprawdzamy czy ktoś zginął
+            this.battlefieldService.changeCardHp(-playerCard.attack, row + 'Opp');
+            this.battlefieldService.changeCardHp(-oppCard.attack, row);
+            this.battlefieldService.buryTheFallen();
+        }
+        else if (playerCard.speed < oppCard.speed) {
+            //jeśli karty mają różną szybkość, to najpierw szybsza zadaje obrażenia, a wolniejsza tylko jeśli przeżyje
+            // tutaj karta gracza jest wolniejsza, więc przeciwnik pierwszy zadaje obrażenia
+            this.battlefieldService.changeCardHp(-oppCard.attack, row);
+            this.battlefieldService.buryTheFallen();
+            //sprawdzamy czy karta gracza nadal żyje
+            if (this.battlefieldService.getCard(row) === playerCard) {
+                //jak tak to też zadaje obrażeni
+                this.battlefieldService.changeCardHp(-playerCard.attack, row + 'Opp');
+                this.battlefieldService.buryTheFallen();
+            }
+        }
+        else {
+            // tutaj karta przeciwnika jest wolniejsza, więc gracz pierwszy zadaje obrażenia
+            this.battlefieldService.changeCardHp(-playerCard.attack, row + 'Opp');
+            this.battlefieldService.buryTheFallen();
+            //sprawdzamy czy karta przeciwnika nadal żyje
+            if (this.battlefieldService.getCard(row + 'Opp') === oppCard) {
+                //jak tak to też zadaje obrażeni
+                this.battlefieldService.changeCardHp(-oppCard.attack, row);
+                this.battlefieldService.buryTheFallen();
+            }
+        }
+    }
+}
+CombatService.ɵfac = function CombatService_Factory(t) { return new (t || CombatService)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_battlefield_battlefield_service__WEBPACK_IMPORTED_MODULE_1__["BattlefieldService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_player_player_service__WEBPACK_IMPORTED_MODULE_2__["PlayerService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_turn_service__WEBPACK_IMPORTED_MODULE_3__["TurnService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_opponent_opponent_service__WEBPACK_IMPORTED_MODULE_4__["OpponentService"])); };
+CombatService.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({ token: CombatService, factory: CombatService.ɵfac, providedIn: 'root' });
+
+
+/***/ }),
+
 /***/ "Sy1n":
 /*!**********************************!*\
   !*** ./src/app/app.component.ts ***!
@@ -745,14 +1298,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AppComponent", function() { return AppComponent; });
 /* harmony import */ var _shared_card_card_model__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./shared/card/card.model */ "mIaL");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "fXoL");
-/* harmony import */ var _combat_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./combat.service */ "TAF1");
-/* harmony import */ var _player_player_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./player/player.service */ "ufXC");
+/* harmony import */ var _shared_combat_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./shared/combat.service */ "QCuA");
+/* harmony import */ var _shared_turn_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./shared/turn.service */ "Ib5z");
 /* harmony import */ var _battlefield_battlefield_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./battlefield/battlefield.service */ "b9KQ");
-/* harmony import */ var _http_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./http.service */ "F11b");
-/* harmony import */ var _angular_cdk_drag_drop__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/cdk/drag-drop */ "5+WD");
-/* harmony import */ var _opponent_opponent_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./opponent/opponent.component */ "+1ZF");
-/* harmony import */ var _battlefield_battlefield_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./battlefield/battlefield.component */ "93yE");
-/* harmony import */ var _player_player_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./player/player.component */ "0M9o");
+/* harmony import */ var _shared_http_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./shared/http.service */ "nGxR");
+/* harmony import */ var _player_player_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./player/player.service */ "ufXC");
+/* harmony import */ var _player_hand_hand_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./player/hand/hand.service */ "THtM");
+/* harmony import */ var _player_deck_deck_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./player/deck/deck.service */ "Zsfq");
+/* harmony import */ var _angular_cdk_drag_drop__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/cdk/drag-drop */ "5+WD");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/common */ "ofXK");
+/* harmony import */ var _opponent_opponent_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./opponent/opponent.component */ "+1ZF");
+/* harmony import */ var _battlefield_battlefield_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./battlefield/battlefield.component */ "93yE");
+/* harmony import */ var _player_player_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./player/player.component */ "0M9o");
 
 
 
@@ -763,16 +1320,44 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
+
+
+function AppComponent_p_12_Template(rf, ctx) { if (rf & 1) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "p");
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+} if (rf & 2) {
+    const ctx_r0 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtextInterpolate1"]("Player ", ctx_r0.playerNumber, "");
+} }
+function AppComponent_p_13_Template(rf, ctx) { if (rf & 1) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "p");
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+} if (rf & 2) {
+    const ctx_r1 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtextInterpolate1"]("Tura ", ctx_r1.turnNumber, "");
+} }
 class AppComponent {
-    constructor(combatService, playerService, battlefieldService, httpService) {
+    constructor(combatService, turnService, battlefieldService, httpService, playerService, handService, deckService) {
         this.combatService = combatService;
-        this.playerService = playerService;
+        this.turnService = turnService;
         this.battlefieldService = battlefieldService;
         this.httpService = httpService;
+        this.playerService = playerService;
+        this.handService = handService;
+        this.deckService = deckService;
         this.title = 'taern-card';
         this.isPlayerNumberSet = false;
         this.isDataSent = false;
         this.isDataReceived = false;
+        this.isTurnNumberCorrect = false;
+        this.turnNumber = 1;
+        this.turnService.turnSubject.subscribe(turnNumber => this.turnNumber = turnNumber);
     }
     combat() {
         this.combatService.commenceCombat();
@@ -785,22 +1370,44 @@ class AppComponent {
         this.playerNumber = number;
     }
     sendData() {
-        this.httpService.sendData({ melee: this.battlefieldService.getCard("melee") ? this.battlefieldService.getCard("melee") : "", ranged: this.battlefieldService.getCard("ranged") ? this.battlefieldService.getCard("ranged") : "", mental: this.battlefieldService.getCard("mental") ? this.battlefieldService.getCard("mental") : "" }, this.playerService.getPlayerNumber()).subscribe(response => {
-            this.isDataSent = true;
-            console.log(response);
-        });
+        this.httpService
+            .sendData({
+            melee: this.battlefieldService.getCard('melee')
+                ? this.battlefieldService.getCard('melee')
+                : '',
+            ranged: this.battlefieldService.getCard('ranged')
+                ? this.battlefieldService.getCard('ranged')
+                : '',
+            mental: this.battlefieldService.getCard('mental')
+                ? this.battlefieldService.getCard('mental')
+                : '',
+            turn: this.turnNumber,
+            hand: this.handService.getHandSize(),
+            deck: this.deckService.getNumberOfCards()
+        }, this.playerService.getPlayerNumber())
+            .subscribe((response) => (this.isDataSent = true));
     }
     getData() {
-        this.httpService.getData(this.playerService.getPlayerNumber() === 1 ? 2 : 1).subscribe(response => {
-            response.melee ? this.battlefieldService.setCard(new _shared_card_card_model__WEBPACK_IMPORTED_MODULE_0__["Card"](response.melee), "meleeOpp") : console.log(response);
-            response.ranged ? this.battlefieldService.setCard(new _shared_card_card_model__WEBPACK_IMPORTED_MODULE_0__["Card"](response.ranged), "rangedOpp") : console.log(response);
-            response.mental ? this.battlefieldService.setCard(new _shared_card_card_model__WEBPACK_IMPORTED_MODULE_0__["Card"](response.mental), "mentalOpp") : console.log(response);
-            this.isDataReceived = true;
+        this.httpService
+            .getData(this.playerService.getPlayerNumber() === 1 ? 2 : 1)
+            .subscribe((response) => {
+            if (response && response.turn === this.turnNumber) {
+                response.melee
+                    ? this.battlefieldService.setOppCard(new _shared_card_card_model__WEBPACK_IMPORTED_MODULE_0__["Card"](response.melee), 'melee')
+                    : null;
+                response.ranged
+                    ? this.battlefieldService.setOppCard(new _shared_card_card_model__WEBPACK_IMPORTED_MODULE_0__["Card"](response.ranged), 'ranged')
+                    : null;
+                response.mental
+                    ? this.battlefieldService.setOppCard(new _shared_card_card_model__WEBPACK_IMPORTED_MODULE_0__["Card"](response.mental), 'mental')
+                    : null;
+                this.isDataReceived = true;
+            }
         });
     }
 }
-AppComponent.ɵfac = function AppComponent_Factory(t) { return new (t || AppComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_combat_service__WEBPACK_IMPORTED_MODULE_2__["CombatService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_player_player_service__WEBPACK_IMPORTED_MODULE_3__["PlayerService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_battlefield_battlefield_service__WEBPACK_IMPORTED_MODULE_4__["BattlefieldService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_http_service__WEBPACK_IMPORTED_MODULE_5__["HttpService"])); };
-AppComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineComponent"]({ type: AppComponent, selectors: [["app-root"]], decls: 17, vars: 6, consts: [["cdkDropListGroup", "", 1, "wrapper"], [1, "buttons"], [1, "playerNumber", 3, "disabled", "click"], [1, "sendData", 3, "disabled", "click"], [1, "receiveData", 3, "disabled", "click"], [1, "combat", 3, "disabled", "click"]], template: function AppComponent_Template(rf, ctx) { if (rf & 1) {
+AppComponent.ɵfac = function AppComponent_Factory(t) { return new (t || AppComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_shared_combat_service__WEBPACK_IMPORTED_MODULE_2__["CombatService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_shared_turn_service__WEBPACK_IMPORTED_MODULE_3__["TurnService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_battlefield_battlefield_service__WEBPACK_IMPORTED_MODULE_4__["BattlefieldService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_shared_http_service__WEBPACK_IMPORTED_MODULE_5__["HttpService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_player_player_service__WEBPACK_IMPORTED_MODULE_6__["PlayerService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_player_hand_hand_service__WEBPACK_IMPORTED_MODULE_7__["HandService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_player_deck_deck_service__WEBPACK_IMPORTED_MODULE_8__["DeckService"])); };
+AppComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineComponent"]({ type: AppComponent, selectors: [["app-root"]], decls: 17, vars: 7, consts: [["cdkDropListGroup", "", 1, "wrapper"], [1, "buttons"], [1, "playerNumber", 3, "disabled", "click"], [1, "sendData", 3, "disabled", "click"], [1, "receiveData", 3, "disabled", "click"], [1, "combat", 3, "disabled", "click"], [4, "ngIf"]], template: function AppComponent_Template(rf, ctx) { if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "div", 0);
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](1, "div", 1);
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](2, "button", 2);
@@ -823,9 +1430,8 @@ AppComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineCompo
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function AppComponent_Template_button_click_10_listener() { return ctx.combat(); });
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](11, "Walka!");
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](12, "p");
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](13);
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](12, AppComponent_p_12_Template, 2, 1, "p", 6);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](13, AppComponent_p_13_Template, 2, 1, "p", 6);
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](14, "app-opponent");
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](15, "app-battlefield");
@@ -837,100 +1443,16 @@ AppComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineCompo
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](2);
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("disabled", ctx.isPlayerNumberSet);
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](2);
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("disabled", !ctx.isPlayerNumberSet);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("disabled", !ctx.isPlayerNumberSet || ctx.isDataSent);
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](2);
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("disabled", !ctx.isDataSent);
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](2);
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("disabled", !ctx.isDataReceived);
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](3);
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtextInterpolate1"]("Player ", ctx.playerNumber, "");
-    } }, directives: [_angular_cdk_drag_drop__WEBPACK_IMPORTED_MODULE_6__["CdkDropListGroup"], _opponent_opponent_component__WEBPACK_IMPORTED_MODULE_7__["OpponentComponent"], _battlefield_battlefield_component__WEBPACK_IMPORTED_MODULE_8__["BattlefieldComponent"], _player_player_component__WEBPACK_IMPORTED_MODULE_9__["PlayerComponent"]], styles: [".wrapper[_ngcontent-%COMP%] {\r\n  display: grid;\r\n  grid-template-areas: \"opponent\" \"battlefield\" \"player\";\r\n  grid-template-rows: 20vh 60vh 20vh;\r\n  grid-template-columns: 100%;\r\n  box-sizing: border-box;\r\n  overflow: hidden;\r\n}\r\n.buttons[_ngcontent-%COMP%] {\r\n  position: absolute;\r\n  top: 2em;\r\n  left: 2em;\r\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImFwcC5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UsYUFBYTtFQUNiLHNEQUFzRDtFQUN0RCxrQ0FBa0M7RUFDbEMsMkJBQTJCO0VBQzNCLHNCQUFzQjtFQUN0QixnQkFBZ0I7QUFDbEI7QUFDQTtFQUNFLGtCQUFrQjtFQUNsQixRQUFRO0VBQ1IsU0FBUztBQUNYIiwiZmlsZSI6ImFwcC5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLndyYXBwZXIge1xyXG4gIGRpc3BsYXk6IGdyaWQ7XHJcbiAgZ3JpZC10ZW1wbGF0ZS1hcmVhczogXCJvcHBvbmVudFwiIFwiYmF0dGxlZmllbGRcIiBcInBsYXllclwiO1xyXG4gIGdyaWQtdGVtcGxhdGUtcm93czogMjB2aCA2MHZoIDIwdmg7XHJcbiAgZ3JpZC10ZW1wbGF0ZS1jb2x1bW5zOiAxMDAlO1xyXG4gIGJveC1zaXppbmc6IGJvcmRlci1ib3g7XHJcbiAgb3ZlcmZsb3c6IGhpZGRlbjtcclxufVxyXG4uYnV0dG9ucyB7XHJcbiAgcG9zaXRpb246IGFic29sdXRlO1xyXG4gIHRvcDogMmVtO1xyXG4gIGxlZnQ6IDJlbTtcclxufVxyXG4iXX0= */"] });
-
-
-/***/ }),
-
-/***/ "TAF1":
-/*!***********************************!*\
-  !*** ./src/app/combat.service.ts ***!
-  \***********************************/
-/*! exports provided: CombatService */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CombatService", function() { return CombatService; });
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "fXoL");
-/* harmony import */ var _battlefield_battlefield_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./battlefield/battlefield.service */ "b9KQ");
-/* harmony import */ var _player_player_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./player/player.service */ "ufXC");
-/* harmony import */ var _player_hand_hand_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./player/hand/hand.service */ "THtM");
-
-
-
-
-class CombatService {
-    constructor(battlefieldService, playerService, handService) {
-        this.battlefieldService = battlefieldService;
-        this.playerService = playerService;
-        this.handService = handService;
-    }
-    commenceCombat() {
-        const rows = ["mental", "ranged", "melee"];
-        rows.forEach(row => {
-            let playerCard = this.battlefieldService.getCard(row);
-            let oppCard = this.battlefieldService.getCard(row + "Opp");
-            if (playerCard) {
-                if (oppCard) {
-                    this.clash(playerCard, oppCard, row);
-                }
-                else {
-                    this.battlefieldService.changeOppHp(-playerCard.attack);
-                }
-            }
-            else if (oppCard) {
-                this.playerService.changeLifePoints(-oppCard.attack);
-            }
-        });
-        this.newTurn();
-    }
-    clash(playerCard, oppCard, row) {
-        if (playerCard.speed === oppCard.speed) {
-            //jeśli karty mają taką samą szybkość, to biją w siebie nawzajem, a dopiero potem sprawdzamy czy ktoś zginął
-            this.battlefieldService.changeCardHp(-playerCard.attack, row + "Opp");
-            this.battlefieldService.changeCardHp(-oppCard.attack, row);
-            this.battlefieldService.buryTheFallen();
-        }
-        else if (playerCard.speed < oppCard.speed) {
-            //jeśli karty mają różną szybkość, to najpierw szybsza zadaje obrażenia, a wolniejsza tylko jeśli przeżyje
-            // tutaj karta gracza jest wolniejsza, więc przeciwnik pierwszy zadaje obrażenia
-            this.battlefieldService.changeCardHp(-oppCard.attack, row);
-            this.battlefieldService.buryTheFallen();
-            //sprawdzamy czy karta gracza nadal żyje
-            if (this.battlefieldService.getCard(row)) {
-                //jak tak to też zadaje obrażeni
-                this.battlefieldService.changeCardHp(-playerCard.attack, row + "Opp");
-                this.battlefieldService.buryTheFallen();
-            }
-        }
-        else {
-            // tutaj karta przeciwnika jest wolniejsza, więc gracz pierwszy zadaje obrażenia
-            this.battlefieldService.changeCardHp(-playerCard.attack, row + "Opp");
-            this.battlefieldService.buryTheFallen();
-            //sprawdzamy czy karta przeciwnika nadal żyje
-            if (this.battlefieldService.getCard(row + "Opp")) {
-                //jak tak to też zadaje obrażeni
-                this.battlefieldService.changeCardHp(-oppCard.attack, row);
-                this.battlefieldService.buryTheFallen();
-            }
-        }
-    }
-    newTurn() {
-        this.playerService.addActionPoints(1);
-        this.playerService.refreshActionPoints();
-        this.handService.drawCards(1);
-    }
-}
-CombatService.ɵfac = function CombatService_Factory(t) { return new (t || CombatService)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_battlefield_battlefield_service__WEBPACK_IMPORTED_MODULE_1__["BattlefieldService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_player_player_service__WEBPACK_IMPORTED_MODULE_2__["PlayerService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_player_hand_hand_service__WEBPACK_IMPORTED_MODULE_3__["HandService"])); };
-CombatService.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({ token: CombatService, factory: CombatService.ɵfac, providedIn: 'root' });
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("disabled", !ctx.isDataReceived && !ctx.isTurnNumberCorrect);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](2);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", ctx.playerNumber);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", ctx.playerNumber);
+    } }, directives: [_angular_cdk_drag_drop__WEBPACK_IMPORTED_MODULE_9__["CdkDropListGroup"], _angular_common__WEBPACK_IMPORTED_MODULE_10__["NgIf"], _opponent_opponent_component__WEBPACK_IMPORTED_MODULE_11__["OpponentComponent"], _battlefield_battlefield_component__WEBPACK_IMPORTED_MODULE_12__["BattlefieldComponent"], _player_player_component__WEBPACK_IMPORTED_MODULE_13__["PlayerComponent"]], styles: [".wrapper[_ngcontent-%COMP%] {\r\n  display: grid;\r\n  grid-template-areas: \"opponent\" \"battlefield\" \"player\";\r\n  grid-template-rows: 20vh 60vh 20vh;\r\n  grid-template-columns: 100%;\r\n  box-sizing: border-box;\r\n  overflow: hidden;\r\n}\r\n.buttons[_ngcontent-%COMP%] {\r\n  position: absolute;\r\n  top: 2em;\r\n  left: 2em;\r\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImFwcC5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UsYUFBYTtFQUNiLHNEQUFzRDtFQUN0RCxrQ0FBa0M7RUFDbEMsMkJBQTJCO0VBQzNCLHNCQUFzQjtFQUN0QixnQkFBZ0I7QUFDbEI7QUFDQTtFQUNFLGtCQUFrQjtFQUNsQixRQUFRO0VBQ1IsU0FBUztBQUNYIiwiZmlsZSI6ImFwcC5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLndyYXBwZXIge1xyXG4gIGRpc3BsYXk6IGdyaWQ7XHJcbiAgZ3JpZC10ZW1wbGF0ZS1hcmVhczogXCJvcHBvbmVudFwiIFwiYmF0dGxlZmllbGRcIiBcInBsYXllclwiO1xyXG4gIGdyaWQtdGVtcGxhdGUtcm93czogMjB2aCA2MHZoIDIwdmg7XHJcbiAgZ3JpZC10ZW1wbGF0ZS1jb2x1bW5zOiAxMDAlO1xyXG4gIGJveC1zaXppbmc6IGJvcmRlci1ib3g7XHJcbiAgb3ZlcmZsb3c6IGhpZGRlbjtcclxufVxyXG4uYnV0dG9ucyB7XHJcbiAgcG9zaXRpb246IGFic29sdXRlO1xyXG4gIHRvcDogMmVtO1xyXG4gIGxlZnQ6IDJlbTtcclxufVxyXG4iXX0= */"] });
 
 
 /***/ }),
@@ -945,30 +1467,39 @@ CombatService.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInj
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HandService", function() { return HandService; });
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "fXoL");
-/* harmony import */ var _deck_deck_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../deck/deck.service */ "Zsfq");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! rxjs */ "qCKp");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "fXoL");
+/* harmony import */ var _deck_deck_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../deck/deck.service */ "Zsfq");
+
 
 
 class HandService {
     constructor(deckService) {
         this.deckService = deckService;
         this.hand = [];
+        this.handSubject = new rxjs__WEBPACK_IMPORTED_MODULE_0__["Subject"]();
     }
     getHand() {
         return this.hand;
     }
     setHand(hand) {
         this.hand = hand;
+        this.handSubject.next(this.hand);
     }
     drawCards(number) {
         this.hand = this.hand.concat(this.deckService.draw(number));
+        this.handSubject.next(this.hand);
     }
     removeCard(index) {
         this.hand.splice(index, 1);
+        this.handSubject.next(this.hand);
+    }
+    getHandSize() {
+        return this.hand.length;
     }
 }
-HandService.ɵfac = function HandService_Factory(t) { return new (t || HandService)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_deck_deck_service__WEBPACK_IMPORTED_MODULE_1__["DeckService"])); };
-HandService.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({ token: HandService, factory: HandService.ɵfac, providedIn: 'root' });
+HandService.ɵfac = function HandService_Factory(t) { return new (t || HandService)(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵinject"](_deck_deck_service__WEBPACK_IMPORTED_MODULE_2__["DeckService"])); };
+HandService.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineInjectable"]({ token: HandService, factory: HandService.ɵfac, providedIn: 'root' });
 
 
 /***/ }),
@@ -1000,7 +1531,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _battlefield_mental_mental_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./battlefield/mental/mental.component */ "Dm1F");
 /* harmony import */ var _battlefield_player_avatar_player_avatar_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./battlefield/player-avatar/player-avatar.component */ "g6fd");
 /* harmony import */ var _battlefield_opponent_avatar_opponent_avatar_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./battlefield/opponent-avatar/opponent-avatar.component */ "6TkF");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! @angular/core */ "fXoL");
+/* harmony import */ var _opponent_opponent_deck_opponent_deck_component__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./opponent/opponent-deck/opponent-deck.component */ "wGFD");
+/* harmony import */ var _opponent_opponent_hand_opponent_hand_component__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./opponent/opponent-hand/opponent-hand.component */ "+R9O");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! @angular/core */ "fXoL");
+
+
 
 
 
@@ -1021,13 +1556,13 @@ __webpack_require__.r(__webpack_exports__);
 
 class AppModule {
 }
-AppModule.ɵmod = _angular_core__WEBPACK_IMPORTED_MODULE_17__["ɵɵdefineNgModule"]({ type: AppModule, bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_3__["AppComponent"]] });
-AppModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_17__["ɵɵdefineInjector"]({ factory: function AppModule_Factory(t) { return new (t || AppModule)(); }, providers: [], imports: [[
+AppModule.ɵmod = _angular_core__WEBPACK_IMPORTED_MODULE_19__["ɵɵdefineNgModule"]({ type: AppModule, bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_3__["AppComponent"]] });
+AppModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_19__["ɵɵdefineInjector"]({ factory: function AppModule_Factory(t) { return new (t || AppModule)(); }, providers: [], imports: [[
             _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"],
             _angular_cdk_drag_drop__WEBPACK_IMPORTED_MODULE_1__["DragDropModule"],
             _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClientModule"]
         ]] });
-(function () { (typeof ngJitMode === "undefined" || ngJitMode) && _angular_core__WEBPACK_IMPORTED_MODULE_17__["ɵɵsetNgModuleScope"](AppModule, { declarations: [_app_component__WEBPACK_IMPORTED_MODULE_3__["AppComponent"],
+(function () { (typeof ngJitMode === "undefined" || ngJitMode) && _angular_core__WEBPACK_IMPORTED_MODULE_19__["ɵɵsetNgModuleScope"](AppModule, { declarations: [_app_component__WEBPACK_IMPORTED_MODULE_3__["AppComponent"],
         _battlefield_battlefield_component__WEBPACK_IMPORTED_MODULE_4__["BattlefieldComponent"],
         _opponent_opponent_component__WEBPACK_IMPORTED_MODULE_5__["OpponentComponent"],
         _player_player_component__WEBPACK_IMPORTED_MODULE_6__["PlayerComponent"],
@@ -1040,7 +1575,9 @@ AppModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_17__["ɵɵdefineInjecto
         _battlefield_ranged_ranged_component__WEBPACK_IMPORTED_MODULE_13__["RangedComponent"],
         _battlefield_mental_mental_component__WEBPACK_IMPORTED_MODULE_14__["MentalComponent"],
         _battlefield_player_avatar_player_avatar_component__WEBPACK_IMPORTED_MODULE_15__["PlayerAvatarComponent"],
-        _battlefield_opponent_avatar_opponent_avatar_component__WEBPACK_IMPORTED_MODULE_16__["OpponentAvatarComponent"]], imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"],
+        _battlefield_opponent_avatar_opponent_avatar_component__WEBPACK_IMPORTED_MODULE_16__["OpponentAvatarComponent"],
+        _opponent_opponent_deck_opponent_deck_component__WEBPACK_IMPORTED_MODULE_17__["OpponentDeckComponent"],
+        _opponent_opponent_hand_opponent_hand_component__WEBPACK_IMPORTED_MODULE_18__["OpponentHandComponent"]], imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"],
         _angular_cdk_drag_drop__WEBPACK_IMPORTED_MODULE_1__["DragDropModule"],
         _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClientModule"]] }); })();
 
@@ -1057,16 +1594,19 @@ AppModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_17__["ɵɵdefineInjecto
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DeckService", function() { return DeckService; });
-/* harmony import */ var _shared_card_card_model__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../shared/card/card.model */ "mIaL");
-/* harmony import */ var _data_cards__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../data/cards */ "+bcQ");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "fXoL");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! rxjs */ "qCKp");
+/* harmony import */ var _shared_card_card_model__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../shared/card/card.model */ "mIaL");
+/* harmony import */ var _data_cards__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../data/cards */ "+bcQ");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ "fXoL");
+
 
 
 
 class DeckService {
     constructor() {
-        this.deck = _data_cards__WEBPACK_IMPORTED_MODULE_1__["cards"].map(card => new _shared_card_card_model__WEBPACK_IMPORTED_MODULE_0__["Card"](card)).concat(_data_cards__WEBPACK_IMPORTED_MODULE_1__["cards"].map(card => new _shared_card_card_model__WEBPACK_IMPORTED_MODULE_0__["Card"](card)));
+        this.deck = _data_cards__WEBPACK_IMPORTED_MODULE_2__["deck"].map(card => new _shared_card_card_model__WEBPACK_IMPORTED_MODULE_1__["Card"](card));
         this.discardPile = [];
+        this.deckSizeSubject = new rxjs__WEBPACK_IMPORTED_MODULE_0__["Subject"]();
     }
     getDeck() {
         return this.deck.slice();
@@ -1088,6 +1628,7 @@ class DeckService {
         }
     }
     draw(number) {
+        this.deckSizeSubject.next(this.getNumberOfCards() - number);
         return this.deck.splice(0, number);
     }
     discard(card) {
@@ -1095,7 +1636,7 @@ class DeckService {
     }
 }
 DeckService.ɵfac = function DeckService_Factory(t) { return new (t || DeckService)(); };
-DeckService.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵdefineInjectable"]({ token: DeckService, factory: DeckService.ɵfac, providedIn: 'root' });
+DeckService.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵdefineInjectable"]({ token: DeckService, factory: DeckService.ɵfac, providedIn: 'root' });
 
 
 /***/ }),
@@ -1110,51 +1651,232 @@ DeckService.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵdefineInjec
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BattlefieldService", function() { return BattlefieldService; });
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "fXoL");
-/* harmony import */ var _player_deck_deck_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../player/deck/deck.service */ "Zsfq");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! rxjs */ "qCKp");
+/* harmony import */ var _shared_card_card_model__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../shared/card/card.model */ "mIaL");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "fXoL");
+/* harmony import */ var _player_deck_deck_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../player/deck/deck.service */ "Zsfq");
+/* harmony import */ var _shared_effects_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../shared/effects.service */ "KvzL");
+
+
 
 
 
 class BattlefieldService {
-    constructor(deckService) {
+    constructor(deckService, effectsService) {
         this.deckService = deckService;
-        this.oppHp = 30;
-        this.cardEmitter = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
-        this.oppHpEmitter = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
+        this.effectsService = effectsService;
+        this.playerRows = ['mental', 'ranged', 'melee'];
+        this.oppRows = ['mentalOpp', 'rangedOpp', 'meleeOpp'];
+        this.cardEmitter = new rxjs__WEBPACK_IMPORTED_MODULE_0__["Subject"]();
     }
     getCard(row) {
         return this[row];
     }
-    setCard(card, row) {
+    setPlayerCard(card, row) {
         this[row] = card;
-        this.cardEmitter.emit({ card: card, row: row });
+        this.cardEmitter.next({ card: card, row: row });
+        if (card.effect && card.effect.timing === 'play') {
+            this.applyBattlefiedEffect(card, row);
+            console.log(`Gracz wstawia ${this[row].name} w ${row} z efektem ${this[row].effect.type} na ${this[row].effect.target}`);
+        }
+        else {
+            console.log(`Gracz wstawia ${this[row].name} w ${row}`);
+        }
     }
-    getOppHp() {
-        return this.oppHp;
-    }
-    changeOppHp(number) {
-        this.oppHp += number;
-        this.oppHpEmitter.emit(this.oppHp);
+    setOppCard(card, row) {
+        this[row + 'Opp'] = card;
+        this.cardEmitter.next({ card: card, row: row + 'Opp' });
+        console.log(`Przeciwnik wstawia ${this[row + 'Opp'].name} w ${row + 'Opp'}`);
     }
     changeCardHp(number, row) {
-        this[row].hp += number;
+        this[row].hp + number > this[row].maxHp
+            ? (this[row].hp = this[row].maxHp)
+            : (this[row].hp += number);
+        number < 0
+            ? console.log(`${this[row].name} w ${row} otrzymuje ${number} obrażeń`)
+            : console.log(`${this[row].name} w ${row} jest leczony o ${number}`);
+    }
+    changeCardAttack(number, row) {
+        this[row].attack + number < 0 ? this[row].attack = 0 : (this[row].attack += number);
+        number < 0
+            ? console.log(`${this[row].name} w ${row} otrzymuje ${number} obrażeń`)
+            : console.log(`${this[row].name} w ${row} jest leczony o ${number}`);
     }
     removeCard(card, row) {
         this.deckService.discard(card);
+        console.log(this[row].name + ' umiera w ' + row);
         this[row] = null;
-        this.cardEmitter.emit({ card: null, row: row });
+        this.cardEmitter.next({ card: null, row: row });
+        if (card.effect && card.effect.timing === 'death') {
+            this.applyBattlefiedEffect(card, row);
+            console.log(`z efektem ${card.effect.type} na ${card.effect.target}`);
+        }
     }
     buryTheFallen() {
-        const rows = ["mental", "ranged", "melee", "mentalOpp", "rangedOpp", "meleeOpp"];
-        rows.forEach(row => {
+        const rows = [
+            'mental',
+            'ranged',
+            'melee',
+            'mentalOpp',
+            'rangedOpp',
+            'meleeOpp',
+        ];
+        rows.forEach((row) => {
             if (this[row] && this[row].hp <= 0) {
                 this.removeCard(this[row], row);
             }
         });
     }
+    markAsRevealed(row) {
+        this[row].revealed = true;
+        console.log(this[row].name + "ma status revealed");
+    }
+    calculateTargets(row, target) {
+        let targets = [];
+        let playerRows = ['mental', 'ranged', 'melee'];
+        let oppRows = ['mentalOpp', 'rangedOpp', 'meleeOpp'];
+        if (row.includes('Opp')) {
+            switch (target) {
+                case 'player':
+                    targets.push('opponent');
+                    break;
+                case 'opponent':
+                    targets.push('player');
+                    break;
+                case 'self':
+                    targets.push(row);
+                    break;
+                case 'playerAllies':
+                    targets = targets.concat(oppRows);
+                    break;
+                case 'oppAllies':
+                    targets = targets.concat(playerRows);
+                    break;
+                case 'sameRow':
+                    targets.push(row.substring(0, row.length - 3));
+                    break;
+                case 'friendlyUpRow':
+                    oppRows.indexOf(row) - 1 >= 0
+                        ? targets.push(oppRows[oppRows.indexOf(row) - 1])
+                        : null;
+                    break;
+                case 'friendlyDownRow':
+                    oppRows.indexOf(row) + 1 <= 2
+                        ? targets.push(oppRows[oppRows.indexOf(row) + 1])
+                        : null;
+                    break;
+                case 'enemyUpRow':
+                    playerRows.indexOf(row.substring(0, row.length - 3)) - 1 >= 0
+                        ? targets.push(playerRows[playerRows.indexOf(row.substring(0, row.length - 3)) - 1])
+                        : null;
+                    break;
+                case 'enemyDownRow':
+                    playerRows.indexOf(row.substring(0, row.length - 3)) + 1 <= 2
+                        ? targets.push(playerRows[playerRows.indexOf(row.substring(0, row.length - 3)) + 1])
+                        : null;
+                    break;
+                case 'otherPlayerAllies':
+                    targets = targets.concat(oppRows.splice(oppRows.indexOf(row), 1));
+                    break;
+            }
+        }
+        else {
+            switch (target) {
+                case 'player':
+                    targets.push(target);
+                    break;
+                case 'opponent':
+                    targets.push(target);
+                    break;
+                case 'self':
+                    targets.push(row);
+                    break;
+                case 'playerAllies':
+                    targets = targets.concat(playerRows);
+                    break;
+                case 'oppAllies':
+                    targets = targets.concat(oppRows);
+                    break;
+                case 'sameRow':
+                    targets.push(row + 'Opp');
+                    break;
+                case 'friendlyUpRow':
+                    playerRows.indexOf(row) - 1 >= 0
+                        ? targets.push(playerRows[playerRows.indexOf(row) - 1])
+                        : null;
+                    break;
+                case 'friendlyDownRow':
+                    playerRows.indexOf(row) + 1 <= 2
+                        ? targets.push(playerRows[playerRows.indexOf(row) + 1])
+                        : null;
+                    break;
+                case 'enemyUpRow':
+                    oppRows.indexOf(row + 'Opp') - 1 >= 0
+                        ? targets.push(oppRows[oppRows.indexOf(row + 'Opp') - 1])
+                        : null;
+                    break;
+                case 'enemyDownRow':
+                    oppRows.indexOf(row + 'Opp') + 1 <= 2
+                        ? targets.push(oppRows[oppRows.indexOf(row + 'Opp') + 1])
+                        : null;
+                    break;
+                case 'otherPlayerAllies':
+                    targets = targets.concat(playerRows.splice(playerRows.indexOf(row), 1));
+                    break;
+            }
+        }
+        return targets;
+    }
+    applyBattlefiedEffect(card, row) {
+        switch (card.effect.type) {
+            case 'draw':
+                this.effectsService.applyEffect(card.effect);
+                break;
+            case 'healing':
+                let healingTargets = Array.isArray(card.effect.target)
+                    ? card.effect.target.reduce((allTargets, currentTarget) => allTargets = allTargets.concat(this.calculateTargets(row, currentTarget)), [])
+                    : this.calculateTargets(row, card.effect.target);
+                console.log(`Cele zdolności to ${healingTargets}`);
+                healingTargets.forEach((target) => target === 'player' || target === 'opponent'
+                    ? this.effectsService.applyEffect(card.effect, target)
+                    : this[target] && this.changeCardHp(card.effect.amount, target));
+                break;
+            case 'damage':
+                let damageTargets = Array.isArray(card.effect.target)
+                    ? card.effect.target.reduce((allTargets, currentTarget) => allTargets = allTargets.concat(this.calculateTargets(row, currentTarget)), [])
+                    : this.calculateTargets(row, card.effect.target);
+                console.log(`Cele zdolności to ${damageTargets}`);
+                damageTargets.forEach((target) => target === 'player' || target === 'opponent'
+                    ? this.effectsService.applyEffect(card.effect, target)
+                    : this[target] && this.changeCardHp(-card.effect.amount, target));
+                break;
+            case 'weaken':
+                let weakenTargets = Array.isArray(card.effect.target)
+                    ? card.effect.target.reduce((allTargets, currentTarget) => allTargets = allTargets.concat(this.calculateTargets(row, currentTarget)), [])
+                    : this.calculateTargets(row, card.effect.target);
+                console.log(`Cele zdolności to ${weakenTargets}`);
+                weakenTargets.forEach((target) => target === 'player' || target === 'opponent'
+                    ? this.effectsService.applyEffect(card.effect, target)
+                    : this[target] && this.changeCardAttack(-card.effect.amount, target));
+                break;
+            case 'summon':
+                let summonTargets = Array.isArray(card.effect.target)
+                    ? card.effect.target.reduce((allTargets, currentTarget) => allTargets = allTargets.concat(this.calculateTargets(row, currentTarget)), [])
+                    : this.calculateTargets(row, card.effect.target);
+                console.log(`Cele zdolności to ${summonTargets}`);
+                summonTargets.forEach((target) => !this[target]
+                    ? this.playerRows.includes(target)
+                        ? this.setPlayerCard(new _shared_card_card_model__WEBPACK_IMPORTED_MODULE_1__["Card"](card.effect.card), target)
+                        : this.setOppCard(new _shared_card_card_model__WEBPACK_IMPORTED_MODULE_1__["Card"](card.effect.card), target.substring(0, target.length - 3))
+                    : null);
+                break;
+            default:
+                break;
+        }
+    }
 }
-BattlefieldService.ɵfac = function BattlefieldService_Factory(t) { return new (t || BattlefieldService)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_player_deck_deck_service__WEBPACK_IMPORTED_MODULE_1__["DeckService"])); };
-BattlefieldService.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({ token: BattlefieldService, factory: BattlefieldService.ɵfac, providedIn: 'root' });
+BattlefieldService.ɵfac = function BattlefieldService_Factory(t) { return new (t || BattlefieldService)(_angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵinject"](_player_deck_deck_service__WEBPACK_IMPORTED_MODULE_3__["DeckService"]), _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵinject"](_shared_effects_service__WEBPACK_IMPORTED_MODULE_4__["EffectsService"])); };
+BattlefieldService.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵdefineInjectable"]({ token: BattlefieldService, factory: BattlefieldService.ɵfac, providedIn: 'root' });
 
 
 /***/ }),
@@ -1177,12 +1899,13 @@ class PlayerAvatarComponent {
     constructor(playerService) {
         this.playerService = playerService;
         this.playerClass = "barbarian";
+        this.playerService.playerHpSubject.subscribe(data => this.playerHP = data);
     }
     ngOnInit() {
         this.playerHP = this.playerService.getLifePoints();
     }
-    ngDoCheck() {
-        this.playerHP = this.playerService.getLifePoints();
+    ngOnDestroy() {
+        this.playerService.playerHpSubject.unsubscribe();
     }
 }
 PlayerAvatarComponent.ɵfac = function PlayerAvatarComponent_Factory(t) { return new (t || PlayerAvatarComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_player_player_service__WEBPACK_IMPORTED_MODULE_1__["PlayerService"])); };
@@ -1233,13 +1956,14 @@ class DeckComponent {
     constructor(deckService) {
         this.deckService = deckService;
         this.showTooltip = false;
+        this.deckService.deckSizeSubject.subscribe(data => this.cardsinDeck = data);
     }
     ngOnInit() {
         this.deckService.shuffle();
         this.cardsinDeck = this.deckService.getNumberOfCards();
     }
-    ngDoCheck() {
-        this.cardsinDeck = this.deckService.getNumberOfCards();
+    ngOnDestroy() {
+        this.deckService.deckSizeSubject.unsubscribe();
     }
 }
 DeckComponent.ɵfac = function DeckComponent_Factory(t) { return new (t || DeckComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_deck_service__WEBPACK_IMPORTED_MODULE_1__["DeckService"])); };
@@ -1256,6 +1980,29 @@ DeckComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComp
 
 /***/ }),
 
+/***/ "kLo/":
+/*!****************************************!*\
+  !*** ./src/app/shared/effect.model.ts ***!
+  \****************************************/
+/*! exports provided: Effect */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Effect", function() { return Effect; });
+class Effect {
+    constructor(effect) {
+        this.timing = effect.timing;
+        this.target = effect.target;
+        this.type = effect.type;
+        this.amount = effect.amount ? effect.amount : 0;
+        this.card = effect.card ? effect.card : null;
+    }
+}
+
+
+/***/ }),
+
 /***/ "mIaL":
 /*!*******************************************!*\
   !*** ./src/app/shared/card/card.model.ts ***!
@@ -1266,6 +2013,8 @@ DeckComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComp
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Card", function() { return Card; });
+/* harmony import */ var _effect_model__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../effect.model */ "kLo/");
+
 class Card {
     constructor(rawCard) {
         this.name = rawCard.name;
@@ -1276,6 +2025,11 @@ class Card {
         this.description = rawCard.description;
         this.type = rawCard.type;
         this.speed = rawCard.speed;
+        this.effect = rawCard.effect ? new _effect_model__WEBPACK_IMPORTED_MODULE_0__["Effect"](rawCard.effect) : null;
+        this.rules = rawCard.rules ? rawCard.rules : "";
+        this.maxHp = rawCard.maxHp ? rawCard.maxHp : rawCard.hp ? rawCard.hp : 0;
+        this.maxAttack = rawCard.maxAttack ? rawCard.maxAttack : rawCard.attack ? rawCard.attack : 0;
+        this.revealed = rawCard.revealed ? true : false;
     }
 }
 
@@ -1293,23 +2047,26 @@ class Card {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ActionPointsComponent", function() { return ActionPointsComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "fXoL");
-/* harmony import */ var _player_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../player.service */ "ufXC");
+/* harmony import */ var _action_points_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./action-points.service */ "MbUL");
 
 
 class ActionPointsComponent {
-    constructor(playerService) {
-        this.playerService = playerService;
+    constructor(actionsPointsService) {
+        this.actionsPointsService = actionsPointsService;
+        this.actionsPointsService.actionPointsSubject.subscribe(data => {
+            this.currentActionPoints = data.current;
+            this.maxActionPoints = data.max;
+        });
     }
     ngOnInit() {
-        this.currentActionPoints = this.playerService.getActionPoints().current;
-        this.maxActionPoints = this.playerService.getActionPoints().max;
+        this.currentActionPoints = this.actionsPointsService.getActionPoints().current;
+        this.maxActionPoints = this.actionsPointsService.getActionPoints().max;
     }
-    ngDoCheck() {
-        this.currentActionPoints = this.playerService.getActionPoints().current;
-        this.maxActionPoints = this.playerService.getActionPoints().max;
+    ngOnDestroy() {
+        this.actionsPointsService.actionPointsSubject.unsubscribe();
     }
 }
-ActionPointsComponent.ɵfac = function ActionPointsComponent_Factory(t) { return new (t || ActionPointsComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_player_service__WEBPACK_IMPORTED_MODULE_1__["PlayerService"])); };
+ActionPointsComponent.ɵfac = function ActionPointsComponent_Factory(t) { return new (t || ActionPointsComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_action_points_service__WEBPACK_IMPORTED_MODULE_1__["ActionsPointsService"])); };
 ActionPointsComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: ActionPointsComponent, selectors: [["app-action-points"]], decls: 3, vars: 2, consts: [[1, "actionPoints"]], template: function ActionPointsComponent_Template(rf, ctx) { if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 0);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "p");
@@ -1320,6 +2077,37 @@ ActionPointsComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵde
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate2"]("", ctx.currentActionPoints, "/", ctx.maxActionPoints, "");
     } }, styles: ["[_nghost-%COMP%] {\r\n  grid-area: action-points;\r\n  display: flex;\r\n  align-items: center;\r\n  justify-content: center;\r\n}\r\n\r\n.actionPoints[_ngcontent-%COMP%] {\r\n  border-radius: 50%;\r\n  background-color: blue;\r\n  width: 10em;\r\n  height: 10em;\r\n  display: flex;\r\n  align-items: center;\r\n  justify-content: center;\r\n}\r\n\r\np[_ngcontent-%COMP%] {\r\n  background-color:rgba(0, 0, 0, 0);\r\n  font-size: 4em;\r\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImFjdGlvbi1wb2ludHMuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLHdCQUF3QjtFQUN4QixhQUFhO0VBQ2IsbUJBQW1CO0VBQ25CLHVCQUF1QjtBQUN6Qjs7QUFFQTtFQUNFLGtCQUFrQjtFQUNsQixzQkFBc0I7RUFDdEIsV0FBVztFQUNYLFlBQVk7RUFDWixhQUFhO0VBQ2IsbUJBQW1CO0VBQ25CLHVCQUF1QjtBQUN6Qjs7QUFFQTtFQUNFLGlDQUFpQztFQUNqQyxjQUFjO0FBQ2hCIiwiZmlsZSI6ImFjdGlvbi1wb2ludHMuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIjpob3N0IHtcclxuICBncmlkLWFyZWE6IGFjdGlvbi1wb2ludHM7XHJcbiAgZGlzcGxheTogZmxleDtcclxuICBhbGlnbi1pdGVtczogY2VudGVyO1xyXG4gIGp1c3RpZnktY29udGVudDogY2VudGVyO1xyXG59XHJcblxyXG4uYWN0aW9uUG9pbnRzIHtcclxuICBib3JkZXItcmFkaXVzOiA1MCU7XHJcbiAgYmFja2dyb3VuZC1jb2xvcjogYmx1ZTtcclxuICB3aWR0aDogMTBlbTtcclxuICBoZWlnaHQ6IDEwZW07XHJcbiAgZGlzcGxheTogZmxleDtcclxuICBhbGlnbi1pdGVtczogY2VudGVyO1xyXG4gIGp1c3RpZnktY29udGVudDogY2VudGVyO1xyXG59XHJcblxyXG5wIHtcclxuICBiYWNrZ3JvdW5kLWNvbG9yOnJnYmEoMCwgMCwgMCwgMCk7XHJcbiAgZm9udC1zaXplOiA0ZW07XHJcbn1cclxuIl19 */"] });
+
+
+/***/ }),
+
+/***/ "nGxR":
+/*!****************************************!*\
+  !*** ./src/app/shared/http.service.ts ***!
+  \****************************************/
+/*! exports provided: HttpService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HttpService", function() { return HttpService; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "fXoL");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ "tk/3");
+
+
+class HttpService {
+    constructor(http) {
+        this.http = http;
+    }
+    sendData(gameData, player) {
+        return this.http.put("https://recipe-book-app-bce43.firebaseio.com/recipes/player" + player + ".json", gameData);
+    }
+    getData(player) {
+        return this.http.get("https://recipe-book-app-bce43.firebaseio.com/recipes/player" + player + ".json");
+    }
+}
+HttpService.ɵfac = function HttpService_Factory(t) { return new (t || HttpService)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"])); };
+HttpService.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({ token: HttpService, factory: HttpService.ɵfac, providedIn: 'root' });
 
 
 /***/ }),
@@ -1381,32 +2169,23 @@ MeleeComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineCom
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PlayerService", function() { return PlayerService; });
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "fXoL");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! rxjs */ "qCKp");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "fXoL");
+
 
 class PlayerService {
     constructor() {
-        this.maxActionPoints = 3;
-        this.currentActionPoints = 3;
         this.hp = 30;
         this.playerNumber = 1;
-    }
-    getActionPoints() {
-        return { current: this.currentActionPoints, max: this.maxActionPoints };
-    }
-    addActionPoints(number) {
-        this.maxActionPoints === 12 ? this.maxActionPoints += 0 : this.maxActionPoints += number;
-    }
-    payCosts(number) {
-        this.currentActionPoints -= number;
-    }
-    refreshActionPoints() {
-        this.currentActionPoints = this.maxActionPoints;
+        this.playerHpSubject = new rxjs__WEBPACK_IMPORTED_MODULE_0__["Subject"]();
     }
     getLifePoints() {
         return this.hp;
     }
     changeLifePoints(number) {
+        console.log(`Życie gracza zmienia się z ${this.hp} na ${this.hp + number}`);
         this.hp += number;
+        this.playerHpSubject.next(this.hp);
     }
     getPlayerNumber() {
         return this.playerNumber;
@@ -1416,7 +2195,34 @@ class PlayerService {
     }
 }
 PlayerService.ɵfac = function PlayerService_Factory(t) { return new (t || PlayerService)(); };
-PlayerService.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({ token: PlayerService, factory: PlayerService.ɵfac, providedIn: 'root' });
+PlayerService.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineInjectable"]({ token: PlayerService, factory: PlayerService.ɵfac, providedIn: 'root' });
+
+
+/***/ }),
+
+/***/ "wGFD":
+/*!*******************************************************************!*\
+  !*** ./src/app/opponent/opponent-deck/opponent-deck.component.ts ***!
+  \*******************************************************************/
+/*! exports provided: OpponentDeckComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "OpponentDeckComponent", function() { return OpponentDeckComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "fXoL");
+
+class OpponentDeckComponent {
+    constructor() { }
+    ngOnInit() {
+    }
+}
+OpponentDeckComponent.ɵfac = function OpponentDeckComponent_Factory(t) { return new (t || OpponentDeckComponent)(); };
+OpponentDeckComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: OpponentDeckComponent, selectors: [["app-opponent-deck"]], decls: 2, vars: 0, template: function OpponentDeckComponent_Template(rf, ctx) { if (rf & 1) {
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "p");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](1, "opponent-deck works!");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+    } }, styles: ["\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJvcHBvbmVudC1kZWNrLmNvbXBvbmVudC5jc3MifQ== */"] });
 
 
 /***/ }),
