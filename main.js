@@ -11,18 +11,37 @@
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "OpponentComponent", function() { return OpponentComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "fXoL");
+/* harmony import */ var _opponent_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./opponent.service */ "3jE/");
+/* harmony import */ var _opponent_hand_opponent_hand_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./opponent-hand/opponent-hand.component */ "+R9O");
+/* harmony import */ var _opponent_deck_opponent_deck_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./opponent-deck/opponent-deck.component */ "wGFD");
+
+
+
 
 class OpponentComponent {
-    constructor() { }
+    constructor(opponentService) {
+        this.opponentService = opponentService;
+        this.oppHandSize = [1, 1, 1, 1];
+        this.oppDeckSize = 36;
+        this.opponentService.oppDeckSizeEmitter.subscribe(oppDeckSize => this.oppDeckSize = oppDeckSize);
+        this.opponentService.oppHandSizeEmitter.subscribe(oppHandSize => this.oppHandSize = Array(oppHandSize).fill(1));
+    }
     ngOnInit() {
     }
+    ngOnDestroy() {
+        this.opponentService.oppDeckSizeEmitter.unsubscribe();
+        this.opponentService.oppHandSizeEmitter.unsubscribe();
+    }
 }
-OpponentComponent.ɵfac = function OpponentComponent_Factory(t) { return new (t || OpponentComponent)(); };
-OpponentComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: OpponentComponent, selectors: [["app-opponent"]], decls: 2, vars: 0, template: function OpponentComponent_Template(rf, ctx) { if (rf & 1) {
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div");
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](1, "opponent works!");
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-    } }, styles: ["[_nghost-%COMP%] {\r\n  grid-area: opponent;\r\n  border-bottom: 1px solid black;\r\n  box-sizing: border-box;\r\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIm9wcG9uZW50LmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRSxtQkFBbUI7RUFDbkIsOEJBQThCO0VBQzlCLHNCQUFzQjtBQUN4QiIsImZpbGUiOiJvcHBvbmVudC5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiOmhvc3Qge1xyXG4gIGdyaWQtYXJlYTogb3Bwb25lbnQ7XHJcbiAgYm9yZGVyLWJvdHRvbTogMXB4IHNvbGlkIGJsYWNrO1xyXG4gIGJveC1zaXppbmc6IGJvcmRlci1ib3g7XHJcbn1cclxuIl19 */"] });
+OpponentComponent.ɵfac = function OpponentComponent_Factory(t) { return new (t || OpponentComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_opponent_service__WEBPACK_IMPORTED_MODULE_1__["OpponentService"])); };
+OpponentComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: OpponentComponent, selectors: [["app-opponent"]], decls: 2, vars: 2, consts: [[3, "oppHandSize"], [3, "oppDeckSize"]], template: function OpponentComponent_Template(rf, ctx) { if (rf & 1) {
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](0, "app-opponent-hand", 0);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](1, "app-opponent-deck", 1);
+    } if (rf & 2) {
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("oppHandSize", ctx.oppHandSize);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("oppDeckSize", ctx.oppDeckSize);
+    } }, directives: [_opponent_hand_opponent_hand_component__WEBPACK_IMPORTED_MODULE_2__["OpponentHandComponent"], _opponent_deck_opponent_deck_component__WEBPACK_IMPORTED_MODULE_3__["OpponentDeckComponent"]], styles: ["[_nghost-%COMP%] {\r\n  grid-area: opponent;\r\n  display: grid;\r\n  grid-template-areas: \"buttons hand deck\";\r\n  grid-template-columns: 15vw 70vw 15vw;\r\n  grid-template-rows: 100%;\r\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIm9wcG9uZW50LmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRSxtQkFBbUI7RUFDbkIsYUFBYTtFQUNiLHdDQUF3QztFQUN4QyxxQ0FBcUM7RUFDckMsd0JBQXdCO0FBQzFCIiwiZmlsZSI6Im9wcG9uZW50LmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyI6aG9zdCB7XHJcbiAgZ3JpZC1hcmVhOiBvcHBvbmVudDtcclxuICBkaXNwbGF5OiBncmlkO1xyXG4gIGdyaWQtdGVtcGxhdGUtYXJlYXM6IFwiYnV0dG9ucyBoYW5kIGRlY2tcIjtcclxuICBncmlkLXRlbXBsYXRlLWNvbHVtbnM6IDE1dncgNzB2dyAxNXZ3O1xyXG4gIGdyaWQtdGVtcGxhdGUtcm93czogMTAwJTtcclxufVxyXG4iXX0= */"] });
 
 
 /***/ }),
@@ -38,18 +57,31 @@ OpponentComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefine
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "OpponentHandComponent", function() { return OpponentHandComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "fXoL");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common */ "ofXK");
 
+
+function OpponentHandComponent_div_0_Template(rf, ctx) { if (rf & 1) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](0, "div", 1);
+} if (rf & 2) {
+    const i_r2 = ctx.index;
+    const ctx_r0 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngStyle", ctx_r0.calculateRotation(i_r2));
+} }
 class OpponentHandComponent {
     constructor() { }
     ngOnInit() {
     }
+    calculateRotation(index) {
+        let steps = 90 / this.oppHandSize.length;
+        return { transform: `rotate(${45 - steps * index}deg)` };
+    }
 }
 OpponentHandComponent.ɵfac = function OpponentHandComponent_Factory(t) { return new (t || OpponentHandComponent)(); };
-OpponentHandComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: OpponentHandComponent, selectors: [["app-opponent-hand"]], decls: 2, vars: 0, template: function OpponentHandComponent_Template(rf, ctx) { if (rf & 1) {
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "p");
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](1, "opponent-hand works!");
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-    } }, styles: ["\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJvcHBvbmVudC1oYW5kLmNvbXBvbmVudC5jc3MifQ== */"] });
+OpponentHandComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: OpponentHandComponent, selectors: [["app-opponent-hand"]], inputs: { oppHandSize: "oppHandSize" }, decls: 1, vars: 1, consts: [["class", "card", 3, "ngStyle", 4, "ngFor", "ngForOf"], [1, "card", 3, "ngStyle"]], template: function OpponentHandComponent_Template(rf, ctx) { if (rf & 1) {
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](0, OpponentHandComponent_div_0_Template, 1, 1, "div", 0);
+    } if (rf & 2) {
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngForOf", ctx.oppHandSize);
+    } }, directives: [_angular_common__WEBPACK_IMPORTED_MODULE_1__["NgForOf"], _angular_common__WEBPACK_IMPORTED_MODULE_1__["NgStyle"]], styles: ["[_nghost-%COMP%] {\r\n  grid-area: hand;\r\n  display: flex;\r\n  justify-content: center;\r\n  padding: 1em;\r\n}\r\n\r\n.card[_ngcontent-%COMP%] {\r\n  height: 10em;\r\n  width: 8em;\r\n  border: 1px solid black;\r\n  position: relative;\r\n  border-radius: 5px;\r\n  background-image: url(\"/assets/images/logo/logoinv.png\");\r\n  background-size: 80%;\r\n  background-position: center;\r\n  background-repeat: no-repeat;\r\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIm9wcG9uZW50LWhhbmQuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLGVBQWU7RUFDZixhQUFhO0VBQ2IsdUJBQXVCO0VBQ3ZCLFlBQVk7QUFDZDs7QUFFQTtFQUNFLFlBQVk7RUFDWixVQUFVO0VBQ1YsdUJBQXVCO0VBQ3ZCLGtCQUFrQjtFQUNsQixrQkFBa0I7RUFDbEIsd0RBQXdEO0VBQ3hELG9CQUFvQjtFQUNwQiwyQkFBMkI7RUFDM0IsNEJBQTRCO0FBQzlCIiwiZmlsZSI6Im9wcG9uZW50LWhhbmQuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIjpob3N0IHtcclxuICBncmlkLWFyZWE6IGhhbmQ7XHJcbiAgZGlzcGxheTogZmxleDtcclxuICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcclxuICBwYWRkaW5nOiAxZW07XHJcbn1cclxuXHJcbi5jYXJkIHtcclxuICBoZWlnaHQ6IDEwZW07XHJcbiAgd2lkdGg6IDhlbTtcclxuICBib3JkZXI6IDFweCBzb2xpZCBibGFjaztcclxuICBwb3NpdGlvbjogcmVsYXRpdmU7XHJcbiAgYm9yZGVyLXJhZGl1czogNXB4O1xyXG4gIGJhY2tncm91bmQtaW1hZ2U6IHVybChcIi9hc3NldHMvaW1hZ2VzL2xvZ28vbG9nb2ludi5wbmdcIik7XHJcbiAgYmFja2dyb3VuZC1zaXplOiA4MCU7XHJcbiAgYmFja2dyb3VuZC1wb3NpdGlvbjogY2VudGVyO1xyXG4gIGJhY2tncm91bmQtcmVwZWF0OiBuby1yZXBlYXQ7XHJcbn1cclxuIl19 */"] });
 
 
 /***/ }),
@@ -151,10 +183,17 @@ const cards = {
         name: 'Taernijski Barbarzyńca',
         attack: 3,
         hp: 1,
-        cost: 2,
+        cost: 3,
         description: 'Wali mocno aż miło',
+        rules: 'Atakuje również pole powyżej swojego rzędu.',
         type: 'ally',
         speed: 1,
+        effect: {
+            type: 'damage',
+            timing: 'attack',
+            amount: -1,
+            target: 'enemyUpRow',
+        },
     },
     taernianFiremage: {
         name: 'Taernijski Mag Ognia',
@@ -162,8 +201,15 @@ const cards = {
         hp: 2,
         cost: 4,
         description: 'Strzeż się ognia',
+        rules: 'Atak: Zadaje 2 obrażeń wrogiemu sojusznikowi rząd niżej.',
         type: 'ally',
         speed: 2,
+        effect: {
+            type: 'damage',
+            timing: 'attack',
+            amount: 2,
+            target: 'enemyDownRow',
+        },
     },
     taernianArcher: {
         name: 'Taernijski Łucznik',
@@ -180,8 +226,15 @@ const cards = {
         hp: 6,
         cost: 4,
         description: 'Za naturę!',
+        rules: 'Atak: Przywraca życie graczowi równe swojemu atakowi.',
         type: 'ally',
         speed: 3,
+        effect: {
+            type: 'healing',
+            target: 'player',
+            timing: 'attack',
+            amount: -1,
+        },
     },
     taernianVoodoo: {
         name: 'Taernijski Voodoo',
@@ -227,6 +280,7 @@ const cards = {
         description: 'Cisza!',
         type: 'ally',
         speed: 3,
+        named: true,
     },
     babadek: {
         name: 'Babadek',
@@ -236,13 +290,16 @@ const cards = {
         description: 'Gdzie moje psy?',
         type: 'ally',
         speed: 1,
-        rules: 'Odkrycie: Przyzywa 3/3/wręcz Ogary na wolne przyjazne pola.',
+        rules: `Przebicie.
+    Odkrycie: Przyzywa 3/3/wręcz Ogary na wolne przyjazne pola.`,
         effect: {
             type: 'summon',
             target: 'playerAllies',
             card: new _shared_card_card_model__WEBPACK_IMPORTED_MODULE_0__["Card"](tokens.hound),
             timing: 'reveal',
         },
+        named: true,
+        abilities: ['trample'],
     },
     ghadira: {
         name: 'Ghadira',
@@ -252,13 +309,16 @@ const cards = {
         description: 'Kto wchodzi do mojej wieży?',
         type: 'ally',
         speed: 1,
-        rules: 'Odkrycie: Osłabia przeciwnika w tym samym rzędzie o 4.',
+        rules: `Przebicie.
+    Odkrycie: Osłabia przeciwnika w tym samym rzędzie o 4.`,
         effect: {
             type: 'weaken',
             target: 'sameRow',
             amount: 4,
             timing: 'reveal',
         },
+        named: true,
+        abilities: ['trample'],
     },
     gregorius: {
         name: 'Gregorius',
@@ -268,6 +328,7 @@ const cards = {
         description: "Czy nie wyglądam jak ten typ z Gun'n'Roses?",
         type: 'ally',
         speed: 3,
+        named: true,
     },
     toad: {
         name: 'Ropuch',
@@ -277,13 +338,20 @@ const cards = {
         description: 'Czy to książę?',
         type: 'ally',
         speed: 2,
+        named: true,
+        effect: {
+            type: "damage",
+            amount: 1,
+            target: "oppAllies",
+            timing: "combat"
+        }
     },
     wolf: {
         name: 'Wilk',
-        attack: 2,
+        attack: 3,
         hp: 2,
         cost: 2,
-        description: 'Miś(?) 2/2 za 2.',
+        description: 'To nie miś.',
         type: 'ally',
         speed: 1,
     },
@@ -345,6 +413,7 @@ const cards = {
             timing: 'combat',
             target: 'playerAllies',
         },
+        named: true,
     },
     accursedPeasant: {
         name: 'Przeklęty Wieśniak',
@@ -377,6 +446,7 @@ const cards = {
             timing: 'reveal',
             target: ['oppAllies', 'opponent'],
         },
+        named: true,
     },
     healer: {
         name: 'Uzdrowiciel',
@@ -405,7 +475,7 @@ const cards = {
         rules: 'Atakuje również rząd powyżej i poniżej swojej pozycji.',
         effect: {
             type: 'damage',
-            amount: 1,
+            amount: -1,
             timing: 'attack',
             target: ['enemyUpRow', 'enemyDownRow'],
         },
@@ -466,7 +536,7 @@ const cards = {
         description: 'Kabum!',
         type: 'ally',
         speed: 3,
-        rules: 'Śmierć: Zadaj WSZYSTKIM stronnikom 4 obrażeń.',
+        rules: 'Śmierć: Zadaj WSZYSTKIM sojusznikom 4 obrażeń.',
         effect: {
             type: 'damage',
             target: ['playerAllies', 'oppAllies'],
@@ -490,6 +560,54 @@ const cards = {
             timing: 'death',
         },
     },
+    sergeant: {
+        name: 'Taernijski Sierżant',
+        attack: 1,
+        hp: 1,
+        cost: 2,
+        description: 'Wykonać!',
+        type: 'ally',
+        speed: 1,
+        rules: 'Zagranie: Dodaje 2 ataku przyjaznemu sojusznikowi w rzędzie poniżej.',
+        effect: {
+            type: 'strengthen',
+            target: 'friendlyDownRow',
+            timing: 'play',
+            amount: 2,
+        },
+    },
+    acceleratingArcher: {
+        name: 'Szybkostrzelny Łucznik',
+        attack: 1,
+        hp: 1,
+        cost: 3,
+        description: 'Coraz bardziej się rozkręca.',
+        type: 'ally',
+        speed: 2,
+        rules: 'Koniec tury: Dodaje sobie 1 ataku.',
+        effect: {
+            type: 'strengthen',
+            target: 'self',
+            timing: 'eot',
+            amount: 1,
+        },
+    },
+    taernianSheed: {
+        name: 'Taernijski Sheed',
+        attack: 1,
+        hp: 1,
+        cost: 3,
+        description: 'Polepsza kontrolę oddechu.',
+        type: 'ally',
+        speed: 1,
+        rules: 'Zagranie: Dodaje 1 do maksymalnych punktów akcji.',
+        effect: {
+            type: 'ramp',
+            target: 'player',
+            timing: 'play',
+            amount: 1,
+        },
+    },
 };
 const deck = [
     cards.taernianPeasant,
@@ -502,9 +620,9 @@ const deck = [
     cards.taernianFiremage,
     cards.explodingBarrel,
     cards.taernianBarbarian,
+    cards.taernianSheed,
     cards.taernianDruid,
-    cards.taernianDruid,
-    cards.taernianVoodoo,
+    cards.acceleratingArcher,
     cards.taernianVoodoo,
     cards.frog,
     cards.frog,
@@ -512,7 +630,7 @@ const deck = [
     cards.battleOgre,
     cards.phoenix,
     cards.harpy,
-    cards.wolf,
+    cards.sergeant,
     cards.wolf,
     cards.librarian,
     cards.babadek,
@@ -579,7 +697,7 @@ PlayerComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineCo
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](0, "app-deck");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](1, "app-hand", 0);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](2, "app-action-points");
-    } }, directives: [_deck_deck_component__WEBPACK_IMPORTED_MODULE_1__["DeckComponent"], _hand_hand_component__WEBPACK_IMPORTED_MODULE_2__["HandComponent"], _angular_cdk_drag_drop__WEBPACK_IMPORTED_MODULE_3__["CdkDropList"], _action_points_action_points_component__WEBPACK_IMPORTED_MODULE_4__["ActionPointsComponent"]], styles: ["[_nghost-%COMP%] {\r\n  grid-area: player;\r\n  border-top: 1px solid black;\r\n  box-sizing: border-box;\r\n  display: grid;\r\n  grid-template-areas: \"deck hand action-points\";\r\n  grid-template-columns: 15vw 70vw 15vw;\r\n  grid-template-rows: 100%;\r\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInBsYXllci5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UsaUJBQWlCO0VBQ2pCLDJCQUEyQjtFQUMzQixzQkFBc0I7RUFDdEIsYUFBYTtFQUNiLDhDQUE4QztFQUM5QyxxQ0FBcUM7RUFDckMsd0JBQXdCO0FBQzFCIiwiZmlsZSI6InBsYXllci5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiOmhvc3Qge1xyXG4gIGdyaWQtYXJlYTogcGxheWVyO1xyXG4gIGJvcmRlci10b3A6IDFweCBzb2xpZCBibGFjaztcclxuICBib3gtc2l6aW5nOiBib3JkZXItYm94O1xyXG4gIGRpc3BsYXk6IGdyaWQ7XHJcbiAgZ3JpZC10ZW1wbGF0ZS1hcmVhczogXCJkZWNrIGhhbmQgYWN0aW9uLXBvaW50c1wiO1xyXG4gIGdyaWQtdGVtcGxhdGUtY29sdW1uczogMTV2dyA3MHZ3IDE1dnc7XHJcbiAgZ3JpZC10ZW1wbGF0ZS1yb3dzOiAxMDAlO1xyXG59XHJcbiJdfQ== */"] });
+    } }, directives: [_deck_deck_component__WEBPACK_IMPORTED_MODULE_1__["DeckComponent"], _hand_hand_component__WEBPACK_IMPORTED_MODULE_2__["HandComponent"], _angular_cdk_drag_drop__WEBPACK_IMPORTED_MODULE_3__["CdkDropList"], _action_points_action_points_component__WEBPACK_IMPORTED_MODULE_4__["ActionPointsComponent"]], styles: ["[_nghost-%COMP%] {\r\n  grid-area: player;\r\n  box-sizing: border-box;\r\n  display: grid;\r\n  grid-template-areas: \"deck hand action-points\";\r\n  grid-template-columns: 15vw 70vw 15vw;\r\n  grid-template-rows: 100%;\r\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInBsYXllci5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UsaUJBQWlCO0VBQ2pCLHNCQUFzQjtFQUN0QixhQUFhO0VBQ2IsOENBQThDO0VBQzlDLHFDQUFxQztFQUNyQyx3QkFBd0I7QUFDMUIiLCJmaWxlIjoicGxheWVyLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyI6aG9zdCB7XHJcbiAgZ3JpZC1hcmVhOiBwbGF5ZXI7XHJcbiAgYm94LXNpemluZzogYm9yZGVyLWJveDtcclxuICBkaXNwbGF5OiBncmlkO1xyXG4gIGdyaWQtdGVtcGxhdGUtYXJlYXM6IFwiZGVjayBoYW5kIGFjdGlvbi1wb2ludHNcIjtcclxuICBncmlkLXRlbXBsYXRlLWNvbHVtbnM6IDE1dncgNzB2dyAxNXZ3O1xyXG4gIGdyaWQtdGVtcGxhdGUtcm93czogMTAwJTtcclxufVxyXG4iXX0= */"] });
 
 
 /***/ }),
@@ -630,7 +748,7 @@ HandComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComp
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](0, HandComponent_app_card_0_Template, 1, 5, "app-card", 0);
     } if (rf & 2) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngForOf", ctx.cards);
-    } }, directives: [_angular_common__WEBPACK_IMPORTED_MODULE_2__["NgForOf"], _shared_card_card_component__WEBPACK_IMPORTED_MODULE_3__["CardComponent"], _angular_cdk_drag_drop__WEBPACK_IMPORTED_MODULE_4__["CdkDrag"]], styles: ["[_nghost-%COMP%] {\r\n  grid-area: hand;\r\n  display: flex;\r\n  justify-content: space-evenly;\r\n  padding: 1em;\r\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImhhbmQuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLGVBQWU7RUFDZixhQUFhO0VBQ2IsNkJBQTZCO0VBQzdCLFlBQVk7QUFDZCIsImZpbGUiOiJoYW5kLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyI6aG9zdCB7XHJcbiAgZ3JpZC1hcmVhOiBoYW5kO1xyXG4gIGRpc3BsYXk6IGZsZXg7XHJcbiAganVzdGlmeS1jb250ZW50OiBzcGFjZS1ldmVubHk7XHJcbiAgcGFkZGluZzogMWVtO1xyXG59XHJcbiJdfQ== */"] });
+    } }, directives: [_angular_common__WEBPACK_IMPORTED_MODULE_2__["NgForOf"], _shared_card_card_component__WEBPACK_IMPORTED_MODULE_3__["CardComponent"], _angular_cdk_drag_drop__WEBPACK_IMPORTED_MODULE_4__["CdkDrag"]], styles: ["[_nghost-%COMP%] {\r\n  grid-area: hand;\r\n  display: flex;\r\n  justify-content: center;\r\n  padding: 1em;\r\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImhhbmQuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLGVBQWU7RUFDZixhQUFhO0VBQ2IsdUJBQXVCO0VBQ3ZCLFlBQVk7QUFDZCIsImZpbGUiOiJoYW5kLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyI6aG9zdCB7XHJcbiAgZ3JpZC1hcmVhOiBoYW5kO1xyXG4gIGRpc3BsYXk6IGZsZXg7XHJcbiAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XHJcbiAgcGFkZGluZzogMWVtO1xyXG59XHJcbiJdfQ== */"] });
 
 
 /***/ }),
@@ -807,8 +925,15 @@ class BattlefieldComponent {
         this.showMelee = true;
         if ((event.container.data === "melee" || event.container.data === "ranged" || event.container.data === "mental") && event.item.data.card.cost <= this.actionsPointsService.getActionPoints().current) {
             this.actionsPointsService.payCosts(event.item.data.card.cost);
-            this.battlefieldService.setPlayerCard(event.item.data.card, event.container.data);
+            this.battlefieldService.setCard(event.item.data.card, event.container.data);
             this.handService.removeCard(event.item.data.index);
+            if (event.item.data.card.effect && event.item.data.card.effect.timing === "play") {
+                this.battlefieldService.applyBattlefiedEffect(event.item.data.card, event.container.data);
+                console.log(`Gracz wstawia ${event.item.data.card.name} w ${event.container.data} z efektem ${event.item.data.card.effect.type} na ${event.item.data.card.effect.target}`);
+            }
+            else {
+                console.log(`Gracz wstawia ${event.item.data.card.name} w ${event.container.data}`);
+            }
         }
     }
     ngOnDestroy() {
@@ -816,7 +941,7 @@ class BattlefieldComponent {
         this.opponentService.oppHpEmitter.unsubscribe();
     }
 }
-BattlefieldComponent.ɵfac = function BattlefieldComponent_Factory(t) { return new (t || BattlefieldComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_battlefield_service__WEBPACK_IMPORTED_MODULE_1__["BattlefieldService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_player_hand_hand_service__WEBPACK_IMPORTED_MODULE_2__["HandService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_player_action_points_action_points_service__WEBPACK_IMPORTED_MODULE_3__["ActionsPointsService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_opponent_opponent_service__WEBPACK_IMPORTED_MODULE_4__["OpponentService"])); };
+BattlefieldComponent.ɵfac = function BattlefieldComponent_Factory(t) { return new (t || BattlefieldComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_battlefield_service__WEBPACK_IMPORTED_MODULE_1__["BattlefieldService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_player_hand_hand_service__WEBPACK_IMPORTED_MODULE_2__["HandService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_player_action_points_action_points_service__WEBPACK_IMPORTED_MODULE_3__["ActionPointsService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_opponent_opponent_service__WEBPACK_IMPORTED_MODULE_4__["OpponentService"])); };
 BattlefieldComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: BattlefieldComponent, selectors: [["app-battlefield"]], decls: 11, vars: 13, consts: [[3, "card", "oppCard"], ["cdkDropList", "", 1, "playerCard", 3, "cdkDropListData", "cdkDropListDropped", "cdkDropListEntered", "cdkDropListExited"], [3, "card", 4, "ngIf"], [3, "playerHp"], [3, "card"]], template: function BattlefieldComponent_Template(rf, ctx) { if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](0, "app-player-avatar");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "app-mental", 0);
@@ -859,7 +984,7 @@ BattlefieldComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdef
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", ctx.melee && ctx.showMelee);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("playerHp", ctx.oppHP);
-    } }, directives: [_player_avatar_player_avatar_component__WEBPACK_IMPORTED_MODULE_5__["PlayerAvatarComponent"], _mental_mental_component__WEBPACK_IMPORTED_MODULE_6__["MentalComponent"], _angular_cdk_drag_drop__WEBPACK_IMPORTED_MODULE_7__["CdkDropList"], _angular_common__WEBPACK_IMPORTED_MODULE_8__["NgIf"], _ranged_ranged_component__WEBPACK_IMPORTED_MODULE_9__["RangedComponent"], _melee_melee_component__WEBPACK_IMPORTED_MODULE_10__["MeleeComponent"], _opponent_avatar_opponent_avatar_component__WEBPACK_IMPORTED_MODULE_11__["OpponentAvatarComponent"], _shared_card_card_component__WEBPACK_IMPORTED_MODULE_12__["CardComponent"]], styles: ["[_nghost-%COMP%] {\r\n  grid-area: battlefield;\r\n  display: grid;\r\n  grid-template-areas: \"player mental opponent\" \"player ranged opponent\" \"player melee opponent\";\r\n  grid-template-columns: 20vw 60vw 20vw;\r\n  grid-auto-rows: 33% 33% 33%\r\n}\r\n\r\n.playerCard[_ngcontent-%COMP%] {\r\n  border: 1px solid green;\r\n  height: 10em;\r\n  width: 8em;\r\n  display: flex;\r\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImJhdHRsZWZpZWxkLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRSxzQkFBc0I7RUFDdEIsYUFBYTtFQUNiLDhGQUE4RjtFQUM5RixxQ0FBcUM7RUFDckM7QUFDRjs7QUFFQTtFQUNFLHVCQUF1QjtFQUN2QixZQUFZO0VBQ1osVUFBVTtFQUNWLGFBQWE7QUFDZiIsImZpbGUiOiJiYXR0bGVmaWVsZC5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiOmhvc3Qge1xyXG4gIGdyaWQtYXJlYTogYmF0dGxlZmllbGQ7XHJcbiAgZGlzcGxheTogZ3JpZDtcclxuICBncmlkLXRlbXBsYXRlLWFyZWFzOiBcInBsYXllciBtZW50YWwgb3Bwb25lbnRcIiBcInBsYXllciByYW5nZWQgb3Bwb25lbnRcIiBcInBsYXllciBtZWxlZSBvcHBvbmVudFwiO1xyXG4gIGdyaWQtdGVtcGxhdGUtY29sdW1uczogMjB2dyA2MHZ3IDIwdnc7XHJcbiAgZ3JpZC1hdXRvLXJvd3M6IDMzJSAzMyUgMzMlXHJcbn1cclxuXHJcbi5wbGF5ZXJDYXJkIHtcclxuICBib3JkZXI6IDFweCBzb2xpZCBncmVlbjtcclxuICBoZWlnaHQ6IDEwZW07XHJcbiAgd2lkdGg6IDhlbTtcclxuICBkaXNwbGF5OiBmbGV4O1xyXG59XHJcbiJdfQ== */"] });
+    } }, directives: [_player_avatar_player_avatar_component__WEBPACK_IMPORTED_MODULE_5__["PlayerAvatarComponent"], _mental_mental_component__WEBPACK_IMPORTED_MODULE_6__["MentalComponent"], _angular_cdk_drag_drop__WEBPACK_IMPORTED_MODULE_7__["CdkDropList"], _angular_common__WEBPACK_IMPORTED_MODULE_8__["NgIf"], _ranged_ranged_component__WEBPACK_IMPORTED_MODULE_9__["RangedComponent"], _melee_melee_component__WEBPACK_IMPORTED_MODULE_10__["MeleeComponent"], _opponent_avatar_opponent_avatar_component__WEBPACK_IMPORTED_MODULE_11__["OpponentAvatarComponent"], _shared_card_card_component__WEBPACK_IMPORTED_MODULE_12__["CardComponent"]], styles: ["[_nghost-%COMP%] {\r\n  grid-area: battlefield;\r\n  display: grid;\r\n  grid-template-areas: \"player mental opponent\" \"player ranged opponent\" \"player melee opponent\";\r\n  grid-template-columns: 20vw 60vw 20vw;\r\n  grid-auto-rows: 33% 33% 33%\r\n}\r\n\r\n.playerCard[_ngcontent-%COMP%] {\r\n  border: 1px solid green;\r\n  height: 10em;\r\n  width: 8em;\r\n  display: flex;\r\n  border-radius: 5px;\r\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImJhdHRsZWZpZWxkLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRSxzQkFBc0I7RUFDdEIsYUFBYTtFQUNiLDhGQUE4RjtFQUM5RixxQ0FBcUM7RUFDckM7QUFDRjs7QUFFQTtFQUNFLHVCQUF1QjtFQUN2QixZQUFZO0VBQ1osVUFBVTtFQUNWLGFBQWE7RUFDYixrQkFBa0I7QUFDcEIiLCJmaWxlIjoiYmF0dGxlZmllbGQuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIjpob3N0IHtcclxuICBncmlkLWFyZWE6IGJhdHRsZWZpZWxkO1xyXG4gIGRpc3BsYXk6IGdyaWQ7XHJcbiAgZ3JpZC10ZW1wbGF0ZS1hcmVhczogXCJwbGF5ZXIgbWVudGFsIG9wcG9uZW50XCIgXCJwbGF5ZXIgcmFuZ2VkIG9wcG9uZW50XCIgXCJwbGF5ZXIgbWVsZWUgb3Bwb25lbnRcIjtcclxuICBncmlkLXRlbXBsYXRlLWNvbHVtbnM6IDIwdncgNjB2dyAyMHZ3O1xyXG4gIGdyaWQtYXV0by1yb3dzOiAzMyUgMzMlIDMzJVxyXG59XHJcblxyXG4ucGxheWVyQ2FyZCB7XHJcbiAgYm9yZGVyOiAxcHggc29saWQgZ3JlZW47XHJcbiAgaGVpZ2h0OiAxMGVtO1xyXG4gIHdpZHRoOiA4ZW07XHJcbiAgZGlzcGxheTogZmxleDtcclxuICBib3JkZXItcmFkaXVzOiA1cHg7XHJcbn1cclxuIl19 */"] });
 
 
 /***/ }),
@@ -934,7 +1059,7 @@ MentalComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineCo
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", !ctx.oppCard);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", ctx.oppCard);
-    } }, directives: [_angular_common__WEBPACK_IMPORTED_MODULE_1__["NgIf"], _shared_card_card_component__WEBPACK_IMPORTED_MODULE_2__["CardComponent"]], styles: ["[_nghost-%COMP%] {\r\n  grid-area: mental;\r\n  display: flex;\r\n  padding: 2px;\r\n  align-items: center;\r\n  justify-content: space-between;\r\n}\r\n\r\n.opponentCard[_ngcontent-%COMP%] {\r\n  border: 1px solid green;\r\n  height: 10em;\r\n  width: 8em;\r\n  display: flex;\r\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIm1lbnRhbC5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UsaUJBQWlCO0VBQ2pCLGFBQWE7RUFDYixZQUFZO0VBQ1osbUJBQW1CO0VBQ25CLDhCQUE4QjtBQUNoQzs7QUFFQTtFQUNFLHVCQUF1QjtFQUN2QixZQUFZO0VBQ1osVUFBVTtFQUNWLGFBQWE7QUFDZiIsImZpbGUiOiJtZW50YWwuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIjpob3N0IHtcclxuICBncmlkLWFyZWE6IG1lbnRhbDtcclxuICBkaXNwbGF5OiBmbGV4O1xyXG4gIHBhZGRpbmc6IDJweDtcclxuICBhbGlnbi1pdGVtczogY2VudGVyO1xyXG4gIGp1c3RpZnktY29udGVudDogc3BhY2UtYmV0d2VlbjtcclxufVxyXG5cclxuLm9wcG9uZW50Q2FyZCB7XHJcbiAgYm9yZGVyOiAxcHggc29saWQgZ3JlZW47XHJcbiAgaGVpZ2h0OiAxMGVtO1xyXG4gIHdpZHRoOiA4ZW07XHJcbiAgZGlzcGxheTogZmxleDtcclxufVxyXG4iXX0= */"] });
+    } }, directives: [_angular_common__WEBPACK_IMPORTED_MODULE_1__["NgIf"], _shared_card_card_component__WEBPACK_IMPORTED_MODULE_2__["CardComponent"]], styles: ["[_nghost-%COMP%] {\r\n  grid-area: mental;\r\n  display: flex;\r\n  padding: 2px;\r\n  align-items: center;\r\n  justify-content: space-between;\r\n}\r\n\r\n.opponentCard[_ngcontent-%COMP%] {\r\n  border: 1px solid red;\r\n  height: 10em;\r\n  width: 8em;\r\n  display: flex;\r\n  border-radius: 5px;\r\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIm1lbnRhbC5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UsaUJBQWlCO0VBQ2pCLGFBQWE7RUFDYixZQUFZO0VBQ1osbUJBQW1CO0VBQ25CLDhCQUE4QjtBQUNoQzs7QUFFQTtFQUNFLHFCQUFxQjtFQUNyQixZQUFZO0VBQ1osVUFBVTtFQUNWLGFBQWE7RUFDYixrQkFBa0I7QUFDcEIiLCJmaWxlIjoibWVudGFsLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyI6aG9zdCB7XHJcbiAgZ3JpZC1hcmVhOiBtZW50YWw7XHJcbiAgZGlzcGxheTogZmxleDtcclxuICBwYWRkaW5nOiAycHg7XHJcbiAgYWxpZ24taXRlbXM6IGNlbnRlcjtcclxuICBqdXN0aWZ5LWNvbnRlbnQ6IHNwYWNlLWJldHdlZW47XHJcbn1cclxuXHJcbi5vcHBvbmVudENhcmQge1xyXG4gIGJvcmRlcjogMXB4IHNvbGlkIHJlZDtcclxuICBoZWlnaHQ6IDEwZW07XHJcbiAgd2lkdGg6IDhlbTtcclxuICBkaXNwbGF5OiBmbGV4O1xyXG4gIGJvcmRlci1yYWRpdXM6IDVweDtcclxufVxyXG4iXX0= */"] });
 
 
 /***/ }),
@@ -981,7 +1106,7 @@ RangedComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineCo
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", !ctx.oppCard);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", ctx.oppCard);
-    } }, directives: [_angular_common__WEBPACK_IMPORTED_MODULE_1__["NgIf"], _shared_card_card_component__WEBPACK_IMPORTED_MODULE_2__["CardComponent"]], styles: ["[_nghost-%COMP%] {\r\n  grid-area: ranged;\r\n  display: flex;\r\n  padding: 2px;\r\n  align-items: center;\r\n  justify-content: space-between;\r\n}\r\n\r\n.opponentCard[_ngcontent-%COMP%] {\r\n  border: 1px solid green;\r\n  height: 10em;\r\n  width: 8em;\r\n  display: flex;\r\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInJhbmdlZC5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UsaUJBQWlCO0VBQ2pCLGFBQWE7RUFDYixZQUFZO0VBQ1osbUJBQW1CO0VBQ25CLDhCQUE4QjtBQUNoQzs7QUFFQTtFQUNFLHVCQUF1QjtFQUN2QixZQUFZO0VBQ1osVUFBVTtFQUNWLGFBQWE7QUFDZiIsImZpbGUiOiJyYW5nZWQuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIjpob3N0IHtcclxuICBncmlkLWFyZWE6IHJhbmdlZDtcclxuICBkaXNwbGF5OiBmbGV4O1xyXG4gIHBhZGRpbmc6IDJweDtcclxuICBhbGlnbi1pdGVtczogY2VudGVyO1xyXG4gIGp1c3RpZnktY29udGVudDogc3BhY2UtYmV0d2VlbjtcclxufVxyXG5cclxuLm9wcG9uZW50Q2FyZCB7XHJcbiAgYm9yZGVyOiAxcHggc29saWQgZ3JlZW47XHJcbiAgaGVpZ2h0OiAxMGVtO1xyXG4gIHdpZHRoOiA4ZW07XHJcbiAgZGlzcGxheTogZmxleDtcclxufVxyXG4iXX0= */"] });
+    } }, directives: [_angular_common__WEBPACK_IMPORTED_MODULE_1__["NgIf"], _shared_card_card_component__WEBPACK_IMPORTED_MODULE_2__["CardComponent"]], styles: ["[_nghost-%COMP%] {\r\n  grid-area: ranged;\r\n  display: flex;\r\n  padding: 2px;\r\n  align-items: center;\r\n  justify-content: space-between;\r\n}\r\n\r\n.opponentCard[_ngcontent-%COMP%] {\r\n  border: 1px solid red;\r\n  height: 10em;\r\n  width: 8em;\r\n  display: flex;\r\n  border-radius: 5px;\r\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInJhbmdlZC5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UsaUJBQWlCO0VBQ2pCLGFBQWE7RUFDYixZQUFZO0VBQ1osbUJBQW1CO0VBQ25CLDhCQUE4QjtBQUNoQzs7QUFFQTtFQUNFLHFCQUFxQjtFQUNyQixZQUFZO0VBQ1osVUFBVTtFQUNWLGFBQWE7RUFDYixrQkFBa0I7QUFDcEIiLCJmaWxlIjoicmFuZ2VkLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyI6aG9zdCB7XHJcbiAgZ3JpZC1hcmVhOiByYW5nZWQ7XHJcbiAgZGlzcGxheTogZmxleDtcclxuICBwYWRkaW5nOiAycHg7XHJcbiAgYWxpZ24taXRlbXM6IGNlbnRlcjtcclxuICBqdXN0aWZ5LWNvbnRlbnQ6IHNwYWNlLWJldHdlZW47XHJcbn1cclxuXHJcbi5vcHBvbmVudENhcmQge1xyXG4gIGJvcmRlcjogMXB4IHNvbGlkIHJlZDtcclxuICBoZWlnaHQ6IDEwZW07XHJcbiAgd2lkdGg6IDhlbTtcclxuICBkaXNwbGF5OiBmbGV4O1xyXG4gIGJvcmRlci1yYWRpdXM6IDVweDtcclxufVxyXG4iXX0= */"] });
 
 
 /***/ }),
@@ -998,55 +1123,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CardComponent", function() { return CardComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "fXoL");
 /* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common */ "ofXK");
+/* harmony import */ var _card_tooltip_card_tooltip_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./card-tooltip/card-tooltip.component */ "MTEV");
 
 
-function CardComponent_div_14_Template(rf, ctx) { if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 10);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "div", 1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](3, "div", 2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](4, "img", 3);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](5, "div", 4);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](6, "div", 5);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](7);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](8, "div", 6);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](9);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](10, "div", 7);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](11);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](12, "div", 8);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](13, "img", 3);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](14, "div", 11);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](15);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](16, "div", 12);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](17);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+
+function CardComponent_app_card_tooltip_14_Template(rf, ctx) { if (rf & 1) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](0, "app-card-tooltip", 10);
 } if (rf & 2) {
     const ctx_r0 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](ctx_r0.card.name);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("src", ctx_r0.card.image, _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵsanitizeUrl"]);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](3);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](ctx_r0.card.maxAttack);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](ctx_r0.card.maxHp);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](ctx_r0.card.cost);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("src", "assets/images/zones/" + ctx_r0.card.speed + ".svg", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵsanitizeUrl"]);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](ctx_r0.card.rules);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](ctx_r0.card.description);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("card", ctx_r0.card);
 } }
 class CardComponent {
     constructor() {
@@ -1056,7 +1141,7 @@ class CardComponent {
     }
 }
 CardComponent.ɵfac = function CardComponent_Factory(t) { return new (t || CardComponent)(); };
-CardComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: CardComponent, selectors: [["app-card"]], inputs: { card: "card" }, decls: 15, vars: 7, consts: [[1, "card", 3, "mouseenter", "mouseleave", "mousedown"], [1, "name"], [1, "image"], ["alt", "card image", 3, "src"], [1, "stats"], [1, "attack"], [1, "hp"], [1, "cost"], [1, "speed"], ["class", "cardTooltip", 4, "ngIf"], [1, "cardTooltip"], [1, "rules"], [1, "description"]], template: function CardComponent_Template(rf, ctx) { if (rf & 1) {
+CardComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: CardComponent, selectors: [["app-card"]], inputs: { card: "card" }, decls: 15, vars: 7, consts: [[1, "card", 3, "mouseenter", "mouseleave", "mousedown"], [1, "name"], [1, "image"], ["alt", "card image", 3, "src"], [1, "stats"], [1, "attack"], [1, "hp"], [1, "cost"], [1, "speed"], [3, "card", 4, "ngIf"], [3, "card"]], template: function CardComponent_Template(rf, ctx) { if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 0);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("mouseenter", function CardComponent_Template_div_mouseenter_0_listener() { return ctx.showTooltip = true; })("mouseleave", function CardComponent_Template_div_mouseleave_0_listener() { return ctx.showTooltip = false; })("mousedown", function CardComponent_Template_div_mousedown_0_listener() { return ctx.showTooltip = false; });
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "div", 1);
@@ -1079,8 +1164,8 @@ CardComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComp
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](13, "img", 3);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](14, CardComponent_div_14_Template, 18, 8, "div", 9);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](14, CardComponent_app_card_tooltip_14_Template, 1, 1, "app-card-tooltip", 9);
     } if (rf & 2) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](ctx.card.name);
@@ -1096,7 +1181,7 @@ CardComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComp
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("src", "assets/images/zones/" + ctx.card.speed + ".svg", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵsanitizeUrl"]);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", ctx.showTooltip);
-    } }, directives: [_angular_common__WEBPACK_IMPORTED_MODULE_1__["NgIf"]], styles: [".card[_ngcontent-%COMP%] {\r\n  height: 10em;\r\n  width: 8em;\r\n  border: 1px solid black;\r\n  position: relative;\r\n  border-radius: 5px;\r\n}\r\n\r\n.name[_ngcontent-%COMP%] {\r\n  font-size: 0.75em;\r\n  text-align: center;\r\n  background-color:rgba(0, 0, 0, 0);\r\n}\r\n\r\n.image[_ngcontent-%COMP%] {\r\n  width: 90%;\r\n  border: 1px solid black;\r\n  margin: 0 auto;\r\n  max-height: 8em;\r\n}\r\n\r\n.stats[_ngcontent-%COMP%] {\r\n  position: absolute;\r\n  top: 2em;\r\n  left: -0.5em;\r\n  width: 1em;\r\n}\r\n\r\n.attack[_ngcontent-%COMP%] {\r\n  border-radius: 50%;\r\n  background-color: red;\r\n  text-align: center;\r\n}\r\n\r\n.hp[_ngcontent-%COMP%] {\r\n  border-radius: 50%;\r\n  background-color: green;\r\n  text-align: center;\r\n}\r\n\r\n.cost[_ngcontent-%COMP%] {\r\n  border-radius: 50%;\r\n  background-color: blue;\r\n  text-align: center;\r\n}\r\n\r\n.cardTooltip[_ngcontent-%COMP%] {\r\n  height: auto;\r\n  width: 8em;\r\n  border: 1px solid black;\r\n  position: absolute;\r\n  bottom: 99%;\r\n  left: 99%;\r\n  z-index: 3;\r\n}\r\n\r\n.rules[_ngcontent-%COMP%] {\r\n  text-align: left;\r\n  padding: 2px;\r\n  font-size: 0.75em;\r\n}\r\n\r\n.description[_ngcontent-%COMP%] {\r\n  text-align: left;\r\n  padding: 2px;\r\n  font-style: italic;\r\n  font-size: 0.75em;\r\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNhcmQuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLFlBQVk7RUFDWixVQUFVO0VBQ1YsdUJBQXVCO0VBQ3ZCLGtCQUFrQjtFQUNsQixrQkFBa0I7QUFDcEI7O0FBRUE7RUFDRSxpQkFBaUI7RUFDakIsa0JBQWtCO0VBQ2xCLGlDQUFpQztBQUNuQzs7QUFFQTtFQUNFLFVBQVU7RUFDVix1QkFBdUI7RUFDdkIsY0FBYztFQUNkLGVBQWU7QUFDakI7O0FBRUE7RUFDRSxrQkFBa0I7RUFDbEIsUUFBUTtFQUNSLFlBQVk7RUFDWixVQUFVO0FBQ1o7O0FBRUE7RUFDRSxrQkFBa0I7RUFDbEIscUJBQXFCO0VBQ3JCLGtCQUFrQjtBQUNwQjs7QUFFQTtFQUNFLGtCQUFrQjtFQUNsQix1QkFBdUI7RUFDdkIsa0JBQWtCO0FBQ3BCOztBQUVBO0VBQ0Usa0JBQWtCO0VBQ2xCLHNCQUFzQjtFQUN0QixrQkFBa0I7QUFDcEI7O0FBRUE7RUFDRSxZQUFZO0VBQ1osVUFBVTtFQUNWLHVCQUF1QjtFQUN2QixrQkFBa0I7RUFDbEIsV0FBVztFQUNYLFNBQVM7RUFDVCxVQUFVO0FBQ1o7O0FBRUE7RUFDRSxnQkFBZ0I7RUFDaEIsWUFBWTtFQUNaLGlCQUFpQjtBQUNuQjs7QUFFQTtFQUNFLGdCQUFnQjtFQUNoQixZQUFZO0VBQ1osa0JBQWtCO0VBQ2xCLGlCQUFpQjtBQUNuQiIsImZpbGUiOiJjYXJkLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIuY2FyZCB7XHJcbiAgaGVpZ2h0OiAxMGVtO1xyXG4gIHdpZHRoOiA4ZW07XHJcbiAgYm9yZGVyOiAxcHggc29saWQgYmxhY2s7XHJcbiAgcG9zaXRpb246IHJlbGF0aXZlO1xyXG4gIGJvcmRlci1yYWRpdXM6IDVweDtcclxufVxyXG5cclxuLm5hbWUge1xyXG4gIGZvbnQtc2l6ZTogMC43NWVtO1xyXG4gIHRleHQtYWxpZ246IGNlbnRlcjtcclxuICBiYWNrZ3JvdW5kLWNvbG9yOnJnYmEoMCwgMCwgMCwgMCk7XHJcbn1cclxuXHJcbi5pbWFnZSB7XHJcbiAgd2lkdGg6IDkwJTtcclxuICBib3JkZXI6IDFweCBzb2xpZCBibGFjaztcclxuICBtYXJnaW46IDAgYXV0bztcclxuICBtYXgtaGVpZ2h0OiA4ZW07XHJcbn1cclxuXHJcbi5zdGF0cyB7XHJcbiAgcG9zaXRpb246IGFic29sdXRlO1xyXG4gIHRvcDogMmVtO1xyXG4gIGxlZnQ6IC0wLjVlbTtcclxuICB3aWR0aDogMWVtO1xyXG59XHJcblxyXG4uYXR0YWNrIHtcclxuICBib3JkZXItcmFkaXVzOiA1MCU7XHJcbiAgYmFja2dyb3VuZC1jb2xvcjogcmVkO1xyXG4gIHRleHQtYWxpZ246IGNlbnRlcjtcclxufVxyXG5cclxuLmhwIHtcclxuICBib3JkZXItcmFkaXVzOiA1MCU7XHJcbiAgYmFja2dyb3VuZC1jb2xvcjogZ3JlZW47XHJcbiAgdGV4dC1hbGlnbjogY2VudGVyO1xyXG59XHJcblxyXG4uY29zdCB7XHJcbiAgYm9yZGVyLXJhZGl1czogNTAlO1xyXG4gIGJhY2tncm91bmQtY29sb3I6IGJsdWU7XHJcbiAgdGV4dC1hbGlnbjogY2VudGVyO1xyXG59XHJcblxyXG4uY2FyZFRvb2x0aXAge1xyXG4gIGhlaWdodDogYXV0bztcclxuICB3aWR0aDogOGVtO1xyXG4gIGJvcmRlcjogMXB4IHNvbGlkIGJsYWNrO1xyXG4gIHBvc2l0aW9uOiBhYnNvbHV0ZTtcclxuICBib3R0b206IDk5JTtcclxuICBsZWZ0OiA5OSU7XHJcbiAgei1pbmRleDogMztcclxufVxyXG5cclxuLnJ1bGVzIHtcclxuICB0ZXh0LWFsaWduOiBsZWZ0O1xyXG4gIHBhZGRpbmc6IDJweDtcclxuICBmb250LXNpemU6IDAuNzVlbTtcclxufVxyXG5cclxuLmRlc2NyaXB0aW9uIHtcclxuICB0ZXh0LWFsaWduOiBsZWZ0O1xyXG4gIHBhZGRpbmc6IDJweDtcclxuICBmb250LXN0eWxlOiBpdGFsaWM7XHJcbiAgZm9udC1zaXplOiAwLjc1ZW07XHJcbn1cclxuIl19 */"] });
+    } }, directives: [_angular_common__WEBPACK_IMPORTED_MODULE_1__["NgIf"], _card_tooltip_card_tooltip_component__WEBPACK_IMPORTED_MODULE_2__["CardTooltipComponent"]], styles: [".card[_ngcontent-%COMP%] {\r\n  height: 10em;\r\n  width: 8em;\r\n  border: 1px solid black;\r\n  position: relative;\r\n  border-radius: 5px;\r\n  z-index: 2;\r\n  margin: 0.5em;\r\n}\r\n\r\n.name[_ngcontent-%COMP%] {\r\n  font-size: 0.75em;\r\n  text-align: center;\r\n  background-color:rgba(0, 0, 0, 0);\r\n}\r\n\r\n.image[_ngcontent-%COMP%] {\r\n  width: 90%;\r\n  border: 1px solid black;\r\n  margin: 0 auto;\r\n  max-height: 8em;\r\n}\r\n\r\n.stats[_ngcontent-%COMP%] {\r\n  position: absolute;\r\n  top: 2em;\r\n  left: -0.5em;\r\n  width: 1em;\r\n}\r\n\r\n.attack[_ngcontent-%COMP%] {\r\n  border-radius: 50%;\r\n  background-color: red;\r\n  text-align: center;\r\n}\r\n\r\n.hp[_ngcontent-%COMP%] {\r\n  border-radius: 50%;\r\n  background-color: green;\r\n  text-align: center;\r\n}\r\n\r\n.cost[_ngcontent-%COMP%] {\r\n  border-radius: 50%;\r\n  background-color: blue;\r\n  text-align: center;\r\n}\r\n\r\n.cardTooltip[_ngcontent-%COMP%] {\r\n  border-radius: 5px;\r\n  height: auto;\r\n  width: 8em;\r\n  border: 1px solid black;\r\n  position: absolute;\r\n  bottom: 80%;\r\n  left: 90%;\r\n  z-index: 3;\r\n}\r\n\r\n.rules[_ngcontent-%COMP%] {\r\n  text-align: left;\r\n  padding: 2px;\r\n  font-size: 0.75em;\r\n}\r\n\r\n.description[_ngcontent-%COMP%] {\r\n  text-align: left;\r\n  padding: 2px;\r\n  font-style: italic;\r\n  font-size: 0.75em;\r\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNhcmQuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLFlBQVk7RUFDWixVQUFVO0VBQ1YsdUJBQXVCO0VBQ3ZCLGtCQUFrQjtFQUNsQixrQkFBa0I7RUFDbEIsVUFBVTtFQUNWLGFBQWE7QUFDZjs7QUFFQTtFQUNFLGlCQUFpQjtFQUNqQixrQkFBa0I7RUFDbEIsaUNBQWlDO0FBQ25DOztBQUVBO0VBQ0UsVUFBVTtFQUNWLHVCQUF1QjtFQUN2QixjQUFjO0VBQ2QsZUFBZTtBQUNqQjs7QUFFQTtFQUNFLGtCQUFrQjtFQUNsQixRQUFRO0VBQ1IsWUFBWTtFQUNaLFVBQVU7QUFDWjs7QUFFQTtFQUNFLGtCQUFrQjtFQUNsQixxQkFBcUI7RUFDckIsa0JBQWtCO0FBQ3BCOztBQUVBO0VBQ0Usa0JBQWtCO0VBQ2xCLHVCQUF1QjtFQUN2QixrQkFBa0I7QUFDcEI7O0FBRUE7RUFDRSxrQkFBa0I7RUFDbEIsc0JBQXNCO0VBQ3RCLGtCQUFrQjtBQUNwQjs7QUFFQTtFQUNFLGtCQUFrQjtFQUNsQixZQUFZO0VBQ1osVUFBVTtFQUNWLHVCQUF1QjtFQUN2QixrQkFBa0I7RUFDbEIsV0FBVztFQUNYLFNBQVM7RUFDVCxVQUFVO0FBQ1o7O0FBRUE7RUFDRSxnQkFBZ0I7RUFDaEIsWUFBWTtFQUNaLGlCQUFpQjtBQUNuQjs7QUFFQTtFQUNFLGdCQUFnQjtFQUNoQixZQUFZO0VBQ1osa0JBQWtCO0VBQ2xCLGlCQUFpQjtBQUNuQiIsImZpbGUiOiJjYXJkLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIuY2FyZCB7XHJcbiAgaGVpZ2h0OiAxMGVtO1xyXG4gIHdpZHRoOiA4ZW07XHJcbiAgYm9yZGVyOiAxcHggc29saWQgYmxhY2s7XHJcbiAgcG9zaXRpb246IHJlbGF0aXZlO1xyXG4gIGJvcmRlci1yYWRpdXM6IDVweDtcclxuICB6LWluZGV4OiAyO1xyXG4gIG1hcmdpbjogMC41ZW07XHJcbn1cclxuXHJcbi5uYW1lIHtcclxuICBmb250LXNpemU6IDAuNzVlbTtcclxuICB0ZXh0LWFsaWduOiBjZW50ZXI7XHJcbiAgYmFja2dyb3VuZC1jb2xvcjpyZ2JhKDAsIDAsIDAsIDApO1xyXG59XHJcblxyXG4uaW1hZ2Uge1xyXG4gIHdpZHRoOiA5MCU7XHJcbiAgYm9yZGVyOiAxcHggc29saWQgYmxhY2s7XHJcbiAgbWFyZ2luOiAwIGF1dG87XHJcbiAgbWF4LWhlaWdodDogOGVtO1xyXG59XHJcblxyXG4uc3RhdHMge1xyXG4gIHBvc2l0aW9uOiBhYnNvbHV0ZTtcclxuICB0b3A6IDJlbTtcclxuICBsZWZ0OiAtMC41ZW07XHJcbiAgd2lkdGg6IDFlbTtcclxufVxyXG5cclxuLmF0dGFjayB7XHJcbiAgYm9yZGVyLXJhZGl1czogNTAlO1xyXG4gIGJhY2tncm91bmQtY29sb3I6IHJlZDtcclxuICB0ZXh0LWFsaWduOiBjZW50ZXI7XHJcbn1cclxuXHJcbi5ocCB7XHJcbiAgYm9yZGVyLXJhZGl1czogNTAlO1xyXG4gIGJhY2tncm91bmQtY29sb3I6IGdyZWVuO1xyXG4gIHRleHQtYWxpZ246IGNlbnRlcjtcclxufVxyXG5cclxuLmNvc3Qge1xyXG4gIGJvcmRlci1yYWRpdXM6IDUwJTtcclxuICBiYWNrZ3JvdW5kLWNvbG9yOiBibHVlO1xyXG4gIHRleHQtYWxpZ246IGNlbnRlcjtcclxufVxyXG5cclxuLmNhcmRUb29sdGlwIHtcclxuICBib3JkZXItcmFkaXVzOiA1cHg7XHJcbiAgaGVpZ2h0OiBhdXRvO1xyXG4gIHdpZHRoOiA4ZW07XHJcbiAgYm9yZGVyOiAxcHggc29saWQgYmxhY2s7XHJcbiAgcG9zaXRpb246IGFic29sdXRlO1xyXG4gIGJvdHRvbTogODAlO1xyXG4gIGxlZnQ6IDkwJTtcclxuICB6LWluZGV4OiAzO1xyXG59XHJcblxyXG4ucnVsZXMge1xyXG4gIHRleHQtYWxpZ246IGxlZnQ7XHJcbiAgcGFkZGluZzogMnB4O1xyXG4gIGZvbnQtc2l6ZTogMC43NWVtO1xyXG59XHJcblxyXG4uZGVzY3JpcHRpb24ge1xyXG4gIHRleHQtYWxpZ246IGxlZnQ7XHJcbiAgcGFkZGluZzogMnB4O1xyXG4gIGZvbnQtc3R5bGU6IGl0YWxpYztcclxuICBmb250LXNpemU6IDAuNzVlbTtcclxufVxyXG4iXX0= */"] });
 
 
 /***/ }),
@@ -1131,13 +1216,14 @@ class TurnService {
     }
     nextTurn() {
         this.turn += 1;
+        console.log(`Następuje tura ${this.turn}`);
         this.actionsPointsService.addActionPoints(1);
         this.actionsPointsService.refreshActionPoints();
         this.handService.drawCards(1);
         this.turnSubject.next(this.turn);
     }
 }
-TurnService.ɵfac = function TurnService_Factory(t) { return new (t || TurnService)(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵinject"](_player_action_points_action_points_service__WEBPACK_IMPORTED_MODULE_2__["ActionsPointsService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵinject"](_player_hand_hand_service__WEBPACK_IMPORTED_MODULE_3__["HandService"])); };
+TurnService.ɵfac = function TurnService_Factory(t) { return new (t || TurnService)(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵinject"](_player_action_points_action_points_service__WEBPACK_IMPORTED_MODULE_2__["ActionPointsService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵinject"](_player_hand_hand_service__WEBPACK_IMPORTED_MODULE_3__["HandService"])); };
 TurnService.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineInjectable"]({ token: TurnService, factory: TurnService.ɵfac, providedIn: 'root' });
 
 
@@ -1184,39 +1270,118 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _player_hand_hand_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../player/hand/hand.service */ "THtM");
 /* harmony import */ var _player_player_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../player/player.service */ "ufXC");
 /* harmony import */ var _opponent_opponent_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../opponent/opponent.service */ "3jE/");
+/* harmony import */ var _player_action_points_action_points_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../player/action-points/action-points.service */ "MbUL");
+
 
 
 
 
 // import { Card } from "../shared/card/card.model"
 class EffectsService {
-    constructor(handService, playerService, opponentService) {
+    constructor(handService, playerService, opponentService, actionPointsService) {
         this.handService = handService;
         this.playerService = playerService;
         this.opponentService = opponentService;
+        this.actionPointsService = actionPointsService;
     }
-    applyEffect(effect, target = '') {
-        switch (effect.type) {
+    applyEffect(card, target = '') {
+        switch (card.effect.type) {
             case 'draw':
-                this.handService.drawCards(effect.amount);
+                console.log(`${card.name} sprawia, że ${card.effect.target} dobiera ${card.effect.amount} kart`);
+                this.handService.drawCards(card.effect.amount);
+                break;
+            case 'ramp':
+                console.log(`${card.name} sprawia, że ${card.effect.target} dostaje ${card.effect.amount} PA`);
+                this.actionPointsService.addActionPoints(card.effect.amount);
                 break;
             case 'healing':
+                console.log(`${card.name} sprawia, że ${target} dostaje ${card.effect.amount === -1 ? card.attack : card.effect.amount} życia`);
                 target === 'player'
-                    ? this.playerService.changeLifePoints(effect.amount)
-                    : this.opponentService.changeOppHp(effect.amount);
+                    ? this.playerService.changeLifePoints(card.effect.amount === -1 ? card.attack : card.effect.amount)
+                    : this.opponentService.changeOppHp(card.effect.amount === -1 ? card.attack : card.effect.amount);
                 break;
             case 'damage':
+                console.log(`${card.name} sprawia, że ${target} dostaje ${card.effect.amount === -1 ? -card.attack : -card.effect.amount} obrażeń`);
                 target === 'player'
-                    ? this.playerService.changeLifePoints(-effect.amount)
-                    : this.opponentService.changeOppHp(-effect.amount);
+                    ? this.playerService.changeLifePoints(card.effect.amount === -1 ? -card.attack : -card.effect.amount)
+                    : this.opponentService.changeOppHp(card.effect.amount === -1 ? -card.attack : -card.effect.amount);
                 break;
             default:
                 break;
         }
     }
 }
-EffectsService.ɵfac = function EffectsService_Factory(t) { return new (t || EffectsService)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_player_hand_hand_service__WEBPACK_IMPORTED_MODULE_1__["HandService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_player_player_service__WEBPACK_IMPORTED_MODULE_2__["PlayerService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_opponent_opponent_service__WEBPACK_IMPORTED_MODULE_3__["OpponentService"])); };
+EffectsService.ɵfac = function EffectsService_Factory(t) { return new (t || EffectsService)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_player_hand_hand_service__WEBPACK_IMPORTED_MODULE_1__["HandService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_player_player_service__WEBPACK_IMPORTED_MODULE_2__["PlayerService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_opponent_opponent_service__WEBPACK_IMPORTED_MODULE_3__["OpponentService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_player_action_points_action_points_service__WEBPACK_IMPORTED_MODULE_4__["ActionPointsService"])); };
 EffectsService.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({ token: EffectsService, factory: EffectsService.ɵfac, providedIn: 'root' });
+
+
+/***/ }),
+
+/***/ "MTEV":
+/*!********************************************************************!*\
+  !*** ./src/app/shared/card/card-tooltip/card-tooltip.component.ts ***!
+  \********************************************************************/
+/*! exports provided: CardTooltipComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CardTooltipComponent", function() { return CardTooltipComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "fXoL");
+
+class CardTooltipComponent {
+    constructor() { }
+    ngOnInit() {
+    }
+}
+CardTooltipComponent.ɵfac = function CardTooltipComponent_Factory(t) { return new (t || CardTooltipComponent)(); };
+CardTooltipComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: CardTooltipComponent, selectors: [["app-card-tooltip"]], inputs: { card: "card" }, decls: 18, vars: 8, consts: [[1, "cardTooltip"], [1, "name"], [1, "image"], ["alt", "card image", 3, "src"], [1, "stats"], [1, "attack"], [1, "hp"], [1, "cost"], [1, "speed"], [1, "rules"], [1, "description"]], template: function CardTooltipComponent_Template(rf, ctx) { if (rf & 1) {
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 0);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "div", 1);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](2);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](3, "div", 2);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](4, "img", 3);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](5, "div", 4);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](6, "div", 5);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](7);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](8, "div", 6);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](9);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](10, "div", 7);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](11);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](12, "div", 8);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](13, "img", 3);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](14, "div", 9);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](15);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](16, "div", 10);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](17);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+    } if (rf & 2) {
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](ctx.card.name);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("src", ctx.card.image, _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵsanitizeUrl"]);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](3);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](ctx.card.maxAttack);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](ctx.card.maxHp);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](ctx.card.cost);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("src", "assets/images/zones/" + ctx.card.speed + ".svg", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵsanitizeUrl"]);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](ctx.card.rules);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](ctx.card.description);
+    } }, styles: [".cardTooltip[_ngcontent-%COMP%] {\r\n  border-radius: 5px;\r\n  height: auto;\r\n  width: 14em;\r\n  border: 1px solid black;\r\n  position: absolute;\r\n  margin-left: auto;\r\n  margin-right: auto;\r\n  top: 30%;\r\n  left: 0;\r\n  right: 0;\r\n  z-index: 3;\r\n}\r\n\r\n.name[_ngcontent-%COMP%] {\r\n  font-size: 0.75em;\r\n  text-align: center;\r\n  background-color:rgba(0, 0, 0, 0);\r\n}\r\n\r\n.image[_ngcontent-%COMP%] {\r\n  width: 90%;\r\n  border: 1px solid black;\r\n  margin: 0 auto;\r\n}\r\n\r\n.stats[_ngcontent-%COMP%] {\r\n  position: absolute;\r\n  top: 2em;\r\n  left: -1.5em;\r\n  width: 2em;\r\n}\r\n\r\n.attack[_ngcontent-%COMP%] {\r\n  border-radius: 50%;\r\n  background-color: red;\r\n  text-align: center;\r\n}\r\n\r\n.hp[_ngcontent-%COMP%] {\r\n  border-radius: 50%;\r\n  background-color: green;\r\n  text-align: center;\r\n}\r\n\r\n.cost[_ngcontent-%COMP%] {\r\n  border-radius: 50%;\r\n  background-color: blue;\r\n  text-align: center;\r\n}\r\n\r\n.rules[_ngcontent-%COMP%] {\r\n  text-align: left;\r\n  padding: 2px;\r\n  font-size: 1em;\r\n}\r\n\r\n.description[_ngcontent-%COMP%] {\r\n  text-align: left;\r\n  padding: 2px;\r\n  font-style: italic;\r\n  font-size: 1em;\r\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNhcmQtdG9vbHRpcC5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0Usa0JBQWtCO0VBQ2xCLFlBQVk7RUFDWixXQUFXO0VBQ1gsdUJBQXVCO0VBQ3ZCLGtCQUFrQjtFQUNsQixpQkFBaUI7RUFDakIsa0JBQWtCO0VBQ2xCLFFBQVE7RUFDUixPQUFPO0VBQ1AsUUFBUTtFQUNSLFVBQVU7QUFDWjs7QUFFQTtFQUNFLGlCQUFpQjtFQUNqQixrQkFBa0I7RUFDbEIsaUNBQWlDO0FBQ25DOztBQUVBO0VBQ0UsVUFBVTtFQUNWLHVCQUF1QjtFQUN2QixjQUFjO0FBQ2hCOztBQUVBO0VBQ0Usa0JBQWtCO0VBQ2xCLFFBQVE7RUFDUixZQUFZO0VBQ1osVUFBVTtBQUNaOztBQUVBO0VBQ0Usa0JBQWtCO0VBQ2xCLHFCQUFxQjtFQUNyQixrQkFBa0I7QUFDcEI7O0FBRUE7RUFDRSxrQkFBa0I7RUFDbEIsdUJBQXVCO0VBQ3ZCLGtCQUFrQjtBQUNwQjs7QUFFQTtFQUNFLGtCQUFrQjtFQUNsQixzQkFBc0I7RUFDdEIsa0JBQWtCO0FBQ3BCOztBQUVBO0VBQ0UsZ0JBQWdCO0VBQ2hCLFlBQVk7RUFDWixjQUFjO0FBQ2hCOztBQUVBO0VBQ0UsZ0JBQWdCO0VBQ2hCLFlBQVk7RUFDWixrQkFBa0I7RUFDbEIsY0FBYztBQUNoQiIsImZpbGUiOiJjYXJkLXRvb2x0aXAuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi5jYXJkVG9vbHRpcCB7XHJcbiAgYm9yZGVyLXJhZGl1czogNXB4O1xyXG4gIGhlaWdodDogYXV0bztcclxuICB3aWR0aDogMTRlbTtcclxuICBib3JkZXI6IDFweCBzb2xpZCBibGFjaztcclxuICBwb3NpdGlvbjogYWJzb2x1dGU7XHJcbiAgbWFyZ2luLWxlZnQ6IGF1dG87XHJcbiAgbWFyZ2luLXJpZ2h0OiBhdXRvO1xyXG4gIHRvcDogMzAlO1xyXG4gIGxlZnQ6IDA7XHJcbiAgcmlnaHQ6IDA7XHJcbiAgei1pbmRleDogMztcclxufVxyXG5cclxuLm5hbWUge1xyXG4gIGZvbnQtc2l6ZTogMC43NWVtO1xyXG4gIHRleHQtYWxpZ246IGNlbnRlcjtcclxuICBiYWNrZ3JvdW5kLWNvbG9yOnJnYmEoMCwgMCwgMCwgMCk7XHJcbn1cclxuXHJcbi5pbWFnZSB7XHJcbiAgd2lkdGg6IDkwJTtcclxuICBib3JkZXI6IDFweCBzb2xpZCBibGFjaztcclxuICBtYXJnaW46IDAgYXV0bztcclxufVxyXG5cclxuLnN0YXRzIHtcclxuICBwb3NpdGlvbjogYWJzb2x1dGU7XHJcbiAgdG9wOiAyZW07XHJcbiAgbGVmdDogLTEuNWVtO1xyXG4gIHdpZHRoOiAyZW07XHJcbn1cclxuXHJcbi5hdHRhY2sge1xyXG4gIGJvcmRlci1yYWRpdXM6IDUwJTtcclxuICBiYWNrZ3JvdW5kLWNvbG9yOiByZWQ7XHJcbiAgdGV4dC1hbGlnbjogY2VudGVyO1xyXG59XHJcblxyXG4uaHAge1xyXG4gIGJvcmRlci1yYWRpdXM6IDUwJTtcclxuICBiYWNrZ3JvdW5kLWNvbG9yOiBncmVlbjtcclxuICB0ZXh0LWFsaWduOiBjZW50ZXI7XHJcbn1cclxuXHJcbi5jb3N0IHtcclxuICBib3JkZXItcmFkaXVzOiA1MCU7XHJcbiAgYmFja2dyb3VuZC1jb2xvcjogYmx1ZTtcclxuICB0ZXh0LWFsaWduOiBjZW50ZXI7XHJcbn1cclxuXHJcbi5ydWxlcyB7XHJcbiAgdGV4dC1hbGlnbjogbGVmdDtcclxuICBwYWRkaW5nOiAycHg7XHJcbiAgZm9udC1zaXplOiAxZW07XHJcbn1cclxuXHJcbi5kZXNjcmlwdGlvbiB7XHJcbiAgdGV4dC1hbGlnbjogbGVmdDtcclxuICBwYWRkaW5nOiAycHg7XHJcbiAgZm9udC1zdHlsZTogaXRhbGljO1xyXG4gIGZvbnQtc2l6ZTogMWVtO1xyXG59XHJcbiJdfQ== */"] });
 
 
 /***/ }),
@@ -1225,17 +1390,17 @@ EffectsService.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineIn
 /*!***************************************************************!*\
   !*** ./src/app/player/action-points/action-points.service.ts ***!
   \***************************************************************/
-/*! exports provided: ActionsPointsService */
+/*! exports provided: ActionPointsService */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ActionsPointsService", function() { return ActionsPointsService; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ActionPointsService", function() { return ActionPointsService; });
 /* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! rxjs */ "qCKp");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "fXoL");
 
 
-class ActionsPointsService {
+class ActionPointsService {
     constructor() {
         this.maxActionPoints = 3;
         this.currentActionPoints = 3;
@@ -1256,8 +1421,8 @@ class ActionsPointsService {
         this.actionPointsSubject.next({ max: this.maxActionPoints, current: this.currentActionPoints });
     }
 }
-ActionsPointsService.ɵfac = function ActionsPointsService_Factory(t) { return new (t || ActionsPointsService)(); };
-ActionsPointsService.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineInjectable"]({ token: ActionsPointsService, factory: ActionsPointsService.ɵfac, providedIn: 'root' });
+ActionPointsService.ɵfac = function ActionPointsService_Factory(t) { return new (t || ActionPointsService)(); };
+ActionPointsService.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineInjectable"]({ token: ActionPointsService, factory: ActionPointsService.ɵfac, providedIn: 'root' });
 
 
 /***/ }),
@@ -1296,12 +1461,18 @@ class CombatService {
             let playerCard = this.battlefieldService.getCard(row);
             let oppCard = this.battlefieldService.getCard(row + 'Opp');
             //sprawdzamy czy sa efekty na poczatku walki
-            if (playerCard && playerCard.effect && ((playerCard.effect.timing === "reveal" && !playerCard.revealed) || playerCard.effect.timing === "combat")) {
+            if (playerCard &&
+                playerCard.effect &&
+                ((playerCard.effect.timing === 'reveal' && !playerCard.revealed) ||
+                    playerCard.effect.timing === 'combat')) {
                 console.log(`${playerCard.name} używa zdolności na początku walki ${playerCard.effect.type} na ${playerCard.effect.target}`);
                 this.battlefieldService.applyBattlefiedEffect(playerCard, row);
                 this.battlefieldService.markAsRevealed(row);
             }
-            else if (oppCard && oppCard.effect && ((oppCard.effect.timing === "reveal" && !oppCard.revealed) || oppCard.effect.timing === "combat")) {
+            else if (oppCard &&
+                oppCard.effect &&
+                ((oppCard.effect.timing === 'reveal' && !oppCard.revealed) ||
+                    oppCard.effect.timing === 'combat')) {
                 console.log(`${oppCard.name} używa zdolności na początku walki ${oppCard.effect.type} na ${oppCard.effect.target}`);
                 this.battlefieldService.applyBattlefiedEffect(oppCard, row + 'Opp');
                 this.battlefieldService.markAsRevealed(row + 'Opp');
@@ -1314,11 +1485,15 @@ class CombatService {
             let playerCard = this.battlefieldService.getCard(row);
             let oppCard = this.battlefieldService.getCard(row + 'Opp');
             //sprawdzamy czy są efekty podczas ataku i je aplikujemy
-            if (playerCard && playerCard.effect && playerCard.effect.timing === "attack") {
+            if (playerCard &&
+                playerCard.effect &&
+                playerCard.effect.timing === 'attack') {
                 console.log(`${playerCard.name} używa zdolności na ataku ${playerCard.effect.type} na ${playerCard.effect.target}`);
                 this.battlefieldService.applyBattlefiedEffect(playerCard, row);
             }
-            else if (oppCard && oppCard.effect && oppCard.effect.timing === "attack") {
+            else if (oppCard &&
+                oppCard.effect &&
+                oppCard.effect.timing === 'attack') {
                 console.log(`${oppCard.name} używa zdolności na ataku ${oppCard.effect.type} na ${oppCard.effect.target}`);
                 this.battlefieldService.applyBattlefiedEffect(oppCard, row + 'Opp');
             }
@@ -1343,16 +1518,30 @@ class CombatService {
             let playerCard = this.battlefieldService.getCard(row);
             let oppCard = this.battlefieldService.getCard(row + 'Opp');
             //sprawdzamy czy sa efekty na poczatku walki
-            if (playerCard && playerCard.effect && playerCard.effect.timing === "eot") {
+            if (playerCard &&
+                playerCard.effect &&
+                playerCard.effect.timing === 'eot') {
                 this.battlefieldService.applyBattlefiedEffect(playerCard, row);
                 console.log(`${playerCard.name} używa zdolności EOT ${playerCard.effect.type} na ${playerCard.effect.target}`);
             }
-            else if (oppCard && oppCard.effect && oppCard.effect.timing === "eot") {
+            else if (oppCard && oppCard.effect && oppCard.effect.timing === 'eot') {
                 this.battlefieldService.applyBattlefiedEffect(oppCard, row + 'Opp');
                 console.log(`${oppCard.name} używa zdolności EOT ${oppCard.effect.type} na ${oppCard.effect.target}`);
             }
             //po efektach sprawdzam sba
             this.battlefieldService.buryTheFallen();
+        });
+        //ustawiamy status wszystkiego co przeżyło jako revealed
+        rows.forEach((row) => {
+            let playerCard = this.battlefieldService.getCard(row);
+            let oppCard = this.battlefieldService.getCard(row + 'Opp');
+            //sprawdzamy czy sa efekty na poczatku walki
+            if (playerCard) {
+                this.battlefieldService.markAsRevealed(row);
+            }
+            else if (oppCard) {
+                this.battlefieldService.markAsRevealed(row + 'Opp');
+            }
         });
         this.turnService.nextTurn();
     }
@@ -1360,29 +1549,35 @@ class CombatService {
         if (playerCard.speed === oppCard.speed) {
             //jeśli karty mają taką samą szybkość, to biją w siebie nawzajem, a dopiero potem sprawdzamy czy ktoś zginął
             this.battlefieldService.changeCardHp(-playerCard.attack, row + 'Opp');
+            playerCard.abilities.includes("trample") && playerCard.attack > oppCard.hp ? this.opponentService.changeOppHp(-(playerCard.attack - oppCard.hp)) : null;
             this.battlefieldService.changeCardHp(-oppCard.attack, row);
+            oppCard.abilities.includes("trample") && oppCard.attack > playerCard.hp ? this.playerService.changeLifePoints(-(oppCard.attack - playerCard.hp)) : null;
             this.battlefieldService.buryTheFallen();
         }
         else if (playerCard.speed < oppCard.speed) {
             //jeśli karty mają różną szybkość, to najpierw szybsza zadaje obrażenia, a wolniejsza tylko jeśli przeżyje
             // tutaj karta gracza jest wolniejsza, więc przeciwnik pierwszy zadaje obrażenia
             this.battlefieldService.changeCardHp(-oppCard.attack, row);
+            oppCard.abilities.includes("trample") && oppCard.attack > playerCard.hp ? this.playerService.changeLifePoints(-(oppCard.attack - playerCard.hp)) : null;
             this.battlefieldService.buryTheFallen();
             //sprawdzamy czy karta gracza nadal żyje
             if (this.battlefieldService.getCard(row) === playerCard) {
                 //jak tak to też zadaje obrażeni
                 this.battlefieldService.changeCardHp(-playerCard.attack, row + 'Opp');
+                playerCard.abilities.includes("trample") && playerCard.attack > oppCard.hp ? this.opponentService.changeOppHp(-(playerCard.attack - oppCard.hp)) : null;
                 this.battlefieldService.buryTheFallen();
             }
         }
         else {
             // tutaj karta przeciwnika jest wolniejsza, więc gracz pierwszy zadaje obrażenia
             this.battlefieldService.changeCardHp(-playerCard.attack, row + 'Opp');
+            playerCard.abilities.includes("trample") && playerCard.attack > oppCard.hp ? this.opponentService.changeOppHp(-(playerCard.attack - oppCard.hp)) : null;
             this.battlefieldService.buryTheFallen();
             //sprawdzamy czy karta przeciwnika nadal żyje
             if (this.battlefieldService.getCard(row + 'Opp') === oppCard) {
                 //jak tak to też zadaje obrażeni
                 this.battlefieldService.changeCardHp(-oppCard.attack, row);
+                oppCard.abilities.includes("trample") && oppCard.attack > playerCard.hp ? this.playerService.changeLifePoints(-(oppCard.attack - playerCard.hp)) : null;
                 this.battlefieldService.buryTheFallen();
             }
         }
@@ -1390,6 +1585,58 @@ class CombatService {
 }
 CombatService.ɵfac = function CombatService_Factory(t) { return new (t || CombatService)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_battlefield_battlefield_service__WEBPACK_IMPORTED_MODULE_1__["BattlefieldService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_player_player_service__WEBPACK_IMPORTED_MODULE_2__["PlayerService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_turn_service__WEBPACK_IMPORTED_MODULE_3__["TurnService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_opponent_opponent_service__WEBPACK_IMPORTED_MODULE_4__["OpponentService"])); };
 CombatService.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({ token: CombatService, factory: CombatService.ɵfac, providedIn: 'root' });
+
+
+/***/ }),
+
+/***/ "RPPq":
+/*!**************************************************************!*\
+  !*** ./src/app/starting-screen/starting-screen.component.ts ***!
+  \**************************************************************/
+/*! exports provided: StartingScreenComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "StartingScreenComponent", function() { return StartingScreenComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "fXoL");
+/* harmony import */ var _player_player_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../player/player.service */ "ufXC");
+
+
+class StartingScreenComponent {
+    constructor(playerService) {
+        this.playerService = playerService;
+    }
+    ngOnInit() {
+    }
+    setPlayerNumber(number) {
+        console.log(`Na ekranie startowym ustawiono numer gracza na ${number}`);
+        this.playerService.setPlayerNumber(number);
+    }
+}
+StartingScreenComponent.ɵfac = function StartingScreenComponent_Factory(t) { return new (t || StartingScreenComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_player_player_service__WEBPACK_IMPORTED_MODULE_1__["PlayerService"])); };
+StartingScreenComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: StartingScreenComponent, selectors: [["app-starting-screen"]], decls: 11, vars: 0, consts: [[1, "starting"], [1, "logo"], ["alt", "logo", "src", "assets/images/logo/logo.png"], [1, "choose"], [1, "buttons"], [1, "playerNumber", 3, "click"]], template: function StartingScreenComponent_Template(rf, ctx) { if (rf & 1) {
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 0);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "div", 1);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](2, "img", 2);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](3, "div", 3);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](4, "p");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](5, "Wybierz swoje przeznaczenie!");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](6, "div", 4);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](7, "button", 5);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function StartingScreenComponent_Template_button_click_7_listener() { return ctx.setPlayerNumber(1); });
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](8, "Player 1");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](9, "button", 5);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function StartingScreenComponent_Template_button_click_9_listener() { return ctx.setPlayerNumber(2); });
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](10, "Player 2");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+    } }, styles: ["[_nghost-%COMP%] {\r\n  width: 100vw;\r\n  height: 100vh;\r\n  background-color: black;\r\n  display: flex;\r\n  align-items: center;\r\n  justify-content: center;\r\n  flex-direction: column;\r\n  overflow: hidden;\r\n}\r\n\r\n.starting[_ngcontent-%COMP%] {\r\n  display: flex;\r\n  align-items: center;\r\n  justify-content: space-evenly;\r\n  flex-direction: column;\r\n  width: 30vw;\r\n  height: 70vh;\r\n}\r\n\r\n.choose[_ngcontent-%COMP%] {\r\n  display: flex;\r\n  flex-direction: column;\r\n  align-items: center;\r\n  text-align: center;\r\n}\r\n\r\n.buttons[_ngcontent-%COMP%] {\r\n  display: flex;\r\n}\r\n\r\np[_ngcontent-%COMP%] {\r\n  font-size: 2em;\r\n}\r\n\r\nbutton[_ngcontent-%COMP%] {\r\n  margin: 1em;\r\n  font-size: 1.5em;\r\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInN0YXJ0aW5nLXNjcmVlbi5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UsWUFBWTtFQUNaLGFBQWE7RUFDYix1QkFBdUI7RUFDdkIsYUFBYTtFQUNiLG1CQUFtQjtFQUNuQix1QkFBdUI7RUFDdkIsc0JBQXNCO0VBQ3RCLGdCQUFnQjtBQUNsQjs7QUFFQTtFQUNFLGFBQWE7RUFDYixtQkFBbUI7RUFDbkIsNkJBQTZCO0VBQzdCLHNCQUFzQjtFQUN0QixXQUFXO0VBQ1gsWUFBWTtBQUNkOztBQUVBO0VBQ0UsYUFBYTtFQUNiLHNCQUFzQjtFQUN0QixtQkFBbUI7RUFDbkIsa0JBQWtCO0FBQ3BCOztBQUVBO0VBQ0UsYUFBYTtBQUNmOztBQUVBO0VBQ0UsY0FBYztBQUNoQjs7QUFFQTtFQUNFLFdBQVc7RUFDWCxnQkFBZ0I7QUFDbEIiLCJmaWxlIjoic3RhcnRpbmctc2NyZWVuLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyI6aG9zdCB7XHJcbiAgd2lkdGg6IDEwMHZ3O1xyXG4gIGhlaWdodDogMTAwdmg7XHJcbiAgYmFja2dyb3VuZC1jb2xvcjogYmxhY2s7XHJcbiAgZGlzcGxheTogZmxleDtcclxuICBhbGlnbi1pdGVtczogY2VudGVyO1xyXG4gIGp1c3RpZnktY29udGVudDogY2VudGVyO1xyXG4gIGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47XHJcbiAgb3ZlcmZsb3c6IGhpZGRlbjtcclxufVxyXG5cclxuLnN0YXJ0aW5nIHtcclxuICBkaXNwbGF5OiBmbGV4O1xyXG4gIGFsaWduLWl0ZW1zOiBjZW50ZXI7XHJcbiAganVzdGlmeS1jb250ZW50OiBzcGFjZS1ldmVubHk7XHJcbiAgZmxleC1kaXJlY3Rpb246IGNvbHVtbjtcclxuICB3aWR0aDogMzB2dztcclxuICBoZWlnaHQ6IDcwdmg7XHJcbn1cclxuXHJcbi5jaG9vc2Uge1xyXG4gIGRpc3BsYXk6IGZsZXg7XHJcbiAgZmxleC1kaXJlY3Rpb246IGNvbHVtbjtcclxuICBhbGlnbi1pdGVtczogY2VudGVyO1xyXG4gIHRleHQtYWxpZ246IGNlbnRlcjtcclxufVxyXG5cclxuLmJ1dHRvbnMge1xyXG4gIGRpc3BsYXk6IGZsZXg7XHJcbn1cclxuXHJcbnAge1xyXG4gIGZvbnQtc2l6ZTogMmVtO1xyXG59XHJcblxyXG5idXR0b24ge1xyXG4gIG1hcmdpbjogMWVtO1xyXG4gIGZvbnQtc2l6ZTogMS41ZW07XHJcbn1cclxuIl19 */"] });
 
 
 /***/ }),
@@ -1413,11 +1660,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _player_player_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./player/player.service */ "ufXC");
 /* harmony import */ var _player_hand_hand_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./player/hand/hand.service */ "THtM");
 /* harmony import */ var _player_deck_deck_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./player/deck/deck.service */ "Zsfq");
-/* harmony import */ var _angular_cdk_drag_drop__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/cdk/drag-drop */ "5+WD");
+/* harmony import */ var _opponent_opponent_service__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./opponent/opponent.service */ "3jE/");
 /* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/common */ "ofXK");
-/* harmony import */ var _opponent_opponent_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./opponent/opponent.component */ "+1ZF");
-/* harmony import */ var _battlefield_battlefield_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./battlefield/battlefield.component */ "93yE");
-/* harmony import */ var _player_player_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./player/player.component */ "0M9o");
+/* harmony import */ var _starting_screen_starting_screen_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./starting-screen/starting-screen.component */ "RPPq");
+/* harmony import */ var _angular_cdk_drag_drop__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @angular/cdk/drag-drop */ "5+WD");
+/* harmony import */ var _opponent_opponent_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./opponent/opponent.component */ "+1ZF");
+/* harmony import */ var _battlefield_battlefield_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./battlefield/battlefield.component */ "93yE");
+/* harmony import */ var _player_player_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./player/player.component */ "0M9o");
 
 
 
@@ -1432,26 +1681,71 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-function AppComponent_p_12_Template(rf, ctx) { if (rf & 1) {
+
+
+function AppComponent_app_starting_screen_0_Template(rf, ctx) { if (rf & 1) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](0, "app-starting-screen");
+} }
+function AppComponent_div_1_p_10_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "p");
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](1);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
 } if (rf & 2) {
-    const ctx_r0 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
+    const ctx_r2 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](2);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtextInterpolate1"]("Player ", ctx_r0.playerNumber, "");
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtextInterpolate1"]("Player ", ctx_r2.playerNumber, "");
 } }
-function AppComponent_p_13_Template(rf, ctx) { if (rf & 1) {
+function AppComponent_div_1_p_11_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "p");
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+} if (rf & 2) {
+    const ctx_r3 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](2);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtextInterpolate1"]("Tura ", ctx_r3.turnNumber, "");
+} }
+function AppComponent_div_1_Template(rf, ctx) { if (rf & 1) {
+    const _r5 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵgetCurrentView"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "div", 2);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](1, "div", 3);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](2, "div", 4);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](3, "button", 5);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function AppComponent_div_1_Template_button_click_3_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r5); const ctx_r4 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](); return ctx_r4.sendData(); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](4, " Wy\u015Blij dane ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](5, "button", 6);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function AppComponent_div_1_Template_button_click_5_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r5); const ctx_r6 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](); return ctx_r6.getData(); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](6, " Odbierz dane ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](7, "button", 7);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function AppComponent_div_1_Template_button_click_7_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r5); const ctx_r7 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](); return ctx_r7.combat(); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](8, " Walka! ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](9, "div", 8);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](10, AppComponent_div_1_p_10_Template, 2, 1, "p", 0);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](11, AppComponent_div_1_p_11_Template, 2, 1, "p", 0);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](12, "app-opponent");
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](13, "app-battlefield");
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](14, "app-player");
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
 } if (rf & 2) {
     const ctx_r1 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](3);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("disabled", ctx_r1.isDataSent);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](2);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("disabled", !ctx_r1.isDataSent);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](2);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("disabled", !ctx_r1.isDataReceived && !ctx_r1.isTurnNumberCorrect);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](3);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", ctx_r1.playerNumber);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtextInterpolate1"]("Tura ", ctx_r1.turnNumber, "");
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", ctx_r1.playerNumber);
 } }
 class AppComponent {
-    constructor(combatService, turnService, battlefieldService, httpService, playerService, handService, deckService) {
+    constructor(combatService, turnService, battlefieldService, httpService, playerService, handService, deckService, opponentService) {
         this.combatService = combatService;
         this.turnService = turnService;
         this.battlefieldService = battlefieldService;
@@ -1459,6 +1753,7 @@ class AppComponent {
         this.playerService = playerService;
         this.handService = handService;
         this.deckService = deckService;
+        this.opponentService = opponentService;
         this.title = 'taern-card';
         this.isPlayerNumberSet = false;
         this.isDataSent = false;
@@ -1466,16 +1761,12 @@ class AppComponent {
         this.isTurnNumberCorrect = false;
         this.turnNumber = 1;
         this.turnService.turnSubject.subscribe(turnNumber => this.turnNumber = turnNumber);
+        this.playerService.playerNumberSubject.subscribe(playerNumber => this.playerNumber = playerNumber);
     }
     combat() {
         this.combatService.commenceCombat();
         this.isDataSent = false;
         this.isDataReceived = false;
-    }
-    setPlayerNumber(number) {
-        this.playerService.setPlayerNumber(number);
-        this.isPlayerNumberSet = true;
-        this.playerNumber = number;
     }
     sendData() {
         this.httpService
@@ -1501,66 +1792,31 @@ class AppComponent {
             .subscribe((response) => {
             if (response && response.turn === this.turnNumber) {
                 response.melee
-                    ? this.battlefieldService.setOppCard(new _shared_card_card_model__WEBPACK_IMPORTED_MODULE_0__["Card"](response.melee), 'melee')
+                    ? this.battlefieldService.setCard(new _shared_card_card_model__WEBPACK_IMPORTED_MODULE_0__["Card"](response.melee), 'meleeOpp')
                     : null;
                 response.ranged
-                    ? this.battlefieldService.setOppCard(new _shared_card_card_model__WEBPACK_IMPORTED_MODULE_0__["Card"](response.ranged), 'ranged')
+                    ? this.battlefieldService.setCard(new _shared_card_card_model__WEBPACK_IMPORTED_MODULE_0__["Card"](response.ranged), 'rangedOpp')
                     : null;
                 response.mental
-                    ? this.battlefieldService.setOppCard(new _shared_card_card_model__WEBPACK_IMPORTED_MODULE_0__["Card"](response.mental), 'mental')
+                    ? this.battlefieldService.setCard(new _shared_card_card_model__WEBPACK_IMPORTED_MODULE_0__["Card"](response.mental), 'mentalOpp')
                     : null;
+                this.opponentService.setOppDeckSize(response.deck);
+                this.opponentService.setOppHandSize(response.hand);
                 this.isDataReceived = true;
+                console.log(`Przeciwnik wstawia ${response.mental ? response.mental.name : "nic"}, ${response.ranged ? response.ranged.name : "nic"}, ${response.melee ? response.melee.name : "nic"}`);
             }
         });
     }
 }
-AppComponent.ɵfac = function AppComponent_Factory(t) { return new (t || AppComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_shared_combat_service__WEBPACK_IMPORTED_MODULE_2__["CombatService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_shared_turn_service__WEBPACK_IMPORTED_MODULE_3__["TurnService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_battlefield_battlefield_service__WEBPACK_IMPORTED_MODULE_4__["BattlefieldService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_shared_http_service__WEBPACK_IMPORTED_MODULE_5__["HttpService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_player_player_service__WEBPACK_IMPORTED_MODULE_6__["PlayerService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_player_hand_hand_service__WEBPACK_IMPORTED_MODULE_7__["HandService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_player_deck_deck_service__WEBPACK_IMPORTED_MODULE_8__["DeckService"])); };
-AppComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineComponent"]({ type: AppComponent, selectors: [["app-root"]], decls: 17, vars: 7, consts: [["cdkDropListGroup", "", 1, "wrapper"], [1, "buttons"], [1, "playerNumber", 3, "disabled", "click"], [1, "sendData", 3, "disabled", "click"], [1, "receiveData", 3, "disabled", "click"], [1, "combat", 3, "disabled", "click"], [4, "ngIf"]], template: function AppComponent_Template(rf, ctx) { if (rf & 1) {
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "div", 0);
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](1, "div", 1);
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](2, "button", 2);
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function AppComponent_Template_button_click_2_listener() { return ctx.setPlayerNumber(1); });
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](3, "Player 1");
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](4, "button", 2);
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function AppComponent_Template_button_click_4_listener() { return ctx.setPlayerNumber(2); });
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](5, "Player 2");
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](6, "button", 3);
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function AppComponent_Template_button_click_6_listener() { return ctx.sendData(); });
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](7, "Wy\u015Blij dane");
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](8, "button", 4);
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function AppComponent_Template_button_click_8_listener() { return ctx.getData(); });
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](9, "Odbierz dane");
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](10, "button", 5);
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function AppComponent_Template_button_click_10_listener() { return ctx.combat(); });
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](11, "Walka!");
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](12, AppComponent_p_12_Template, 2, 1, "p", 6);
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](13, AppComponent_p_13_Template, 2, 1, "p", 6);
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](14, "app-opponent");
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](15, "app-battlefield");
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](16, "app-player");
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+AppComponent.ɵfac = function AppComponent_Factory(t) { return new (t || AppComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_shared_combat_service__WEBPACK_IMPORTED_MODULE_2__["CombatService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_shared_turn_service__WEBPACK_IMPORTED_MODULE_3__["TurnService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_battlefield_battlefield_service__WEBPACK_IMPORTED_MODULE_4__["BattlefieldService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_shared_http_service__WEBPACK_IMPORTED_MODULE_5__["HttpService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_player_player_service__WEBPACK_IMPORTED_MODULE_6__["PlayerService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_player_hand_hand_service__WEBPACK_IMPORTED_MODULE_7__["HandService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_player_deck_deck_service__WEBPACK_IMPORTED_MODULE_8__["DeckService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_opponent_opponent_service__WEBPACK_IMPORTED_MODULE_9__["OpponentService"])); };
+AppComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineComponent"]({ type: AppComponent, selectors: [["app-root"]], decls: 2, vars: 2, consts: [[4, "ngIf"], ["class", "wrapper", "cdkDropListGroup", "", 4, "ngIf"], ["cdkDropListGroup", "", 1, "wrapper"], [1, "controls"], [1, "buttons"], [1, "sendData", 3, "disabled", "click"], [1, "receiveData", 3, "disabled", "click"], [1, "combat", 3, "disabled", "click"], [1, "info"]], template: function AppComponent_Template(rf, ctx) { if (rf & 1) {
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](0, AppComponent_app_starting_screen_0_Template, 1, 0, "app-starting-screen", 0);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](1, AppComponent_div_1_Template, 15, 5, "div", 1);
     } if (rf & 2) {
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](2);
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("disabled", ctx.isPlayerNumberSet);
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](2);
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("disabled", ctx.isPlayerNumberSet);
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](2);
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("disabled", !ctx.isPlayerNumberSet || ctx.isDataSent);
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](2);
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("disabled", !ctx.isDataSent);
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](2);
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("disabled", !ctx.isDataReceived && !ctx.isTurnNumberCorrect);
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](2);
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", ctx.playerNumber);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", !ctx.playerNumber);
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", ctx.playerNumber);
-    } }, directives: [_angular_cdk_drag_drop__WEBPACK_IMPORTED_MODULE_9__["CdkDropListGroup"], _angular_common__WEBPACK_IMPORTED_MODULE_10__["NgIf"], _opponent_opponent_component__WEBPACK_IMPORTED_MODULE_11__["OpponentComponent"], _battlefield_battlefield_component__WEBPACK_IMPORTED_MODULE_12__["BattlefieldComponent"], _player_player_component__WEBPACK_IMPORTED_MODULE_13__["PlayerComponent"]], styles: [".wrapper[_ngcontent-%COMP%] {\r\n  display: grid;\r\n  grid-template-areas: \"opponent\" \"battlefield\" \"player\";\r\n  grid-template-rows: 20vh 60vh 20vh;\r\n  grid-template-columns: 100%;\r\n  box-sizing: border-box;\r\n  overflow: hidden;\r\n}\r\n.buttons[_ngcontent-%COMP%] {\r\n  position: absolute;\r\n  top: 2em;\r\n  left: 2em;\r\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImFwcC5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UsYUFBYTtFQUNiLHNEQUFzRDtFQUN0RCxrQ0FBa0M7RUFDbEMsMkJBQTJCO0VBQzNCLHNCQUFzQjtFQUN0QixnQkFBZ0I7QUFDbEI7QUFDQTtFQUNFLGtCQUFrQjtFQUNsQixRQUFRO0VBQ1IsU0FBUztBQUNYIiwiZmlsZSI6ImFwcC5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLndyYXBwZXIge1xyXG4gIGRpc3BsYXk6IGdyaWQ7XHJcbiAgZ3JpZC10ZW1wbGF0ZS1hcmVhczogXCJvcHBvbmVudFwiIFwiYmF0dGxlZmllbGRcIiBcInBsYXllclwiO1xyXG4gIGdyaWQtdGVtcGxhdGUtcm93czogMjB2aCA2MHZoIDIwdmg7XHJcbiAgZ3JpZC10ZW1wbGF0ZS1jb2x1bW5zOiAxMDAlO1xyXG4gIGJveC1zaXppbmc6IGJvcmRlci1ib3g7XHJcbiAgb3ZlcmZsb3c6IGhpZGRlbjtcclxufVxyXG4uYnV0dG9ucyB7XHJcbiAgcG9zaXRpb246IGFic29sdXRlO1xyXG4gIHRvcDogMmVtO1xyXG4gIGxlZnQ6IDJlbTtcclxufVxyXG4iXX0= */"] });
+    } }, directives: [_angular_common__WEBPACK_IMPORTED_MODULE_10__["NgIf"], _starting_screen_starting_screen_component__WEBPACK_IMPORTED_MODULE_11__["StartingScreenComponent"], _angular_cdk_drag_drop__WEBPACK_IMPORTED_MODULE_12__["CdkDropListGroup"], _opponent_opponent_component__WEBPACK_IMPORTED_MODULE_13__["OpponentComponent"], _battlefield_battlefield_component__WEBPACK_IMPORTED_MODULE_14__["BattlefieldComponent"], _player_player_component__WEBPACK_IMPORTED_MODULE_15__["PlayerComponent"]], styles: [".wrapper[_ngcontent-%COMP%] {\r\n  display: grid;\r\n  grid-template-areas: \"opponent\" \"battlefield\" \"player\";\r\n  grid-template-rows: 20vh 60vh 20vh;\r\n  grid-template-columns: 100%;\r\n  box-sizing: border-box;\r\n  overflow: hidden;\r\n}\r\n.controls[_ngcontent-%COMP%] {\r\n  position: fixed;\r\n  top: 2em;\r\n  left: 2em;\r\n  display: flex;\r\n  width: 15vw;\r\n  justify-content: space-between;\r\n}\r\n.buttons[_ngcontent-%COMP%] {\r\n  display: flex;\r\n  flex-direction: column;\r\n}\r\nbutton[_ngcontent-%COMP%] {\r\n  margin: 0.5em;\r\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImFwcC5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UsYUFBYTtFQUNiLHNEQUFzRDtFQUN0RCxrQ0FBa0M7RUFDbEMsMkJBQTJCO0VBQzNCLHNCQUFzQjtFQUN0QixnQkFBZ0I7QUFDbEI7QUFDQTtFQUNFLGVBQWU7RUFDZixRQUFRO0VBQ1IsU0FBUztFQUNULGFBQWE7RUFDYixXQUFXO0VBQ1gsOEJBQThCO0FBQ2hDO0FBQ0E7RUFDRSxhQUFhO0VBQ2Isc0JBQXNCO0FBQ3hCO0FBRUE7RUFDRSxhQUFhO0FBQ2YiLCJmaWxlIjoiYXBwLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIud3JhcHBlciB7XHJcbiAgZGlzcGxheTogZ3JpZDtcclxuICBncmlkLXRlbXBsYXRlLWFyZWFzOiBcIm9wcG9uZW50XCIgXCJiYXR0bGVmaWVsZFwiIFwicGxheWVyXCI7XHJcbiAgZ3JpZC10ZW1wbGF0ZS1yb3dzOiAyMHZoIDYwdmggMjB2aDtcclxuICBncmlkLXRlbXBsYXRlLWNvbHVtbnM6IDEwMCU7XHJcbiAgYm94LXNpemluZzogYm9yZGVyLWJveDtcclxuICBvdmVyZmxvdzogaGlkZGVuO1xyXG59XHJcbi5jb250cm9scyB7XHJcbiAgcG9zaXRpb246IGZpeGVkO1xyXG4gIHRvcDogMmVtO1xyXG4gIGxlZnQ6IDJlbTtcclxuICBkaXNwbGF5OiBmbGV4O1xyXG4gIHdpZHRoOiAxNXZ3O1xyXG4gIGp1c3RpZnktY29udGVudDogc3BhY2UtYmV0d2VlbjtcclxufVxyXG4uYnV0dG9ucyB7XHJcbiAgZGlzcGxheTogZmxleDtcclxuICBmbGV4LWRpcmVjdGlvbjogY29sdW1uO1xyXG59XHJcblxyXG5idXR0b24ge1xyXG4gIG1hcmdpbjogMC41ZW07XHJcbn1cclxuIl19 */"] });
 
 
 /***/ }),
@@ -1641,7 +1897,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _battlefield_opponent_avatar_opponent_avatar_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./battlefield/opponent-avatar/opponent-avatar.component */ "6TkF");
 /* harmony import */ var _opponent_opponent_deck_opponent_deck_component__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./opponent/opponent-deck/opponent-deck.component */ "wGFD");
 /* harmony import */ var _opponent_opponent_hand_opponent_hand_component__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./opponent/opponent-hand/opponent-hand.component */ "+R9O");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! @angular/core */ "fXoL");
+/* harmony import */ var _starting_screen_starting_screen_component__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./starting-screen/starting-screen.component */ "RPPq");
+/* harmony import */ var _shared_card_card_tooltip_card_tooltip_component__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./shared/card/card-tooltip/card-tooltip.component */ "MTEV");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! @angular/core */ "fXoL");
+
+
 
 
 
@@ -1664,13 +1924,13 @@ __webpack_require__.r(__webpack_exports__);
 
 class AppModule {
 }
-AppModule.ɵmod = _angular_core__WEBPACK_IMPORTED_MODULE_19__["ɵɵdefineNgModule"]({ type: AppModule, bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_3__["AppComponent"]] });
-AppModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_19__["ɵɵdefineInjector"]({ factory: function AppModule_Factory(t) { return new (t || AppModule)(); }, providers: [], imports: [[
+AppModule.ɵmod = _angular_core__WEBPACK_IMPORTED_MODULE_21__["ɵɵdefineNgModule"]({ type: AppModule, bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_3__["AppComponent"]] });
+AppModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_21__["ɵɵdefineInjector"]({ factory: function AppModule_Factory(t) { return new (t || AppModule)(); }, providers: [], imports: [[
             _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"],
             _angular_cdk_drag_drop__WEBPACK_IMPORTED_MODULE_1__["DragDropModule"],
             _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClientModule"]
         ]] });
-(function () { (typeof ngJitMode === "undefined" || ngJitMode) && _angular_core__WEBPACK_IMPORTED_MODULE_19__["ɵɵsetNgModuleScope"](AppModule, { declarations: [_app_component__WEBPACK_IMPORTED_MODULE_3__["AppComponent"],
+(function () { (typeof ngJitMode === "undefined" || ngJitMode) && _angular_core__WEBPACK_IMPORTED_MODULE_21__["ɵɵsetNgModuleScope"](AppModule, { declarations: [_app_component__WEBPACK_IMPORTED_MODULE_3__["AppComponent"],
         _battlefield_battlefield_component__WEBPACK_IMPORTED_MODULE_4__["BattlefieldComponent"],
         _opponent_opponent_component__WEBPACK_IMPORTED_MODULE_5__["OpponentComponent"],
         _player_player_component__WEBPACK_IMPORTED_MODULE_6__["PlayerComponent"],
@@ -1685,7 +1945,9 @@ AppModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_19__["ɵɵdefineInjecto
         _battlefield_player_avatar_player_avatar_component__WEBPACK_IMPORTED_MODULE_15__["PlayerAvatarComponent"],
         _battlefield_opponent_avatar_opponent_avatar_component__WEBPACK_IMPORTED_MODULE_16__["OpponentAvatarComponent"],
         _opponent_opponent_deck_opponent_deck_component__WEBPACK_IMPORTED_MODULE_17__["OpponentDeckComponent"],
-        _opponent_opponent_hand_opponent_hand_component__WEBPACK_IMPORTED_MODULE_18__["OpponentHandComponent"]], imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"],
+        _opponent_opponent_hand_opponent_hand_component__WEBPACK_IMPORTED_MODULE_18__["OpponentHandComponent"],
+        _starting_screen_starting_screen_component__WEBPACK_IMPORTED_MODULE_19__["StartingScreenComponent"],
+        _shared_card_card_tooltip_card_tooltip_component__WEBPACK_IMPORTED_MODULE_20__["CardTooltipComponent"]], imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"],
         _angular_cdk_drag_drop__WEBPACK_IMPORTED_MODULE_1__["DragDropModule"],
         _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClientModule"]] }); })();
 
@@ -1773,28 +2035,15 @@ class BattlefieldService {
     constructor(deckService, effectsService) {
         this.deckService = deckService;
         this.effectsService = effectsService;
-        this.playerRows = ['mental', 'ranged', 'melee'];
-        this.oppRows = ['mentalOpp', 'rangedOpp', 'meleeOpp'];
         this.cardEmitter = new rxjs__WEBPACK_IMPORTED_MODULE_0__["Subject"]();
     }
     getCard(row) {
         return this[row];
     }
-    setPlayerCard(card, row) {
+    setCard(card, row) {
+        this[row] ? this.deckService.discard(this[row]) : null;
         this[row] = card;
         this.cardEmitter.next({ card: card, row: row });
-        if (card.effect && card.effect.timing === 'play') {
-            this.applyBattlefiedEffect(card, row);
-            console.log(`Gracz wstawia ${this[row].name} w ${row} z efektem ${this[row].effect.type} na ${this[row].effect.target}`);
-        }
-        else {
-            console.log(`Gracz wstawia ${this[row].name} w ${row}`);
-        }
-    }
-    setOppCard(card, row) {
-        this[row + 'Opp'] = card;
-        this.cardEmitter.next({ card: card, row: row + 'Opp' });
-        console.log(`Przeciwnik wstawia ${this[row + 'Opp'].name} w ${row + 'Opp'}`);
     }
     changeCardHp(number, row) {
         this[row].hp + number > this[row].maxHp
@@ -1805,7 +2054,9 @@ class BattlefieldService {
             : console.log(`${this[row].name} w ${row} jest leczony o ${number}`);
     }
     changeCardAttack(number, row) {
-        this[row].attack + number < 0 ? this[row].attack = 0 : (this[row].attack += number);
+        this[row].attack + number < 0
+            ? (this[row].attack = 0)
+            : (this[row].attack += number);
         number < 0
             ? console.log(`${this[row].name} w ${row} otrzymuje ${number} obrażeń`)
             : console.log(`${this[row].name} w ${row} jest leczony o ${number}`);
@@ -1837,7 +2088,7 @@ class BattlefieldService {
     }
     markAsRevealed(row) {
         this[row].revealed = true;
-        console.log(this[row].name + "ma status revealed");
+        console.log(this[row].name + ' ma status revealed');
     }
     calculateTargets(row, target) {
         let targets = [];
@@ -1938,49 +2189,58 @@ class BattlefieldService {
     applyBattlefiedEffect(card, row) {
         switch (card.effect.type) {
             case 'draw':
-                row.includes("Opp") ? null : this.effectsService.applyEffect(card.effect);
+                row.includes('Opp') ? null : this.effectsService.applyEffect(card);
+                break;
+            case 'ramp':
+                row.includes('Opp') ? null : this.effectsService.applyEffect(card);
                 break;
             case 'healing':
                 let healingTargets = Array.isArray(card.effect.target)
-                    ? card.effect.target.reduce((allTargets, currentTarget) => allTargets = allTargets.concat(this.calculateTargets(row, currentTarget)), [])
+                    ? card.effect.target.reduce((allTargets, currentTarget) => (allTargets = allTargets.concat(this.calculateTargets(row, currentTarget))), [])
                     : this.calculateTargets(row, card.effect.target);
                 console.log(`Cele zdolności to ${healingTargets}`);
                 healingTargets.forEach((target) => target === 'player' || target === 'opponent'
-                    ? this.effectsService.applyEffect(card.effect, target)
-                    : this[target] ? this.changeCardHp(card.effect.amount, target) : null);
+                    ? this.effectsService.applyEffect(card, target)
+                    : this[target]
+                        ? this.changeCardHp(card.effect.amount === -1 ? card.attack : card.effect.amount, target)
+                        : null);
                 break;
             case 'damage':
                 let damageTargets = Array.isArray(card.effect.target)
-                    ? card.effect.target.reduce((allTargets, currentTarget) => allTargets = allTargets.concat(this.calculateTargets(row, currentTarget)), [])
+                    ? card.effect.target.reduce((allTargets, currentTarget) => (allTargets = allTargets.concat(this.calculateTargets(row, currentTarget))), [])
                     : this.calculateTargets(row, card.effect.target);
                 console.log(`Cele zdolności to ${damageTargets}`);
                 damageTargets.forEach((target) => target === 'player' || target === 'opponent'
-                    ? this.effectsService.applyEffect(card.effect, target)
-                    : this[target] ? this.changeCardHp(-card.effect.amount, target) : null);
+                    ? this.effectsService.applyEffect(card, target)
+                    : this[target]
+                        ? this.changeCardHp(card.effect.amount === -1 ? -card.attack : -card.effect.amount, target)
+                        : null);
                 break;
             case 'weaken':
                 let weakenTargets = Array.isArray(card.effect.target)
-                    ? card.effect.target.reduce((allTargets, currentTarget) => allTargets = allTargets.concat(this.calculateTargets(row, currentTarget)), [])
+                    ? card.effect.target.reduce((allTargets, currentTarget) => (allTargets = allTargets.concat(this.calculateTargets(row, currentTarget))), [])
                     : this.calculateTargets(row, card.effect.target);
                 console.log(`Cele zdolności to ${weakenTargets}`);
-                weakenTargets.forEach((target) => this[target] ? this.changeCardAttack(-card.effect.amount, target) : null);
+                weakenTargets.forEach((target) => this[target]
+                    ? this.changeCardAttack(-card.effect.amount, target)
+                    : null);
                 break;
             case 'strengthen':
                 let strengthenTargets = Array.isArray(card.effect.target)
-                    ? card.effect.target.reduce((allTargets, currentTarget) => allTargets = allTargets.concat(this.calculateTargets(row, currentTarget)), [])
+                    ? card.effect.target.reduce((allTargets, currentTarget) => (allTargets = allTargets.concat(this.calculateTargets(row, currentTarget))), [])
                     : this.calculateTargets(row, card.effect.target);
                 console.log(`Cele zdolności to ${strengthenTargets}`);
-                strengthenTargets.forEach((target) => this[target] ? this.changeCardAttack(card.effect.amount, target) : null);
+                strengthenTargets.forEach((target) => this[target]
+                    ? this.changeCardAttack(card.effect.amount, target)
+                    : null);
                 break;
             case 'summon':
                 let summonTargets = Array.isArray(card.effect.target)
-                    ? card.effect.target.reduce((allTargets, currentTarget) => allTargets = allTargets.concat(this.calculateTargets(row, currentTarget)), [])
+                    ? card.effect.target.reduce((allTargets, currentTarget) => (allTargets = allTargets.concat(this.calculateTargets(row, currentTarget))), [])
                     : this.calculateTargets(row, card.effect.target);
                 console.log(`Cele zdolności to ${summonTargets}`);
                 summonTargets.forEach((target) => !this[target]
-                    ? this.playerRows.includes(target)
-                        ? this.setPlayerCard(new _shared_card_card_model__WEBPACK_IMPORTED_MODULE_1__["Card"](card.effect.card), target)
-                        : this.setOppCard(new _shared_card_card_model__WEBPACK_IMPORTED_MODULE_1__["Card"](card.effect.card), target.substring(0, target.length - 3))
+                    ? this.setCard(new _shared_card_card_model__WEBPACK_IMPORTED_MODULE_1__["Card"](card.effect.card), target)
                     : null);
                 break;
             default:
@@ -2063,7 +2323,7 @@ function DeckComponent_div_1_Template(rf, ctx) { if (rf & 1) {
 } if (rf & 2) {
     const ctx_r0 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"]("Karty w talii: ", ctx_r0.cardsinDeck, "");
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"](" Karty w talii: ", ctx_r0.cardsinDeck, " ");
 } }
 class DeckComponent {
     constructor(deckService) {
@@ -2088,7 +2348,7 @@ DeckComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComp
     } if (rf & 2) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", ctx.showTooltip);
-    } }, directives: [_angular_common__WEBPACK_IMPORTED_MODULE_2__["NgIf"]], styles: ["[_nghost-%COMP%] {\r\n  grid-area: deck;\r\n  display: flex;\r\n  align-items: center;\r\n  justify-content: center;\r\n}\r\n\r\n.deck[_ngcontent-%COMP%] {\r\n  height: 10em;\r\n  width: 8em;\r\n  border: 1px solid black;\r\n  position: relative;\r\n  background-image: url(\"/assets/images/logo/logo.png\");\r\n  background-size: 80%;\r\n  background-position: center;\r\n  background-repeat: no-repeat;\r\n}\r\n\r\n.deckTooltip[_ngcontent-%COMP%] {\r\n  position: absolute;\r\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImRlY2suY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLGVBQWU7RUFDZixhQUFhO0VBQ2IsbUJBQW1CO0VBQ25CLHVCQUF1QjtBQUN6Qjs7QUFFQTtFQUNFLFlBQVk7RUFDWixVQUFVO0VBQ1YsdUJBQXVCO0VBQ3ZCLGtCQUFrQjtFQUNsQixxREFBcUQ7RUFDckQsb0JBQW9CO0VBQ3BCLDJCQUEyQjtFQUMzQiw0QkFBNEI7QUFDOUI7O0FBRUE7RUFDRSxrQkFBa0I7QUFDcEIiLCJmaWxlIjoiZGVjay5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiOmhvc3Qge1xyXG4gIGdyaWQtYXJlYTogZGVjaztcclxuICBkaXNwbGF5OiBmbGV4O1xyXG4gIGFsaWduLWl0ZW1zOiBjZW50ZXI7XHJcbiAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XHJcbn1cclxuXHJcbi5kZWNrIHtcclxuICBoZWlnaHQ6IDEwZW07XHJcbiAgd2lkdGg6IDhlbTtcclxuICBib3JkZXI6IDFweCBzb2xpZCBibGFjaztcclxuICBwb3NpdGlvbjogcmVsYXRpdmU7XHJcbiAgYmFja2dyb3VuZC1pbWFnZTogdXJsKFwiL2Fzc2V0cy9pbWFnZXMvbG9nby9sb2dvLnBuZ1wiKTtcclxuICBiYWNrZ3JvdW5kLXNpemU6IDgwJTtcclxuICBiYWNrZ3JvdW5kLXBvc2l0aW9uOiBjZW50ZXI7XHJcbiAgYmFja2dyb3VuZC1yZXBlYXQ6IG5vLXJlcGVhdDtcclxufVxyXG5cclxuLmRlY2tUb29sdGlwIHtcclxuICBwb3NpdGlvbjogYWJzb2x1dGU7XHJcbn1cclxuIl19 */"] });
+    } }, directives: [_angular_common__WEBPACK_IMPORTED_MODULE_2__["NgIf"]], styles: ["[_nghost-%COMP%] {\r\n  grid-area: deck;\r\n  display: flex;\r\n  align-items: center;\r\n  justify-content: center;\r\n}\r\n\r\n.deck[_ngcontent-%COMP%] {\r\n  height: 10em;\r\n  width: 8em;\r\n  border: 1px solid black;\r\n  position: relative;\r\n  background-image: url(\"/assets/images/logo/logo.png\");\r\n  background-size: 80%;\r\n  background-position: center;\r\n  background-repeat: no-repeat;\r\n  border-radius: 5px;\r\n}\r\n\r\n.deckTooltip[_ngcontent-%COMP%] {\r\n  position: absolute;\r\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImRlY2suY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLGVBQWU7RUFDZixhQUFhO0VBQ2IsbUJBQW1CO0VBQ25CLHVCQUF1QjtBQUN6Qjs7QUFFQTtFQUNFLFlBQVk7RUFDWixVQUFVO0VBQ1YsdUJBQXVCO0VBQ3ZCLGtCQUFrQjtFQUNsQixxREFBcUQ7RUFDckQsb0JBQW9CO0VBQ3BCLDJCQUEyQjtFQUMzQiw0QkFBNEI7RUFDNUIsa0JBQWtCO0FBQ3BCOztBQUVBO0VBQ0Usa0JBQWtCO0FBQ3BCIiwiZmlsZSI6ImRlY2suY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIjpob3N0IHtcclxuICBncmlkLWFyZWE6IGRlY2s7XHJcbiAgZGlzcGxheTogZmxleDtcclxuICBhbGlnbi1pdGVtczogY2VudGVyO1xyXG4gIGp1c3RpZnktY29udGVudDogY2VudGVyO1xyXG59XHJcblxyXG4uZGVjayB7XHJcbiAgaGVpZ2h0OiAxMGVtO1xyXG4gIHdpZHRoOiA4ZW07XHJcbiAgYm9yZGVyOiAxcHggc29saWQgYmxhY2s7XHJcbiAgcG9zaXRpb246IHJlbGF0aXZlO1xyXG4gIGJhY2tncm91bmQtaW1hZ2U6IHVybChcIi9hc3NldHMvaW1hZ2VzL2xvZ28vbG9nby5wbmdcIik7XHJcbiAgYmFja2dyb3VuZC1zaXplOiA4MCU7XHJcbiAgYmFja2dyb3VuZC1wb3NpdGlvbjogY2VudGVyO1xyXG4gIGJhY2tncm91bmQtcmVwZWF0OiBuby1yZXBlYXQ7XHJcbiAgYm9yZGVyLXJhZGl1czogNXB4O1xyXG59XHJcblxyXG4uZGVja1Rvb2x0aXAge1xyXG4gIHBvc2l0aW9uOiBhYnNvbHV0ZTtcclxufVxyXG4iXX0= */"] });
 
 
 /***/ }),
@@ -2143,6 +2403,8 @@ class Card {
         this.maxHp = rawCard.maxHp ? rawCard.maxHp : rawCard.hp ? rawCard.hp : 0;
         this.maxAttack = rawCard.maxAttack ? rawCard.maxAttack : rawCard.attack ? rawCard.attack : 0;
         this.revealed = rawCard.revealed ? true : false;
+        this.named = rawCard.named ? rawCard.named : false;
+        this.abilities = rawCard.abilities ? rawCard.abilities : [];
     }
 }
 
@@ -2179,7 +2441,7 @@ class ActionPointsComponent {
         this.actionsPointsService.actionPointsSubject.unsubscribe();
     }
 }
-ActionPointsComponent.ɵfac = function ActionPointsComponent_Factory(t) { return new (t || ActionPointsComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_action_points_service__WEBPACK_IMPORTED_MODULE_1__["ActionsPointsService"])); };
+ActionPointsComponent.ɵfac = function ActionPointsComponent_Factory(t) { return new (t || ActionPointsComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_action_points_service__WEBPACK_IMPORTED_MODULE_1__["ActionPointsService"])); };
 ActionPointsComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: ActionPointsComponent, selectors: [["app-action-points"]], decls: 3, vars: 2, consts: [[1, "actionPoints"]], template: function ActionPointsComponent_Template(rf, ctx) { if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 0);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "p");
@@ -2267,7 +2529,7 @@ MeleeComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineCom
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", !ctx.oppCard);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", ctx.oppCard);
-    } }, directives: [_angular_common__WEBPACK_IMPORTED_MODULE_1__["NgIf"], _shared_card_card_component__WEBPACK_IMPORTED_MODULE_2__["CardComponent"]], styles: ["[_nghost-%COMP%] {\r\n  grid-area: melee;\r\n  display: flex;\r\n  padding: 2px;\r\n  align-items: center;\r\n  justify-content: space-between;\r\n}\r\n\r\n.opponentCard[_ngcontent-%COMP%] {\r\n  border: 1px solid green;\r\n  height: 10em;\r\n  width: 8em;\r\n  display: flex;\r\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIm1lbGVlLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRSxnQkFBZ0I7RUFDaEIsYUFBYTtFQUNiLFlBQVk7RUFDWixtQkFBbUI7RUFDbkIsOEJBQThCO0FBQ2hDOztBQUVBO0VBQ0UsdUJBQXVCO0VBQ3ZCLFlBQVk7RUFDWixVQUFVO0VBQ1YsYUFBYTtBQUNmIiwiZmlsZSI6Im1lbGVlLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyI6aG9zdCB7XHJcbiAgZ3JpZC1hcmVhOiBtZWxlZTtcclxuICBkaXNwbGF5OiBmbGV4O1xyXG4gIHBhZGRpbmc6IDJweDtcclxuICBhbGlnbi1pdGVtczogY2VudGVyO1xyXG4gIGp1c3RpZnktY29udGVudDogc3BhY2UtYmV0d2VlbjtcclxufVxyXG5cclxuLm9wcG9uZW50Q2FyZCB7XHJcbiAgYm9yZGVyOiAxcHggc29saWQgZ3JlZW47XHJcbiAgaGVpZ2h0OiAxMGVtO1xyXG4gIHdpZHRoOiA4ZW07XHJcbiAgZGlzcGxheTogZmxleDtcclxufVxyXG4iXX0= */"] });
+    } }, directives: [_angular_common__WEBPACK_IMPORTED_MODULE_1__["NgIf"], _shared_card_card_component__WEBPACK_IMPORTED_MODULE_2__["CardComponent"]], styles: ["[_nghost-%COMP%] {\r\n  grid-area: melee;\r\n  display: flex;\r\n  padding: 2px;\r\n  align-items: center;\r\n  justify-content: space-between;\r\n}\r\n\r\n.opponentCard[_ngcontent-%COMP%] {\r\n  border: 1px solid red;\r\n  height: 10em;\r\n  width: 8em;\r\n  display: flex;\r\n  border-radius: 5px;\r\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIm1lbGVlLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRSxnQkFBZ0I7RUFDaEIsYUFBYTtFQUNiLFlBQVk7RUFDWixtQkFBbUI7RUFDbkIsOEJBQThCO0FBQ2hDOztBQUVBO0VBQ0UscUJBQXFCO0VBQ3JCLFlBQVk7RUFDWixVQUFVO0VBQ1YsYUFBYTtFQUNiLGtCQUFrQjtBQUNwQiIsImZpbGUiOiJtZWxlZS5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiOmhvc3Qge1xyXG4gIGdyaWQtYXJlYTogbWVsZWU7XHJcbiAgZGlzcGxheTogZmxleDtcclxuICBwYWRkaW5nOiAycHg7XHJcbiAgYWxpZ24taXRlbXM6IGNlbnRlcjtcclxuICBqdXN0aWZ5LWNvbnRlbnQ6IHNwYWNlLWJldHdlZW47XHJcbn1cclxuXHJcbi5vcHBvbmVudENhcmQge1xyXG4gIGJvcmRlcjogMXB4IHNvbGlkIHJlZDtcclxuICBoZWlnaHQ6IDEwZW07XHJcbiAgd2lkdGg6IDhlbTtcclxuICBkaXNwbGF5OiBmbGV4O1xyXG4gIGJvcmRlci1yYWRpdXM6IDVweDtcclxufVxyXG4iXX0= */"] });
 
 
 /***/ }),
@@ -2291,6 +2553,7 @@ class PlayerService {
         this.hp = 30;
         this.playerNumber = 1;
         this.playerHpSubject = new rxjs__WEBPACK_IMPORTED_MODULE_0__["Subject"]();
+        this.playerNumberSubject = new rxjs__WEBPACK_IMPORTED_MODULE_0__["Subject"]();
     }
     getLifePoints() {
         return this.hp;
@@ -2305,6 +2568,7 @@ class PlayerService {
     }
     setPlayerNumber(number) {
         this.playerNumber = number;
+        this.playerNumberSubject.next(this.playerNumber);
     }
 }
 PlayerService.ɵfac = function PlayerService_Factory(t) { return new (t || PlayerService)(); };
@@ -2324,18 +2588,35 @@ PlayerService.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineInj
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "OpponentDeckComponent", function() { return OpponentDeckComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "fXoL");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common */ "ofXK");
 
+
+function OpponentDeckComponent_div_1_Template(rf, ctx) { if (rf & 1) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 2);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+} if (rf & 2) {
+    const ctx_r0 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"](" Karty w talii: ", ctx_r0.oppDeckSize, " ");
+} }
 class OpponentDeckComponent {
-    constructor() { }
+    constructor() {
+        this.showTooltip = false;
+    }
     ngOnInit() {
     }
 }
 OpponentDeckComponent.ɵfac = function OpponentDeckComponent_Factory(t) { return new (t || OpponentDeckComponent)(); };
-OpponentDeckComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: OpponentDeckComponent, selectors: [["app-opponent-deck"]], decls: 2, vars: 0, template: function OpponentDeckComponent_Template(rf, ctx) { if (rf & 1) {
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "p");
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](1, "opponent-deck works!");
+OpponentDeckComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: OpponentDeckComponent, selectors: [["app-opponent-deck"]], inputs: { oppDeckSize: "oppDeckSize" }, decls: 2, vars: 1, consts: [[1, "deck", 3, "mouseenter", "mouseleave"], ["class", "deckTooltip", 4, "ngIf"], [1, "deckTooltip"]], template: function OpponentDeckComponent_Template(rf, ctx) { if (rf & 1) {
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 0);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("mouseenter", function OpponentDeckComponent_Template_div_mouseenter_0_listener() { return ctx.showTooltip = true; })("mouseleave", function OpponentDeckComponent_Template_div_mouseleave_0_listener() { return ctx.showTooltip = false; });
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](1, OpponentDeckComponent_div_1_Template, 2, 1, "div", 1);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-    } }, styles: ["\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJvcHBvbmVudC1kZWNrLmNvbXBvbmVudC5jc3MifQ== */"] });
+    } if (rf & 2) {
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", ctx.showTooltip);
+    } }, directives: [_angular_common__WEBPACK_IMPORTED_MODULE_1__["NgIf"]], styles: ["[_nghost-%COMP%] {\r\n  grid-area: deck;\r\n  display: flex;\r\n  align-items: center;\r\n  justify-content: center;\r\n}\r\n\r\n.deck[_ngcontent-%COMP%] {\r\n  height: 10em;\r\n  width: 8em;\r\n  border: 1px solid black;\r\n  position: relative;\r\n  background-image: url(\"/assets/images/logo/logoinv.png\");\r\n  background-size: 80%;\r\n  background-position: center;\r\n  background-repeat: no-repeat;\r\n  border-radius: 5px;\r\n}\r\n\r\n.deckTooltip[_ngcontent-%COMP%] {\r\n  position: absolute;\r\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIm9wcG9uZW50LWRlY2suY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLGVBQWU7RUFDZixhQUFhO0VBQ2IsbUJBQW1CO0VBQ25CLHVCQUF1QjtBQUN6Qjs7QUFFQTtFQUNFLFlBQVk7RUFDWixVQUFVO0VBQ1YsdUJBQXVCO0VBQ3ZCLGtCQUFrQjtFQUNsQix3REFBd0Q7RUFDeEQsb0JBQW9CO0VBQ3BCLDJCQUEyQjtFQUMzQiw0QkFBNEI7RUFDNUIsa0JBQWtCO0FBQ3BCOztBQUVBO0VBQ0Usa0JBQWtCO0FBQ3BCIiwiZmlsZSI6Im9wcG9uZW50LWRlY2suY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIjpob3N0IHtcclxuICBncmlkLWFyZWE6IGRlY2s7XHJcbiAgZGlzcGxheTogZmxleDtcclxuICBhbGlnbi1pdGVtczogY2VudGVyO1xyXG4gIGp1c3RpZnktY29udGVudDogY2VudGVyO1xyXG59XHJcblxyXG4uZGVjayB7XHJcbiAgaGVpZ2h0OiAxMGVtO1xyXG4gIHdpZHRoOiA4ZW07XHJcbiAgYm9yZGVyOiAxcHggc29saWQgYmxhY2s7XHJcbiAgcG9zaXRpb246IHJlbGF0aXZlO1xyXG4gIGJhY2tncm91bmQtaW1hZ2U6IHVybChcIi9hc3NldHMvaW1hZ2VzL2xvZ28vbG9nb2ludi5wbmdcIik7XHJcbiAgYmFja2dyb3VuZC1zaXplOiA4MCU7XHJcbiAgYmFja2dyb3VuZC1wb3NpdGlvbjogY2VudGVyO1xyXG4gIGJhY2tncm91bmQtcmVwZWF0OiBuby1yZXBlYXQ7XHJcbiAgYm9yZGVyLXJhZGl1czogNXB4O1xyXG59XHJcblxyXG4uZGVja1Rvb2x0aXAge1xyXG4gIHBvc2l0aW9uOiBhYnNvbHV0ZTtcclxufVxyXG4iXX0= */"] });
 
 
 /***/ }),
