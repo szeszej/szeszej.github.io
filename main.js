@@ -90,15 +90,15 @@ OpponentHandComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵde
 /*!*******************************!*\
   !*** ./src/app/data/cards.ts ***!
   \*******************************/
-/*! exports provided: tokens, cards, deck, deck2 */
+/*! exports provided: tokens, cards, aggro, control */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "tokens", function() { return tokens; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "cards", function() { return cards; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deck", function() { return deck; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deck2", function() { return deck2; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "aggro", function() { return aggro; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "control", function() { return control; });
 /* harmony import */ var _shared_card_card_model__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../shared/card/card.model */ "mIaL");
 
 const tokens = {
@@ -153,6 +153,24 @@ const tokens = {
             timing: 'death',
         },
     },
+    twin: {
+        name: 'Drugi Bliźniak',
+        attack: 1,
+        hp: 1,
+        cost: 1,
+        description: 'A nie, bo ja!',
+        type: 'ally',
+        speed: 1,
+    },
+    lizard: {
+        name: 'Jaszczur',
+        attack: 4,
+        hp: 4,
+        cost: 4,
+        description: 'Ma uroczy jęzorek!',
+        type: 'ally',
+        speed: 1,
+    }
 };
 const cards = {
     taernianPeasant: {
@@ -214,17 +232,24 @@ const cards = {
     },
     taernianArcher: {
         name: 'Taernijski Łucznik',
-        attack: 2,
+        attack: 1,
         hp: 2,
         cost: 2,
         description: 'Salwa!',
         type: 'ally',
         speed: 2,
+        rules: 'Atakuje również wrogiego sojusznika w rzędzie powyżej.',
+        effect: {
+            type: "damage",
+            amount: 1,
+            timing: "attack",
+            target: "enemyUpRow"
+        }
     },
     taernianDruid: {
         name: 'Taernijski Druid',
         attack: 1,
-        hp: 6,
+        hp: 4,
         cost: 4,
         description: 'Za naturę!',
         rules: 'Atak: Przywraca życie graczowi równe swojemu atakowi.',
@@ -239,7 +264,7 @@ const cards = {
     },
     taernianVoodoo: {
         name: 'Taernijski Voodoo',
-        attack: 2,
+        attack: 3,
         hp: 1,
         cost: 4,
         description: 'Szpila w oko!',
@@ -254,11 +279,19 @@ const cards = {
         description: 'Waaargh!',
         type: 'ally',
         speed: 1,
+        abilities: ["trample"],
+        rules: "Przebicie. Odkrycie: Osłabia przeciwnika z tego samego rzędu o 1.",
+        effect: {
+            type: "weaken",
+            amount: 1,
+            target: "sameRow",
+            timing: "reveal"
+        }
     },
     harpy: {
         name: 'Harpia',
         attack: 3,
-        hp: 7,
+        hp: 5,
         cost: 5,
         description: 'Łiii!',
         type: 'ally',
@@ -297,7 +330,7 @@ const cards = {
             type: 'summon',
             target: 'playerAllies',
             card: new _shared_card_card_model__WEBPACK_IMPORTED_MODULE_0__["Card"](tokens.hound),
-            timing: 'reveal',
+            timing: 'play',
         },
         named: true,
         abilities: ['trample'],
@@ -340,6 +373,7 @@ const cards = {
         type: 'ally',
         speed: 2,
         named: true,
+        rules: "Walka: Zadaje 1 obrażeń wszystkim wrogim sojusznikom.",
         effect: {
             type: "damage",
             amount: 1,
@@ -359,7 +393,7 @@ const cards = {
     utorianAssassin: {
         name: 'Utorski Asasyn',
         attack: 6,
-        hp: 1,
+        hp: 2,
         cost: 4,
         description: 'Jak się go złapie to jest frajer.',
         type: 'ally',
@@ -368,7 +402,7 @@ const cards = {
     taernianShieldman: {
         name: 'Taernijski Tarczownik',
         attack: 2,
-        hp: 10,
+        hp: 8,
         cost: 6,
         description: 'I co mu zrobisz?',
         type: 'ally',
@@ -501,16 +535,16 @@ const cards = {
         name: 'Chorąży',
         attack: 1,
         hp: 1,
-        cost: 4,
+        cost: 3,
         description: 'Do mnie!',
         type: 'ally',
-        speed: 3,
-        rules: 'Odkrycie: Zwiększa siłę pozostałych przyjaznych sojuszników o 2.',
+        speed: 1,
+        rules: 'Zagranie: Zwiększa siłę pozostałych przyjaznych sojuszników o 2.',
         effect: {
             type: 'strengthen',
             target: 'otherPlayerAllies',
             amount: 2,
-            timing: 'reveal',
+            timing: 'play',
         },
     },
     obelisk: {
@@ -533,7 +567,7 @@ const cards = {
         name: 'Beczka z Prochem',
         attack: 0,
         hp: 4,
-        cost: 4,
+        cost: 5,
         description: 'Kabum!',
         type: 'ally',
         speed: 3,
@@ -581,7 +615,7 @@ const cards = {
         name: 'Szybkostrzelny Łucznik',
         attack: 1,
         hp: 1,
-        cost: 3,
+        cost: 2,
         description: 'Coraz bardziej się rozkręca.',
         type: 'ally',
         speed: 2,
@@ -644,51 +678,138 @@ const cards = {
         speed: 1,
         abilities: ["trample"],
         rules: "Przebicie"
+    },
+    axeThrower: {
+        name: 'Miotacz Toporów',
+        attack: 3,
+        hp: 3,
+        cost: 4,
+        description: 'Lepe na ryj!',
+        type: 'ally',
+        speed: 2,
+        rules: 'Odkrycie: Zadaje 3 obrażenia przeciwnikowi.',
+        effect: {
+            type: 'damage',
+            target: 'opponent',
+            timing: 'reveal',
+            amount: 3,
+        },
+    },
+    battleTwins: {
+        name: 'Pierwszy Bliźniak',
+        attack: 1,
+        hp: 1,
+        cost: 1,
+        description: 'Ja jestem silniejszy!',
+        type: 'ally',
+        speed: 1,
+        rules: 'Zagranie: Przywołuje Drugiego Bliżniaka 1/1/wręcz na pole poniżej.',
+        effect: {
+            type: 'summon',
+            target: 'friendlyDownRow',
+            timing: 'play',
+            card: new _shared_card_card_model__WEBPACK_IMPORTED_MODULE_0__["Card"](tokens.twin),
+        },
+    },
+    highwayman: {
+        name: "Rozbójnik",
+        attack: 2,
+        hp: 2,
+        cost: 3,
+        description: "Złoto albo życie!",
+        type: "ally",
+        speed: 1,
+        rules: 'Odkrycie: Osłabia o 2 przeciwnika w rzędzie powyżej.',
+        effect: {
+            type: "weaken",
+            target: 'enemyUpRow',
+            timing: "reveal",
+            amount: 2
+        }
+    },
+    mediator: {
+        name: "Mediator",
+        attack: 6,
+        hp: 6,
+        cost: 4,
+        description: "Pogadajmy!",
+        type: "ally",
+        speed: 2,
+        rules: 'Odkrycie: Leczy przeciwnika za 6.',
+        effect: {
+            type: "healing",
+            target: 'opponent',
+            timing: "reveal",
+            amount: 6
+        }
+    },
+    ichtion: {
+        name: "Ichtion",
+        named: true,
+        attack: 7,
+        hp: 7,
+        cost: 7,
+        description: "Uśniesz z rybkami!",
+        type: "ally",
+        speed: 1,
+        rules: 'Walka: Pozostali przyjaźni sojusznicy są wzmacniani o 2.',
+        effect: {
+            type: "strengthen",
+            target: 'otherPlayerAllies',
+            timing: "combat",
+            amount: 2
+        }
+    },
+    fieldMedic: {
+        name: "Medyk Polowy",
+        attack: 1,
+        hp: 1,
+        cost: 1,
+        description: "Zamputuję i przestanie boleć.",
+        type: "ally",
+        speed: 1,
+        rules: 'Odkrycie: Ulecz się za 2.',
+        effect: {
+            type: "healing",
+            target: 'player',
+            timing: "reveal",
+            amount: 2
+        }
+    },
+    lizardEgg: {
+        name: "Jaszczurze Jajo",
+        attack: 0,
+        hp: 2,
+        cost: 2,
+        description: "Co się wykluje?",
+        type: "ally",
+        speed: 1,
+        rules: 'Śmierć: Przywołaj 4/4/wręcz Jaszczurkę na swoje miejsce.',
+        effect: {
+            type: "summon",
+            target: 'self',
+            timing: "death",
+            card: new _shared_card_card_model__WEBPACK_IMPORTED_MODULE_0__["Card"](tokens.lizard)
+        }
+    },
+    piercingArcher: {
+        name: "Przebijający Łucznik",
+        attack: 2,
+        hp: 2,
+        cost: 3,
+        description: "Ej, ty! Nie, za tobą!",
+        type: "ally",
+        speed: 2,
+        rules: 'Atak: Zadaje 2 obrażeń przeciwnikowi.',
+        effect: {
+            type: "damage",
+            target: 'opponent',
+            timing: "attack",
+            amount: 2
+        }
     }
 };
-const deck = [
-    cards.taernianPeasant,
-    cards.taernianPeasant,
-    cards.taernianKnight,
-    cards.taernianKnight,
-    cards.taernianArcher,
-    cards.taernianArcher,
-    cards.obelisk,
-    cards.taernianFiremage,
-    cards.explodingBarrel,
-    cards.taernianBarbarian,
-    cards.taernianSheed,
-    cards.taernianDruid,
-    cards.acceleratingArcher,
-    cards.taernianVoodoo,
-    cards.frog,
-    cards.frog,
-    cards.standardbearer,
-    cards.battleOgre,
-    cards.phoenix,
-    cards.harpy,
-    cards.sergeant,
-    cards.wolf,
-    cards.librarian,
-    cards.babadek,
-    cards.ghadira,
-    cards.gregorius,
-    cards.chieftain,
-    cards.healer,
-    cards.utorianOgre,
-    cards.stormMage,
-    cards.stormMage,
-    cards.garthmog,
-    cards.accursedPeasant,
-    cards.accursedPeasant,
-    cards.voodooWeakener,
-    cards.toad,
-    cards.taernianShieldman,
-    cards.taernianShieldman,
-    cards.taernianCrossbowman,
-    cards.taernianCrossbowman,
-];
-const deck2 = [
+const aggro = [
     cards.berserker,
     cards.berserker,
     cards.voodooApprentice,
@@ -696,7 +817,81 @@ const deck2 = [
     cards.taernianBarbarian,
     cards.taernianBarbarian,
     cards.bear,
-    cards.bear
+    cards.bear,
+    cards.babadek,
+    cards.ghadira,
+    cards.sergeant,
+    cards.sergeant,
+    cards.standardbearer,
+    cards.standardbearer,
+    cards.wolf,
+    cards.wolf,
+    cards.stormMage,
+    cards.stormMage,
+    cards.garthmog,
+    cards.acceleratingArcher,
+    cards.acceleratingArcher,
+    cards.piercingArcher,
+    cards.piercingArcher,
+    cards.taernianCrossbowman,
+    cards.taernianCrossbowman,
+    cards.frog,
+    cards.frog,
+    cards.axeThrower,
+    cards.axeThrower,
+    cards.battleTwins,
+    cards.battleTwins,
+    cards.battleOgre,
+    cards.battleOgre,
+    cards.highwayman,
+    cards.highwayman,
+    cards.mediator,
+    cards.mediator,
+    cards.ichtion,
+    cards.lizardEgg,
+    cards.lizardEgg
+];
+const control = [
+    cards.taernianPeasant,
+    cards.taernianPeasant,
+    cards.taernianSheed,
+    cards.taernianSheed,
+    cards.explodingBarrel,
+    cards.explodingBarrel,
+    cards.accursedPeasant,
+    cards.accursedPeasant,
+    cards.garthmog,
+    cards.chieftain,
+    cards.toad,
+    cards.obelisk,
+    cards.obelisk,
+    cards.taernianShieldman,
+    cards.taernianShieldman,
+    cards.taernianDruid,
+    cards.taernianDruid,
+    cards.healer,
+    cards.healer,
+    cards.taernianKnight,
+    cards.taernianKnight,
+    cards.taernianArcher,
+    cards.taernianArcher,
+    cards.harpy,
+    cards.harpy,
+    cards.phoenix,
+    cards.voodooWeakener,
+    cards.voodooWeakener,
+    cards.librarian,
+    cards.gregorius,
+    cards.utorianOgre,
+    cards.utorianOgre,
+    cards.taernianFiremage,
+    cards.taernianFiremage,
+    cards.taernianVoodoo,
+    cards.taernianVoodoo,
+    cards.fieldMedic,
+    cards.fieldMedic,
+    cards.wolf,
+    cards.wolf
 ];
 
 
@@ -784,7 +979,7 @@ class HandComponent {
         this.handService.handSubject.subscribe(data => this.cards = data);
     }
     ngOnInit() {
-        this.handService.drawCards(5);
+        this.handService.drawCards(4);
     }
     ngOnDestroy() {
         this.handService.handSubject.unsubscribe();
@@ -795,7 +990,7 @@ HandComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComp
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](0, HandComponent_app_card_0_Template, 1, 5, "app-card", 0);
     } if (rf & 2) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngForOf", ctx.cards);
-    } }, directives: [_angular_common__WEBPACK_IMPORTED_MODULE_2__["NgForOf"], _shared_card_card_component__WEBPACK_IMPORTED_MODULE_3__["CardComponent"], _angular_cdk_drag_drop__WEBPACK_IMPORTED_MODULE_4__["CdkDrag"]], styles: ["[_nghost-%COMP%] {\r\n  grid-area: hand;\r\n  display: flex;\r\n  justify-content: center;\r\n  padding: 1em;\r\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImhhbmQuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLGVBQWU7RUFDZixhQUFhO0VBQ2IsdUJBQXVCO0VBQ3ZCLFlBQVk7QUFDZCIsImZpbGUiOiJoYW5kLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyI6aG9zdCB7XHJcbiAgZ3JpZC1hcmVhOiBoYW5kO1xyXG4gIGRpc3BsYXk6IGZsZXg7XHJcbiAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XHJcbiAgcGFkZGluZzogMWVtO1xyXG59XHJcbiJdfQ== */"] });
+    } }, directives: [_angular_common__WEBPACK_IMPORTED_MODULE_2__["NgForOf"], _shared_card_card_component__WEBPACK_IMPORTED_MODULE_3__["CardComponent"], _angular_cdk_drag_drop__WEBPACK_IMPORTED_MODULE_4__["CdkDrag"]], styles: ["[_nghost-%COMP%] {\r\n  grid-area: hand;\r\n  display: flex;\r\n  justify-content: center;\r\n  padding: 1em;\r\n}\r\n\r\napp-card[_ngcontent-%COMP%] {\r\n  margin: 0.5em;\r\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImhhbmQuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLGVBQWU7RUFDZixhQUFhO0VBQ2IsdUJBQXVCO0VBQ3ZCLFlBQVk7QUFDZDs7QUFFQTtFQUNFLGFBQWE7QUFDZiIsImZpbGUiOiJoYW5kLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyI6aG9zdCB7XHJcbiAgZ3JpZC1hcmVhOiBoYW5kO1xyXG4gIGRpc3BsYXk6IGZsZXg7XHJcbiAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XHJcbiAgcGFkZGluZzogMWVtO1xyXG59XHJcblxyXG5hcHAtY2FyZCB7XHJcbiAgbWFyZ2luOiAwLjVlbTtcclxufVxyXG4iXX0= */"] });
 
 
 /***/ }),
@@ -1228,7 +1423,7 @@ CardComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComp
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("src", "assets/images/zones/" + ctx.card.speed + ".svg", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵsanitizeUrl"]);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", ctx.showTooltip);
-    } }, directives: [_angular_common__WEBPACK_IMPORTED_MODULE_1__["NgIf"], _card_tooltip_card_tooltip_component__WEBPACK_IMPORTED_MODULE_2__["CardTooltipComponent"]], styles: [".card[_ngcontent-%COMP%] {\r\n  height: 10em;\r\n  width: 8em;\r\n  border: 1px solid black;\r\n  position: relative;\r\n  border-radius: 5px;\r\n  z-index: 2;\r\n  margin: 0.5em;\r\n}\r\n\r\np[_ngcontent-%COMP%] {\r\n  background-color: transparent;\r\n}\r\n\r\n.name[_ngcontent-%COMP%] {\r\n  font-size: 0.75em;\r\n  text-align: center;\r\n}\r\n\r\n.image[_ngcontent-%COMP%] {\r\n  width: 90%;\r\n  border: 1px solid black;\r\n  margin: 0 auto;\r\n  max-height: 8em;\r\n}\r\n\r\n.stats[_ngcontent-%COMP%] {\r\n  position: absolute;\r\n  top: 2em;\r\n  left: -0.5em;\r\n  width: 1em;\r\n}\r\n\r\n.attack[_ngcontent-%COMP%] {\r\n  border-radius: 50%;\r\n  background-color: red;\r\n  text-align: center;\r\n}\r\n\r\n.hp[_ngcontent-%COMP%] {\r\n  border-radius: 50%;\r\n  background-color: green;\r\n  text-align: center;\r\n}\r\n\r\n.cost[_ngcontent-%COMP%] {\r\n  border-radius: 50%;\r\n  background-color: blue;\r\n  text-align: center;\r\n}\r\n\r\n.cardTooltip[_ngcontent-%COMP%] {\r\n  border-radius: 5px;\r\n  height: auto;\r\n  width: 8em;\r\n  border: 1px solid black;\r\n  position: absolute;\r\n  bottom: 80%;\r\n  left: 90%;\r\n  z-index: 3;\r\n}\r\n\r\n.rules[_ngcontent-%COMP%] {\r\n  text-align: left;\r\n  padding: 2px;\r\n  font-size: 0.75em;\r\n}\r\n\r\n.description[_ngcontent-%COMP%] {\r\n  text-align: left;\r\n  padding: 2px;\r\n  font-style: italic;\r\n  font-size: 0.75em;\r\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNhcmQuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLFlBQVk7RUFDWixVQUFVO0VBQ1YsdUJBQXVCO0VBQ3ZCLGtCQUFrQjtFQUNsQixrQkFBa0I7RUFDbEIsVUFBVTtFQUNWLGFBQWE7QUFDZjs7QUFFQTtFQUNFLDZCQUE2QjtBQUMvQjs7QUFFQTtFQUNFLGlCQUFpQjtFQUNqQixrQkFBa0I7QUFDcEI7O0FBRUE7RUFDRSxVQUFVO0VBQ1YsdUJBQXVCO0VBQ3ZCLGNBQWM7RUFDZCxlQUFlO0FBQ2pCOztBQUVBO0VBQ0Usa0JBQWtCO0VBQ2xCLFFBQVE7RUFDUixZQUFZO0VBQ1osVUFBVTtBQUNaOztBQUVBO0VBQ0Usa0JBQWtCO0VBQ2xCLHFCQUFxQjtFQUNyQixrQkFBa0I7QUFDcEI7O0FBRUE7RUFDRSxrQkFBa0I7RUFDbEIsdUJBQXVCO0VBQ3ZCLGtCQUFrQjtBQUNwQjs7QUFFQTtFQUNFLGtCQUFrQjtFQUNsQixzQkFBc0I7RUFDdEIsa0JBQWtCO0FBQ3BCOztBQUVBO0VBQ0Usa0JBQWtCO0VBQ2xCLFlBQVk7RUFDWixVQUFVO0VBQ1YsdUJBQXVCO0VBQ3ZCLGtCQUFrQjtFQUNsQixXQUFXO0VBQ1gsU0FBUztFQUNULFVBQVU7QUFDWjs7QUFFQTtFQUNFLGdCQUFnQjtFQUNoQixZQUFZO0VBQ1osaUJBQWlCO0FBQ25COztBQUVBO0VBQ0UsZ0JBQWdCO0VBQ2hCLFlBQVk7RUFDWixrQkFBa0I7RUFDbEIsaUJBQWlCO0FBQ25CIiwiZmlsZSI6ImNhcmQuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi5jYXJkIHtcclxuICBoZWlnaHQ6IDEwZW07XHJcbiAgd2lkdGg6IDhlbTtcclxuICBib3JkZXI6IDFweCBzb2xpZCBibGFjaztcclxuICBwb3NpdGlvbjogcmVsYXRpdmU7XHJcbiAgYm9yZGVyLXJhZGl1czogNXB4O1xyXG4gIHotaW5kZXg6IDI7XHJcbiAgbWFyZ2luOiAwLjVlbTtcclxufVxyXG5cclxucCB7XHJcbiAgYmFja2dyb3VuZC1jb2xvcjogdHJhbnNwYXJlbnQ7XHJcbn1cclxuXHJcbi5uYW1lIHtcclxuICBmb250LXNpemU6IDAuNzVlbTtcclxuICB0ZXh0LWFsaWduOiBjZW50ZXI7XHJcbn1cclxuXHJcbi5pbWFnZSB7XHJcbiAgd2lkdGg6IDkwJTtcclxuICBib3JkZXI6IDFweCBzb2xpZCBibGFjaztcclxuICBtYXJnaW46IDAgYXV0bztcclxuICBtYXgtaGVpZ2h0OiA4ZW07XHJcbn1cclxuXHJcbi5zdGF0cyB7XHJcbiAgcG9zaXRpb246IGFic29sdXRlO1xyXG4gIHRvcDogMmVtO1xyXG4gIGxlZnQ6IC0wLjVlbTtcclxuICB3aWR0aDogMWVtO1xyXG59XHJcblxyXG4uYXR0YWNrIHtcclxuICBib3JkZXItcmFkaXVzOiA1MCU7XHJcbiAgYmFja2dyb3VuZC1jb2xvcjogcmVkO1xyXG4gIHRleHQtYWxpZ246IGNlbnRlcjtcclxufVxyXG5cclxuLmhwIHtcclxuICBib3JkZXItcmFkaXVzOiA1MCU7XHJcbiAgYmFja2dyb3VuZC1jb2xvcjogZ3JlZW47XHJcbiAgdGV4dC1hbGlnbjogY2VudGVyO1xyXG59XHJcblxyXG4uY29zdCB7XHJcbiAgYm9yZGVyLXJhZGl1czogNTAlO1xyXG4gIGJhY2tncm91bmQtY29sb3I6IGJsdWU7XHJcbiAgdGV4dC1hbGlnbjogY2VudGVyO1xyXG59XHJcblxyXG4uY2FyZFRvb2x0aXAge1xyXG4gIGJvcmRlci1yYWRpdXM6IDVweDtcclxuICBoZWlnaHQ6IGF1dG87XHJcbiAgd2lkdGg6IDhlbTtcclxuICBib3JkZXI6IDFweCBzb2xpZCBibGFjaztcclxuICBwb3NpdGlvbjogYWJzb2x1dGU7XHJcbiAgYm90dG9tOiA4MCU7XHJcbiAgbGVmdDogOTAlO1xyXG4gIHotaW5kZXg6IDM7XHJcbn1cclxuXHJcbi5ydWxlcyB7XHJcbiAgdGV4dC1hbGlnbjogbGVmdDtcclxuICBwYWRkaW5nOiAycHg7XHJcbiAgZm9udC1zaXplOiAwLjc1ZW07XHJcbn1cclxuXHJcbi5kZXNjcmlwdGlvbiB7XHJcbiAgdGV4dC1hbGlnbjogbGVmdDtcclxuICBwYWRkaW5nOiAycHg7XHJcbiAgZm9udC1zdHlsZTogaXRhbGljO1xyXG4gIGZvbnQtc2l6ZTogMC43NWVtO1xyXG59XHJcbiJdfQ== */"] });
+    } }, directives: [_angular_common__WEBPACK_IMPORTED_MODULE_1__["NgIf"], _card_tooltip_card_tooltip_component__WEBPACK_IMPORTED_MODULE_2__["CardTooltipComponent"]], styles: [".card[_ngcontent-%COMP%] {\r\n  height: 10em;\r\n  width: 8em;\r\n  border: 1px solid black;\r\n  position: relative;\r\n  border-radius: 5px;\r\n  z-index: 2;\r\n  -webkit-user-select: none;\r\n          user-select: none;\r\n}\r\n\r\n.name[_ngcontent-%COMP%] {\r\n  font-size: 0.75em;\r\n  text-align: center;\r\n  background-color: transparent;\r\n}\r\n\r\n.image[_ngcontent-%COMP%] {\r\n  width: 90%;\r\n  border: 1px solid black;\r\n  margin: 0 auto;\r\n  max-height: 8em;\r\n}\r\n\r\n.stats[_ngcontent-%COMP%] {\r\n  position: absolute;\r\n  top: 2em;\r\n  left: -0.5em;\r\n  width: 1em;\r\n}\r\n\r\n.attack[_ngcontent-%COMP%] {\r\n  border-radius: 50%;\r\n  background-color: red;\r\n  text-align: center;\r\n}\r\n\r\n.hp[_ngcontent-%COMP%] {\r\n  border-radius: 50%;\r\n  background-color: green;\r\n  text-align: center;\r\n}\r\n\r\n.cost[_ngcontent-%COMP%] {\r\n  border-radius: 50%;\r\n  background-color: #0261fa;\r\n  text-align: center;\r\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNhcmQuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLFlBQVk7RUFDWixVQUFVO0VBQ1YsdUJBQXVCO0VBQ3ZCLGtCQUFrQjtFQUNsQixrQkFBa0I7RUFDbEIsVUFBVTtFQUNWLHlCQUFpQjtVQUFqQixpQkFBaUI7QUFDbkI7O0FBRUE7RUFDRSxpQkFBaUI7RUFDakIsa0JBQWtCO0VBQ2xCLDZCQUE2QjtBQUMvQjs7QUFFQTtFQUNFLFVBQVU7RUFDVix1QkFBdUI7RUFDdkIsY0FBYztFQUNkLGVBQWU7QUFDakI7O0FBRUE7RUFDRSxrQkFBa0I7RUFDbEIsUUFBUTtFQUNSLFlBQVk7RUFDWixVQUFVO0FBQ1o7O0FBRUE7RUFDRSxrQkFBa0I7RUFDbEIscUJBQXFCO0VBQ3JCLGtCQUFrQjtBQUNwQjs7QUFFQTtFQUNFLGtCQUFrQjtFQUNsQix1QkFBdUI7RUFDdkIsa0JBQWtCO0FBQ3BCOztBQUVBO0VBQ0Usa0JBQWtCO0VBQ2xCLHlCQUF5QjtFQUN6QixrQkFBa0I7QUFDcEIiLCJmaWxlIjoiY2FyZC5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLmNhcmQge1xyXG4gIGhlaWdodDogMTBlbTtcclxuICB3aWR0aDogOGVtO1xyXG4gIGJvcmRlcjogMXB4IHNvbGlkIGJsYWNrO1xyXG4gIHBvc2l0aW9uOiByZWxhdGl2ZTtcclxuICBib3JkZXItcmFkaXVzOiA1cHg7XHJcbiAgei1pbmRleDogMjtcclxuICB1c2VyLXNlbGVjdDogbm9uZTtcclxufVxyXG5cclxuLm5hbWUge1xyXG4gIGZvbnQtc2l6ZTogMC43NWVtO1xyXG4gIHRleHQtYWxpZ246IGNlbnRlcjtcclxuICBiYWNrZ3JvdW5kLWNvbG9yOiB0cmFuc3BhcmVudDtcclxufVxyXG5cclxuLmltYWdlIHtcclxuICB3aWR0aDogOTAlO1xyXG4gIGJvcmRlcjogMXB4IHNvbGlkIGJsYWNrO1xyXG4gIG1hcmdpbjogMCBhdXRvO1xyXG4gIG1heC1oZWlnaHQ6IDhlbTtcclxufVxyXG5cclxuLnN0YXRzIHtcclxuICBwb3NpdGlvbjogYWJzb2x1dGU7XHJcbiAgdG9wOiAyZW07XHJcbiAgbGVmdDogLTAuNWVtO1xyXG4gIHdpZHRoOiAxZW07XHJcbn1cclxuXHJcbi5hdHRhY2sge1xyXG4gIGJvcmRlci1yYWRpdXM6IDUwJTtcclxuICBiYWNrZ3JvdW5kLWNvbG9yOiByZWQ7XHJcbiAgdGV4dC1hbGlnbjogY2VudGVyO1xyXG59XHJcblxyXG4uaHAge1xyXG4gIGJvcmRlci1yYWRpdXM6IDUwJTtcclxuICBiYWNrZ3JvdW5kLWNvbG9yOiBncmVlbjtcclxuICB0ZXh0LWFsaWduOiBjZW50ZXI7XHJcbn1cclxuXHJcbi5jb3N0IHtcclxuICBib3JkZXItcmFkaXVzOiA1MCU7XHJcbiAgYmFja2dyb3VuZC1jb2xvcjogIzAyNjFmYTtcclxuICB0ZXh0LWFsaWduOiBjZW50ZXI7XHJcbn1cclxuIl19 */"] });
 
 
 /***/ }),
@@ -1428,7 +1623,7 @@ CardTooltipComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdef
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](ctx.card.rules);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](ctx.card.description);
-    } }, styles: [".cardTooltip[_ngcontent-%COMP%] {\r\n  border-radius: 5px;\r\n  height: auto;\r\n  width: 14em;\r\n  border: 1px solid black;\r\n  position: absolute;\r\n  margin-left: auto;\r\n  margin-right: auto;\r\n  top: 30%;\r\n  left: 0;\r\n  right: 0;\r\n  z-index: 3;\r\n}\r\n\r\np[_ngcontent-%COMP%] {\r\n  background-color: transparent;\r\n}\r\n\r\n.name[_ngcontent-%COMP%] {\r\n  font-size: 0.75em;\r\n  text-align: center;\r\n  background-color:rgba(0, 0, 0, 0);\r\n}\r\n\r\n.image[_ngcontent-%COMP%] {\r\n  width: 90%;\r\n  border: 1px solid black;\r\n  margin: 0 auto;\r\n}\r\n\r\n.stats[_ngcontent-%COMP%] {\r\n  position: absolute;\r\n  top: 2em;\r\n  left: -1.5em;\r\n  width: 2em;\r\n}\r\n\r\n.attack[_ngcontent-%COMP%] {\r\n  border-radius: 50%;\r\n  background-color: red;\r\n  text-align: center;\r\n}\r\n\r\n.hp[_ngcontent-%COMP%] {\r\n  border-radius: 50%;\r\n  background-color: green;\r\n  text-align: center;\r\n}\r\n\r\n.cost[_ngcontent-%COMP%] {\r\n  border-radius: 50%;\r\n  background-color: blue;\r\n  text-align: center;\r\n}\r\n\r\n.rules[_ngcontent-%COMP%] {\r\n  text-align: left;\r\n  padding: 2px;\r\n  font-size: 1em;\r\n}\r\n\r\n.description[_ngcontent-%COMP%] {\r\n  text-align: left;\r\n  padding: 2px;\r\n  font-style: italic;\r\n  font-size: 1em;\r\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNhcmQtdG9vbHRpcC5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0Usa0JBQWtCO0VBQ2xCLFlBQVk7RUFDWixXQUFXO0VBQ1gsdUJBQXVCO0VBQ3ZCLGtCQUFrQjtFQUNsQixpQkFBaUI7RUFDakIsa0JBQWtCO0VBQ2xCLFFBQVE7RUFDUixPQUFPO0VBQ1AsUUFBUTtFQUNSLFVBQVU7QUFDWjs7QUFFQTtFQUNFLDZCQUE2QjtBQUMvQjs7QUFFQTtFQUNFLGlCQUFpQjtFQUNqQixrQkFBa0I7RUFDbEIsaUNBQWlDO0FBQ25DOztBQUVBO0VBQ0UsVUFBVTtFQUNWLHVCQUF1QjtFQUN2QixjQUFjO0FBQ2hCOztBQUVBO0VBQ0Usa0JBQWtCO0VBQ2xCLFFBQVE7RUFDUixZQUFZO0VBQ1osVUFBVTtBQUNaOztBQUVBO0VBQ0Usa0JBQWtCO0VBQ2xCLHFCQUFxQjtFQUNyQixrQkFBa0I7QUFDcEI7O0FBRUE7RUFDRSxrQkFBa0I7RUFDbEIsdUJBQXVCO0VBQ3ZCLGtCQUFrQjtBQUNwQjs7QUFFQTtFQUNFLGtCQUFrQjtFQUNsQixzQkFBc0I7RUFDdEIsa0JBQWtCO0FBQ3BCOztBQUVBO0VBQ0UsZ0JBQWdCO0VBQ2hCLFlBQVk7RUFDWixjQUFjO0FBQ2hCOztBQUVBO0VBQ0UsZ0JBQWdCO0VBQ2hCLFlBQVk7RUFDWixrQkFBa0I7RUFDbEIsY0FBYztBQUNoQiIsImZpbGUiOiJjYXJkLXRvb2x0aXAuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi5jYXJkVG9vbHRpcCB7XHJcbiAgYm9yZGVyLXJhZGl1czogNXB4O1xyXG4gIGhlaWdodDogYXV0bztcclxuICB3aWR0aDogMTRlbTtcclxuICBib3JkZXI6IDFweCBzb2xpZCBibGFjaztcclxuICBwb3NpdGlvbjogYWJzb2x1dGU7XHJcbiAgbWFyZ2luLWxlZnQ6IGF1dG87XHJcbiAgbWFyZ2luLXJpZ2h0OiBhdXRvO1xyXG4gIHRvcDogMzAlO1xyXG4gIGxlZnQ6IDA7XHJcbiAgcmlnaHQ6IDA7XHJcbiAgei1pbmRleDogMztcclxufVxyXG5cclxucCB7XHJcbiAgYmFja2dyb3VuZC1jb2xvcjogdHJhbnNwYXJlbnQ7XHJcbn1cclxuXHJcbi5uYW1lIHtcclxuICBmb250LXNpemU6IDAuNzVlbTtcclxuICB0ZXh0LWFsaWduOiBjZW50ZXI7XHJcbiAgYmFja2dyb3VuZC1jb2xvcjpyZ2JhKDAsIDAsIDAsIDApO1xyXG59XHJcblxyXG4uaW1hZ2Uge1xyXG4gIHdpZHRoOiA5MCU7XHJcbiAgYm9yZGVyOiAxcHggc29saWQgYmxhY2s7XHJcbiAgbWFyZ2luOiAwIGF1dG87XHJcbn1cclxuXHJcbi5zdGF0cyB7XHJcbiAgcG9zaXRpb246IGFic29sdXRlO1xyXG4gIHRvcDogMmVtO1xyXG4gIGxlZnQ6IC0xLjVlbTtcclxuICB3aWR0aDogMmVtO1xyXG59XHJcblxyXG4uYXR0YWNrIHtcclxuICBib3JkZXItcmFkaXVzOiA1MCU7XHJcbiAgYmFja2dyb3VuZC1jb2xvcjogcmVkO1xyXG4gIHRleHQtYWxpZ246IGNlbnRlcjtcclxufVxyXG5cclxuLmhwIHtcclxuICBib3JkZXItcmFkaXVzOiA1MCU7XHJcbiAgYmFja2dyb3VuZC1jb2xvcjogZ3JlZW47XHJcbiAgdGV4dC1hbGlnbjogY2VudGVyO1xyXG59XHJcblxyXG4uY29zdCB7XHJcbiAgYm9yZGVyLXJhZGl1czogNTAlO1xyXG4gIGJhY2tncm91bmQtY29sb3I6IGJsdWU7XHJcbiAgdGV4dC1hbGlnbjogY2VudGVyO1xyXG59XHJcblxyXG4ucnVsZXMge1xyXG4gIHRleHQtYWxpZ246IGxlZnQ7XHJcbiAgcGFkZGluZzogMnB4O1xyXG4gIGZvbnQtc2l6ZTogMWVtO1xyXG59XHJcblxyXG4uZGVzY3JpcHRpb24ge1xyXG4gIHRleHQtYWxpZ246IGxlZnQ7XHJcbiAgcGFkZGluZzogMnB4O1xyXG4gIGZvbnQtc3R5bGU6IGl0YWxpYztcclxuICBmb250LXNpemU6IDFlbTtcclxufVxyXG4iXX0= */"] });
+    } }, styles: [".cardTooltip[_ngcontent-%COMP%] {\r\n  border-radius: 5px;\r\n  height: auto;\r\n  width: 14em;\r\n  border: 1px solid black;\r\n  position: absolute;\r\n  margin-left: auto;\r\n  margin-right: auto;\r\n  top: 30%;\r\n  left: 0;\r\n  right: 0;\r\n  z-index: 3;\r\n}\r\n.name[_ngcontent-%COMP%] {\r\n  font-size: 1.25em;\r\n  text-align: center;\r\n  background-color: transparent;\r\n}\r\n.image[_ngcontent-%COMP%] {\r\n  width: 90%;\r\n  border: 1px solid black;\r\n  margin: 0 auto;\r\n}\r\n.stats[_ngcontent-%COMP%] {\r\n  position: absolute;\r\n  top: 2em;\r\n  left: -1.5em;\r\n  width: 2em;\r\n}\r\n.attack[_ngcontent-%COMP%] {\r\n  border-radius: 50%;\r\n  background-color: red;\r\n  text-align: center;\r\n}\r\n.hp[_ngcontent-%COMP%] {\r\n  border-radius: 50%;\r\n  background-color: green;\r\n  text-align: center;\r\n}\r\n.cost[_ngcontent-%COMP%] {\r\n  border-radius: 50%;\r\n  background-color: blue;\r\n  text-align: center;\r\n}\r\n.rules[_ngcontent-%COMP%] {\r\n  text-align: left;\r\n  padding: 4px;\r\n  font-size: 1em;\r\n  background-color: transparent;\r\n}\r\n.description[_ngcontent-%COMP%] {\r\n  text-align: left;\r\n  padding: 4px;\r\n  font-style: italic;\r\n  font-size: 1em;\r\n  background-color: transparent;\r\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNhcmQtdG9vbHRpcC5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0Usa0JBQWtCO0VBQ2xCLFlBQVk7RUFDWixXQUFXO0VBQ1gsdUJBQXVCO0VBQ3ZCLGtCQUFrQjtFQUNsQixpQkFBaUI7RUFDakIsa0JBQWtCO0VBQ2xCLFFBQVE7RUFDUixPQUFPO0VBQ1AsUUFBUTtFQUNSLFVBQVU7QUFDWjtBQUNBO0VBQ0UsaUJBQWlCO0VBQ2pCLGtCQUFrQjtFQUNsQiw2QkFBNkI7QUFDL0I7QUFFQTtFQUNFLFVBQVU7RUFDVix1QkFBdUI7RUFDdkIsY0FBYztBQUNoQjtBQUVBO0VBQ0Usa0JBQWtCO0VBQ2xCLFFBQVE7RUFDUixZQUFZO0VBQ1osVUFBVTtBQUNaO0FBRUE7RUFDRSxrQkFBa0I7RUFDbEIscUJBQXFCO0VBQ3JCLGtCQUFrQjtBQUNwQjtBQUVBO0VBQ0Usa0JBQWtCO0VBQ2xCLHVCQUF1QjtFQUN2QixrQkFBa0I7QUFDcEI7QUFFQTtFQUNFLGtCQUFrQjtFQUNsQixzQkFBc0I7RUFDdEIsa0JBQWtCO0FBQ3BCO0FBRUE7RUFDRSxnQkFBZ0I7RUFDaEIsWUFBWTtFQUNaLGNBQWM7RUFDZCw2QkFBNkI7QUFDL0I7QUFFQTtFQUNFLGdCQUFnQjtFQUNoQixZQUFZO0VBQ1osa0JBQWtCO0VBQ2xCLGNBQWM7RUFDZCw2QkFBNkI7QUFDL0IiLCJmaWxlIjoiY2FyZC10b29sdGlwLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIuY2FyZFRvb2x0aXAge1xyXG4gIGJvcmRlci1yYWRpdXM6IDVweDtcclxuICBoZWlnaHQ6IGF1dG87XHJcbiAgd2lkdGg6IDE0ZW07XHJcbiAgYm9yZGVyOiAxcHggc29saWQgYmxhY2s7XHJcbiAgcG9zaXRpb246IGFic29sdXRlO1xyXG4gIG1hcmdpbi1sZWZ0OiBhdXRvO1xyXG4gIG1hcmdpbi1yaWdodDogYXV0bztcclxuICB0b3A6IDMwJTtcclxuICBsZWZ0OiAwO1xyXG4gIHJpZ2h0OiAwO1xyXG4gIHotaW5kZXg6IDM7XHJcbn1cclxuLm5hbWUge1xyXG4gIGZvbnQtc2l6ZTogMS4yNWVtO1xyXG4gIHRleHQtYWxpZ246IGNlbnRlcjtcclxuICBiYWNrZ3JvdW5kLWNvbG9yOiB0cmFuc3BhcmVudDtcclxufVxyXG5cclxuLmltYWdlIHtcclxuICB3aWR0aDogOTAlO1xyXG4gIGJvcmRlcjogMXB4IHNvbGlkIGJsYWNrO1xyXG4gIG1hcmdpbjogMCBhdXRvO1xyXG59XHJcblxyXG4uc3RhdHMge1xyXG4gIHBvc2l0aW9uOiBhYnNvbHV0ZTtcclxuICB0b3A6IDJlbTtcclxuICBsZWZ0OiAtMS41ZW07XHJcbiAgd2lkdGg6IDJlbTtcclxufVxyXG5cclxuLmF0dGFjayB7XHJcbiAgYm9yZGVyLXJhZGl1czogNTAlO1xyXG4gIGJhY2tncm91bmQtY29sb3I6IHJlZDtcclxuICB0ZXh0LWFsaWduOiBjZW50ZXI7XHJcbn1cclxuXHJcbi5ocCB7XHJcbiAgYm9yZGVyLXJhZGl1czogNTAlO1xyXG4gIGJhY2tncm91bmQtY29sb3I6IGdyZWVuO1xyXG4gIHRleHQtYWxpZ246IGNlbnRlcjtcclxufVxyXG5cclxuLmNvc3Qge1xyXG4gIGJvcmRlci1yYWRpdXM6IDUwJTtcclxuICBiYWNrZ3JvdW5kLWNvbG9yOiBibHVlO1xyXG4gIHRleHQtYWxpZ246IGNlbnRlcjtcclxufVxyXG5cclxuLnJ1bGVzIHtcclxuICB0ZXh0LWFsaWduOiBsZWZ0O1xyXG4gIHBhZGRpbmc6IDRweDtcclxuICBmb250LXNpemU6IDFlbTtcclxuICBiYWNrZ3JvdW5kLWNvbG9yOiB0cmFuc3BhcmVudDtcclxufVxyXG5cclxuLmRlc2NyaXB0aW9uIHtcclxuICB0ZXh0LWFsaWduOiBsZWZ0O1xyXG4gIHBhZGRpbmc6IDRweDtcclxuICBmb250LXN0eWxlOiBpdGFsaWM7XHJcbiAgZm9udC1zaXplOiAxZW07XHJcbiAgYmFja2dyb3VuZC1jb2xvcjogdHJhbnNwYXJlbnQ7XHJcbn1cclxuIl19 */"] });
 
 
 /***/ }),
@@ -1507,23 +1702,7 @@ class CombatService {
         rows.forEach((row) => {
             let playerCard = this.battlefieldService.getCard(row);
             let oppCard = this.battlefieldService.getCard(row + 'Opp');
-            //sprawdzamy czy sa efekty na poczatku walki
-            if (playerCard &&
-                playerCard.effect &&
-                ((playerCard.effect.timing === 'reveal' && !playerCard.revealed) ||
-                    playerCard.effect.timing === 'combat')) {
-                console.log(`${playerCard.name} używa zdolności na początku walki ${playerCard.effect.type} na ${playerCard.effect.target}`);
-                this.battlefieldService.applyBattlefiedEffect(playerCard, row);
-                this.battlefieldService.markAsRevealed(row);
-            }
-            else if (oppCard &&
-                oppCard.effect &&
-                ((oppCard.effect.timing === 'reveal' && !oppCard.revealed) ||
-                    oppCard.effect.timing === 'combat')) {
-                console.log(`${oppCard.name} używa zdolności na początku walki ${oppCard.effect.type} na ${oppCard.effect.target}`);
-                this.battlefieldService.applyBattlefiedEffect(oppCard, row + 'Opp');
-                this.battlefieldService.markAsRevealed(row + 'Opp');
-            }
+            this.revealAndCombatAbilities(playerCard, oppCard, row);
             //po efektach sprawdzam sba
             this.battlefieldService.buryTheFallen();
         });
@@ -1531,50 +1710,15 @@ class CombatService {
         rows.forEach((row) => {
             let playerCard = this.battlefieldService.getCard(row);
             let oppCard = this.battlefieldService.getCard(row + 'Opp');
-            //sprawdzamy czy są efekty podczas ataku i je aplikujemy
-            if (playerCard &&
-                playerCard.effect &&
-                playerCard.effect.timing === 'attack') {
-                console.log(`${playerCard.name} używa zdolności na ataku ${playerCard.effect.type} na ${playerCard.effect.target}`);
-                this.battlefieldService.applyBattlefiedEffect(playerCard, row);
-            }
-            else if (oppCard &&
-                oppCard.effect &&
-                oppCard.effect.timing === 'attack') {
-                console.log(`${oppCard.name} używa zdolności na ataku ${oppCard.effect.type} na ${oppCard.effect.target}`);
-                this.battlefieldService.applyBattlefiedEffect(oppCard, row + 'Opp');
-            }
             //właściwe ataki
-            if (playerCard) {
-                if (oppCard) {
-                    this.clash(playerCard, oppCard, row);
-                }
-                else {
-                    console.log(`${playerCard.name} atakuje przeciwnika za ${playerCard.attack} obrażeń.`);
-                    this.opponentService.changeOppHp(-playerCard.attack);
-                }
-            }
-            else if (oppCard) {
-                this.playerService.changeLifePoints(-oppCard.attack);
-                console.log(`${oppCard.name} atakuje przeciwnika za ${oppCard.attack} obrażeń.`);
-            }
+            this.attacks(playerCard, oppCard, row);
             this.battlefieldService.buryTheFallen();
         });
         //sprawdzamy czy są efekty eot i je aplikujemy:
         rows.forEach((row) => {
             let playerCard = this.battlefieldService.getCard(row);
             let oppCard = this.battlefieldService.getCard(row + 'Opp');
-            //sprawdzamy czy sa efekty na poczatku walki
-            if (playerCard &&
-                playerCard.effect &&
-                playerCard.effect.timing === 'eot') {
-                this.battlefieldService.applyBattlefiedEffect(playerCard, row);
-                console.log(`${playerCard.name} używa zdolności EOT ${playerCard.effect.type} na ${playerCard.effect.target}`);
-            }
-            else if (oppCard && oppCard.effect && oppCard.effect.timing === 'eot') {
-                this.battlefieldService.applyBattlefiedEffect(oppCard, row + 'Opp');
-                console.log(`${oppCard.name} używa zdolności EOT ${oppCard.effect.type} na ${oppCard.effect.target}`);
-            }
+            this.eotAbilities(playerCard, oppCard, row);
             //po efektach sprawdzam sba
             this.battlefieldService.buryTheFallen();
         });
@@ -1582,7 +1726,6 @@ class CombatService {
         rows.forEach((row) => {
             let playerCard = this.battlefieldService.getCard(row);
             let oppCard = this.battlefieldService.getCard(row + 'Opp');
-            //sprawdzamy czy sa efekty na poczatku walki
             if (playerCard) {
                 this.battlefieldService.markAsRevealed(row);
             }
@@ -1595,38 +1738,123 @@ class CombatService {
     clash(playerCard, oppCard, row) {
         if (playerCard.speed === oppCard.speed) {
             //jeśli karty mają taką samą szybkość, to biją w siebie nawzajem, a dopiero potem sprawdzamy czy ktoś zginął
-            this.battlefieldService.changeCardHp(-playerCard.attack, row + 'Opp');
+            this.friendlyAttackAbilities(playerCard, row);
+            this.oppAttackAbilities(oppCard, row);
             playerCard.abilities.includes("trample") && playerCard.attack > oppCard.hp ? this.opponentService.changeOppHp(-(playerCard.attack - oppCard.hp)) : null;
-            this.battlefieldService.changeCardHp(-oppCard.attack, row);
+            this.battlefieldService.changeCardHp(-playerCard.attack, row + 'Opp');
             oppCard.abilities.includes("trample") && oppCard.attack > playerCard.hp ? this.playerService.changeLifePoints(-(oppCard.attack - playerCard.hp)) : null;
+            this.battlefieldService.changeCardHp(-oppCard.attack, row);
             this.battlefieldService.buryTheFallen();
         }
         else if (playerCard.speed < oppCard.speed) {
             //jeśli karty mają różną szybkość, to najpierw szybsza zadaje obrażenia, a wolniejsza tylko jeśli przeżyje
             // tutaj karta gracza jest wolniejsza, więc przeciwnik pierwszy zadaje obrażenia
-            this.battlefieldService.changeCardHp(-oppCard.attack, row);
+            this.oppAttackAbilities(oppCard, row);
             oppCard.abilities.includes("trample") && oppCard.attack > playerCard.hp ? this.playerService.changeLifePoints(-(oppCard.attack - playerCard.hp)) : null;
+            this.battlefieldService.changeCardHp(-oppCard.attack, row);
             this.battlefieldService.buryTheFallen();
             //sprawdzamy czy karta gracza nadal żyje
             if (this.battlefieldService.getCard(row) === playerCard) {
                 //jak tak to też zadaje obrażeni
-                this.battlefieldService.changeCardHp(-playerCard.attack, row + 'Opp');
+                this.friendlyAttackAbilities(playerCard, row);
                 playerCard.abilities.includes("trample") && playerCard.attack > oppCard.hp ? this.opponentService.changeOppHp(-(playerCard.attack - oppCard.hp)) : null;
+                this.battlefieldService.changeCardHp(-playerCard.attack, row + 'Opp');
                 this.battlefieldService.buryTheFallen();
             }
         }
         else {
             // tutaj karta przeciwnika jest wolniejsza, więc gracz pierwszy zadaje obrażenia
-            this.battlefieldService.changeCardHp(-playerCard.attack, row + 'Opp');
+            this.friendlyAttackAbilities(playerCard, row);
             playerCard.abilities.includes("trample") && playerCard.attack > oppCard.hp ? this.opponentService.changeOppHp(-(playerCard.attack - oppCard.hp)) : null;
+            this.battlefieldService.changeCardHp(-playerCard.attack, row + 'Opp');
             this.battlefieldService.buryTheFallen();
             //sprawdzamy czy karta przeciwnika nadal żyje
             if (this.battlefieldService.getCard(row + 'Opp') === oppCard) {
                 //jak tak to też zadaje obrażeni
-                this.battlefieldService.changeCardHp(-oppCard.attack, row);
+                this.oppAttackAbilities(oppCard, row);
                 oppCard.abilities.includes("trample") && oppCard.attack > playerCard.hp ? this.playerService.changeLifePoints(-(oppCard.attack - playerCard.hp)) : null;
+                this.battlefieldService.changeCardHp(-oppCard.attack, row);
                 this.battlefieldService.buryTheFallen();
             }
+        }
+    }
+    revealAndCombatAbilities(playerCard, oppCard, row) {
+        //sprawdzamy czy sa efekty negatywne na poczatku walki
+        if (playerCard &&
+            playerCard.effect &&
+            ((playerCard.effect.timing === 'reveal' && !playerCard.revealed) ||
+                playerCard.effect.timing === 'combat') && (playerCard.effect.type === "damage" || playerCard.effect.type === "weaken")) {
+            console.log(`${playerCard.name} używa negatywnej zdolności na początku walki ${playerCard.effect.type} ${playerCard.effect.target} o wartości ${playerCard.effect.amount}`);
+            this.battlefieldService.applyBattlefiedEffect(playerCard, row);
+        }
+        else if (oppCard &&
+            oppCard.effect &&
+            ((oppCard.effect.timing === 'reveal' && !oppCard.revealed) ||
+                oppCard.effect.timing === 'combat') && (oppCard.effect.type === "damage" || oppCard.effect.type === "weaken")) {
+            console.log(`${oppCard.name} używa negatywnej zdolności na początku walki ${oppCard.effect.type} na ${oppCard.effect.target} o wartości ${oppCard.effect.amount}`);
+            this.battlefieldService.applyBattlefiedEffect(oppCard, row + 'Opp');
+        }
+        //sprawdzamy czy sa efekty pozytywne na poczatku walki
+        if (playerCard &&
+            playerCard.effect &&
+            ((playerCard.effect.timing === 'reveal' && !playerCard.revealed) ||
+                playerCard.effect.timing === 'combat') && playerCard.effect.type !== "damage" && playerCard.effect.type !== "weaken") {
+            console.log(`${playerCard.name} używa pozytywnej zdolności na początku walki ${playerCard.effect.type} na ${playerCard.effect.target} o wartości ${playerCard.effect.card ? playerCard.effect.card.name : playerCard.effect.amount}`);
+            this.battlefieldService.applyBattlefiedEffect(playerCard, row);
+        }
+        else if (oppCard &&
+            oppCard.effect &&
+            ((oppCard.effect.timing === 'reveal' && !oppCard.revealed) ||
+                oppCard.effect.timing === 'combat') && oppCard.effect.type !== "damage" && oppCard.effect.type !== "weaken") {
+            console.log(`${oppCard.name} używa pozytywnej zdolności na początku walki ${oppCard.effect.type} na ${oppCard.effect.target} o wartości ${oppCard.effect.card ? oppCard.effect.card.name : oppCard.effect.amount}`);
+            this.battlefieldService.applyBattlefiedEffect(oppCard, row + 'Opp');
+        }
+    }
+    attacks(playerCard, oppCard, row) {
+        if (playerCard) {
+            if (oppCard) {
+                this.clash(playerCard, oppCard, row);
+            }
+            else {
+                //sprawdzamy czy są efekty podczas ataku i je aplikujemy
+                this.friendlyAttackAbilities(playerCard, row);
+                console.log(`${playerCard.name} atakuje przeciwnika za ${playerCard.attack} obrażeń.`);
+                this.opponentService.changeOppHp(-playerCard.attack);
+            }
+        }
+        else if (oppCard) {
+            //sprawdzamy czy są efekty podczas ataku i je aplikujemy
+            this.oppAttackAbilities(oppCard, row);
+            this.playerService.changeLifePoints(-oppCard.attack);
+            console.log(`${oppCard.name} atakuje przeciwnika za ${oppCard.attack} obrażeń.`);
+        }
+    }
+    friendlyAttackAbilities(playerCard, row) {
+        if (playerCard &&
+            playerCard.effect &&
+            playerCard.effect.timing === 'attack') {
+            console.log(`${playerCard.name} używa zdolności na ataku ${playerCard.effect.type} na ${playerCard.effect.target} wartość ${playerCard.effect.amount}`);
+            this.battlefieldService.applyBattlefiedEffect(playerCard, row);
+        }
+    }
+    oppAttackAbilities(oppCard, row) {
+        if (oppCard &&
+            oppCard.effect &&
+            oppCard.effect.timing === 'attack') {
+            console.log(`${oppCard.name} używa zdolności na ataku ${oppCard.effect.type} na ${oppCard.effect.target} wartość ${oppCard.effect.amount}`);
+            this.battlefieldService.applyBattlefiedEffect(oppCard, row + 'Opp');
+        }
+    }
+    eotAbilities(playerCard, oppCard, row) {
+        if (playerCard &&
+            playerCard.effect &&
+            playerCard.effect.timing === 'eot') {
+            this.battlefieldService.applyBattlefiedEffect(playerCard, row);
+            console.log(`${playerCard.name} używa zdolności EOT ${playerCard.effect.type} na ${playerCard.effect.target}`);
+        }
+        else if (oppCard && oppCard.effect && oppCard.effect.timing === 'eot') {
+            this.battlefieldService.applyBattlefiedEffect(oppCard, row + 'Opp');
+            console.log(`${oppCard.name} używa zdolności EOT ${oppCard.effect.type} na ${oppCard.effect.target}`);
         }
     }
 }
@@ -1898,7 +2126,10 @@ class HandService {
         this.handSubject.next(this.hand);
     }
     drawCards(number) {
-        this.hand = this.hand.concat(this.deckService.draw(number));
+        for (let index = 0; index < number; index++) {
+            console.log("Gracz dobiera kartę.");
+            this.hand.length < 8 ? this.hand = this.hand.concat(this.deckService.draw(1)) : this.deckService.mill(1);
+        }
         this.handSubject.next(this.hand);
     }
     removeCard(index) {
@@ -2012,21 +2243,19 @@ AppModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_21__["ɵɵdefineInjecto
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DeckService", function() { return DeckService; });
 /* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! rxjs */ "qCKp");
-/* harmony import */ var _shared_card_card_model__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../shared/card/card.model */ "mIaL");
-/* harmony import */ var _data_cards__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../data/cards */ "+bcQ");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ "fXoL");
-
-
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "fXoL");
 
 
 class DeckService {
     constructor() {
-        this.deck = _data_cards__WEBPACK_IMPORTED_MODULE_2__["deck"].map(card => new _shared_card_card_model__WEBPACK_IMPORTED_MODULE_1__["Card"](card));
         this.discardPile = [];
         this.deckSizeSubject = new rxjs__WEBPACK_IMPORTED_MODULE_0__["Subject"]();
     }
     getDeck() {
         return this.deck.slice();
+    }
+    setDeck(deck) {
+        this.deck = deck;
     }
     getNumberOfCards() {
         return this.deck.length;
@@ -2043,6 +2272,7 @@ class DeckService {
             this.deck[currentIndex] = this.deck[randomIndex];
             this.deck[randomIndex] = temporaryValue;
         }
+        console.log("Talia została przetasowana");
     }
     draw(number) {
         this.deckSizeSubject.next(this.getNumberOfCards() - number);
@@ -2050,10 +2280,14 @@ class DeckService {
     }
     discard(card) {
         this.discardPile.push(card);
+        console.log("Karta" + card.name + "została odrzucona");
+    }
+    mill(number) {
+        this.deck.splice(0, number).forEach(card => this.discard(card));
     }
 }
 DeckService.ɵfac = function DeckService_Factory(t) { return new (t || DeckService)(); };
-DeckService.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵdefineInjectable"]({ token: DeckService, factory: DeckService.ɵfac, providedIn: 'root' });
+DeckService.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineInjectable"]({ token: DeckService, factory: DeckService.ɵfac, providedIn: 'root' });
 
 
 /***/ }),
@@ -2105,8 +2339,8 @@ class BattlefieldService {
             ? (this[row].attack = 0)
             : (this[row].attack += number);
         number < 0
-            ? console.log(`${this[row].name} w ${row} otrzymuje ${number} obrażeń`)
-            : console.log(`${this[row].name} w ${row} jest leczony o ${number}`);
+            ? console.log(`${this[row].name} w ${row} otrzymuje ${number} ataku.`)
+            : console.log(`${this[row].name} w ${row} traci ${number} ataku`);
     }
     removeCard(card, row) {
         this.deckService.discard(card);
@@ -2182,7 +2416,7 @@ class BattlefieldService {
                         : null;
                     break;
                 case 'otherPlayerAllies':
-                    targets = targets.concat(oppRows.splice(oppRows.indexOf(row), 1));
+                    targets = row === "meleeOpp" ? ["rangedOpp", "mentalOpp"] : row === "rangedOpp" ? ["meleeOpp", "mentalOpp"] : ["meleeOpp", "rangedOpp"];
                     break;
             }
         }
@@ -2227,7 +2461,7 @@ class BattlefieldService {
                         : null;
                     break;
                 case 'otherPlayerAllies':
-                    targets = targets.concat(playerRows.splice(playerRows.indexOf(row), 1));
+                    targets = row === "melee" ? ["ranged", "mental"] : row === "ranged" ? ["melee", "mental"] : ["melee", "ranged"];
                     break;
             }
         }
@@ -2498,7 +2732,7 @@ ActionPointsComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵde
     } if (rf & 2) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate2"]("", ctx.currentActionPoints, "/", ctx.maxActionPoints, "");
-    } }, styles: ["[_nghost-%COMP%] {\r\n  grid-area: action-points;\r\n  display: flex;\r\n  align-items: center;\r\n  justify-content: center;\r\n}\r\n\r\n.actionPoints[_ngcontent-%COMP%] {\r\n  border-radius: 50%;\r\n  background-color: blue;\r\n  width: 10em;\r\n  height: 10em;\r\n  display: flex;\r\n  align-items: center;\r\n  justify-content: center;\r\n}\r\n\r\np[_ngcontent-%COMP%] {\r\n  background-color:rgba(0, 0, 0, 0);\r\n  font-size: 4em;\r\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImFjdGlvbi1wb2ludHMuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLHdCQUF3QjtFQUN4QixhQUFhO0VBQ2IsbUJBQW1CO0VBQ25CLHVCQUF1QjtBQUN6Qjs7QUFFQTtFQUNFLGtCQUFrQjtFQUNsQixzQkFBc0I7RUFDdEIsV0FBVztFQUNYLFlBQVk7RUFDWixhQUFhO0VBQ2IsbUJBQW1CO0VBQ25CLHVCQUF1QjtBQUN6Qjs7QUFFQTtFQUNFLGlDQUFpQztFQUNqQyxjQUFjO0FBQ2hCIiwiZmlsZSI6ImFjdGlvbi1wb2ludHMuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIjpob3N0IHtcclxuICBncmlkLWFyZWE6IGFjdGlvbi1wb2ludHM7XHJcbiAgZGlzcGxheTogZmxleDtcclxuICBhbGlnbi1pdGVtczogY2VudGVyO1xyXG4gIGp1c3RpZnktY29udGVudDogY2VudGVyO1xyXG59XHJcblxyXG4uYWN0aW9uUG9pbnRzIHtcclxuICBib3JkZXItcmFkaXVzOiA1MCU7XHJcbiAgYmFja2dyb3VuZC1jb2xvcjogYmx1ZTtcclxuICB3aWR0aDogMTBlbTtcclxuICBoZWlnaHQ6IDEwZW07XHJcbiAgZGlzcGxheTogZmxleDtcclxuICBhbGlnbi1pdGVtczogY2VudGVyO1xyXG4gIGp1c3RpZnktY29udGVudDogY2VudGVyO1xyXG59XHJcblxyXG5wIHtcclxuICBiYWNrZ3JvdW5kLWNvbG9yOnJnYmEoMCwgMCwgMCwgMCk7XHJcbiAgZm9udC1zaXplOiA0ZW07XHJcbn1cclxuIl19 */"] });
+    } }, styles: ["[_nghost-%COMP%] {\r\n  grid-area: action-points;\r\n  display: flex;\r\n  align-items: center;\r\n  justify-content: center;\r\n}\r\n\r\n.actionPoints[_ngcontent-%COMP%] {\r\n  border-radius: 50%;\r\n  background-color: #0261fa;\r\n  width: 10em;\r\n  height: 10em;\r\n  display: flex;\r\n  align-items: center;\r\n  justify-content: center;\r\n}\r\n\r\np[_ngcontent-%COMP%] {\r\n  background-color:rgba(0, 0, 0, 0);\r\n  font-size: 4em;\r\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImFjdGlvbi1wb2ludHMuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLHdCQUF3QjtFQUN4QixhQUFhO0VBQ2IsbUJBQW1CO0VBQ25CLHVCQUF1QjtBQUN6Qjs7QUFFQTtFQUNFLGtCQUFrQjtFQUNsQix5QkFBeUI7RUFDekIsV0FBVztFQUNYLFlBQVk7RUFDWixhQUFhO0VBQ2IsbUJBQW1CO0VBQ25CLHVCQUF1QjtBQUN6Qjs7QUFFQTtFQUNFLGlDQUFpQztFQUNqQyxjQUFjO0FBQ2hCIiwiZmlsZSI6ImFjdGlvbi1wb2ludHMuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIjpob3N0IHtcclxuICBncmlkLWFyZWE6IGFjdGlvbi1wb2ludHM7XHJcbiAgZGlzcGxheTogZmxleDtcclxuICBhbGlnbi1pdGVtczogY2VudGVyO1xyXG4gIGp1c3RpZnktY29udGVudDogY2VudGVyO1xyXG59XHJcblxyXG4uYWN0aW9uUG9pbnRzIHtcclxuICBib3JkZXItcmFkaXVzOiA1MCU7XHJcbiAgYmFja2dyb3VuZC1jb2xvcjogIzAyNjFmYTtcclxuICB3aWR0aDogMTBlbTtcclxuICBoZWlnaHQ6IDEwZW07XHJcbiAgZGlzcGxheTogZmxleDtcclxuICBhbGlnbi1pdGVtczogY2VudGVyO1xyXG4gIGp1c3RpZnktY29udGVudDogY2VudGVyO1xyXG59XHJcblxyXG5wIHtcclxuICBiYWNrZ3JvdW5kLWNvbG9yOnJnYmEoMCwgMCwgMCwgMCk7XHJcbiAgZm9udC1zaXplOiA0ZW07XHJcbn1cclxuIl19 */"] });
 
 
 /***/ }),
@@ -2592,11 +2826,18 @@ MeleeComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineCom
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PlayerService", function() { return PlayerService; });
 /* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! rxjs */ "qCKp");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "fXoL");
+/* harmony import */ var _shared_card_card_model__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../shared/card/card.model */ "mIaL");
+/* harmony import */ var _data_cards__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../data/cards */ "+bcQ");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ "fXoL");
+/* harmony import */ var _deck_deck_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./deck/deck.service */ "Zsfq");
+
+
+
 
 
 class PlayerService {
-    constructor() {
+    constructor(deckService) {
+        this.deckService = deckService;
         this.hp = 30;
         this.playerNumber = 1;
         this.playerHpSubject = new rxjs__WEBPACK_IMPORTED_MODULE_0__["Subject"]();
@@ -2615,11 +2856,12 @@ class PlayerService {
     }
     setPlayerNumber(number) {
         this.playerNumber = number;
+        this.playerNumber === 1 ? this.deckService.setDeck(_data_cards__WEBPACK_IMPORTED_MODULE_2__["aggro"].map(card => new _shared_card_card_model__WEBPACK_IMPORTED_MODULE_1__["Card"](card))) : this.deckService.setDeck(_data_cards__WEBPACK_IMPORTED_MODULE_2__["control"].map(card => new _shared_card_card_model__WEBPACK_IMPORTED_MODULE_1__["Card"](card)));
         this.playerNumberSubject.next(this.playerNumber);
     }
 }
-PlayerService.ɵfac = function PlayerService_Factory(t) { return new (t || PlayerService)(); };
-PlayerService.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineInjectable"]({ token: PlayerService, factory: PlayerService.ɵfac, providedIn: 'root' });
+PlayerService.ɵfac = function PlayerService_Factory(t) { return new (t || PlayerService)(_angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵinject"](_deck_deck_service__WEBPACK_IMPORTED_MODULE_4__["DeckService"])); };
+PlayerService.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵdefineInjectable"]({ token: PlayerService, factory: PlayerService.ɵfac, providedIn: 'root' });
 
 
 /***/ }),
