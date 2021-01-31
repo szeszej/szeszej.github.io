@@ -264,7 +264,7 @@ const cards = {
     },
     taernianVoodoo: {
         name: 'Taernijski Voodoo',
-        attack: 3,
+        attack: 2,
         hp: 1,
         cost: 4,
         description: 'Szpila w oko!',
@@ -324,8 +324,7 @@ const cards = {
         description: 'Gdzie moje psy?',
         type: 'ally',
         speed: 1,
-        rules: `Przebicie.
-    Odkrycie: Przyzywa 3/3/wręcz Ogary na wolne przyjazne pola.`,
+        rules: `Przebicie. Zagranie: Przyzywa 3/3/wręcz Ogary na wolne przyjazne pola.`,
         effect: {
             type: 'summon',
             target: 'playerAllies',
@@ -337,7 +336,7 @@ const cards = {
     },
     ghadira: {
         name: 'Ghadira',
-        attack: 10,
+        attack: 7,
         hp: 7,
         cost: 9,
         description: 'Kto wchodzi do mojej wieży?',
@@ -373,12 +372,12 @@ const cards = {
         type: 'ally',
         speed: 2,
         named: true,
-        rules: "Walka: Zadaje 1 obrażeń wszystkim wrogim sojusznikom.",
+        rules: "Koniec tury: Zadaje 1 obrażeń wszystkim wrogim sojusznikom.",
         effect: {
             type: "damage",
             amount: 1,
             target: "oppAllies",
-            timing: "combat"
+            timing: "eot"
         }
     },
     wolf: {
@@ -486,7 +485,7 @@ const cards = {
     healer: {
         name: 'Uzdrowiciel',
         attack: 1,
-        hp: 4,
+        hp: 1,
         cost: 4,
         description: 'Leczenie grupowe raz!',
         type: 'ally',
@@ -518,7 +517,7 @@ const cards = {
     voodooWeakener: {
         name: 'Voodoo Osłabiacz',
         attack: 1,
-        hp: 2,
+        hp: 1,
         cost: 5,
         description: 'Spróbuj wywaru!',
         type: 'ally',
@@ -904,7 +903,7 @@ const control = [
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\szesz\Desktop\lle\taern-card\src\main.ts */"zUnb");
+module.exports = __webpack_require__(/*! C:\Users\Olga\Desktop\taern\taern-card\src\main.ts */"zUnb");
 
 
 /***/ }),
@@ -990,7 +989,7 @@ HandComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComp
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](0, HandComponent_app_card_0_Template, 1, 5, "app-card", 0);
     } if (rf & 2) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngForOf", ctx.cards);
-    } }, directives: [_angular_common__WEBPACK_IMPORTED_MODULE_2__["NgForOf"], _shared_card_card_component__WEBPACK_IMPORTED_MODULE_3__["CardComponent"], _angular_cdk_drag_drop__WEBPACK_IMPORTED_MODULE_4__["CdkDrag"]], styles: ["[_nghost-%COMP%] {\r\n  grid-area: hand;\r\n  display: flex;\r\n  justify-content: center;\r\n  padding: 1em;\r\n}\r\n\r\napp-card[_ngcontent-%COMP%] {\r\n  margin: 0.5em;\r\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImhhbmQuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLGVBQWU7RUFDZixhQUFhO0VBQ2IsdUJBQXVCO0VBQ3ZCLFlBQVk7QUFDZDs7QUFFQTtFQUNFLGFBQWE7QUFDZiIsImZpbGUiOiJoYW5kLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyI6aG9zdCB7XHJcbiAgZ3JpZC1hcmVhOiBoYW5kO1xyXG4gIGRpc3BsYXk6IGZsZXg7XHJcbiAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XHJcbiAgcGFkZGluZzogMWVtO1xyXG59XHJcblxyXG5hcHAtY2FyZCB7XHJcbiAgbWFyZ2luOiAwLjVlbTtcclxufVxyXG4iXX0= */"] });
+    } }, directives: [_angular_common__WEBPACK_IMPORTED_MODULE_2__["NgForOf"], _shared_card_card_component__WEBPACK_IMPORTED_MODULE_3__["CardComponent"], _angular_cdk_drag_drop__WEBPACK_IMPORTED_MODULE_4__["CdkDrag"]], styles: ["[_nghost-%COMP%] {\r\n  grid-area: hand;\r\n  display: flex;\r\n  justify-content: center;\r\n  padding: 1em;\r\n  flex-wrap: wrap;\r\n}\r\n\r\napp-card[_ngcontent-%COMP%] {\r\n  margin: 0.5em;\r\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImhhbmQuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLGVBQWU7RUFDZixhQUFhO0VBQ2IsdUJBQXVCO0VBQ3ZCLFlBQVk7RUFDWixlQUFlO0FBQ2pCOztBQUVBO0VBQ0UsYUFBYTtBQUNmIiwiZmlsZSI6ImhhbmQuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIjpob3N0IHtcclxuICBncmlkLWFyZWE6IGhhbmQ7XHJcbiAgZGlzcGxheTogZmxleDtcclxuICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcclxuICBwYWRkaW5nOiAxZW07XHJcbiAgZmxleC13cmFwOiB3cmFwO1xyXG59XHJcblxyXG5hcHAtY2FyZCB7XHJcbiAgbWFyZ2luOiAwLjVlbTtcclxufVxyXG4iXX0= */"] });
 
 
 /***/ }),
@@ -2399,7 +2398,7 @@ class BattlefieldService {
         else if (this.playerService.getLifePoints() < 0) {
             console.log("%cGracz wygrywa", "color: red; font-size: 30px");
         }
-        else {
+        else if (this.opponentService.getOppHp() < 0) {
             console.log("%cPrzeciwnik wygrywa", "color: red; font-size: 30px");
         }
         const rows = [
