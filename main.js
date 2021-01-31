@@ -402,16 +402,16 @@ const cards = {
     taernianShieldman: {
         name: 'Taernijski Tarczownik',
         attack: 2,
-        hp: 8,
+        hp: 6,
         cost: 6,
         description: 'I co mu zrobisz?',
         type: 'ally',
         speed: 1,
-        rules: 'Walka: Leczy się za 2.',
+        rules: 'Walka: Leczy się za 1.',
         effect: {
             type: 'healing',
             target: 'self',
-            amount: 2,
+            amount: 1,
             timing: 'combat',
         },
     },
@@ -619,12 +619,12 @@ const cards = {
         description: 'Coraz bardziej się rozkręca.',
         type: 'ally',
         speed: 2,
-        rules: 'Koniec tury: Dodaje sobie 1 ataku.',
+        rules: 'Koniec tury: Dodaje sobie 2 ataku.',
         effect: {
             type: 'strengthen',
             target: 'self',
             timing: 'eot',
-            amount: 1,
+            amount: 2,
         },
     },
     taernianSheed: {
@@ -646,7 +646,7 @@ const cards = {
     berserker: {
         name: 'Berserker',
         attack: 3,
-        hp: 2,
+        hp: 3,
         cost: 1,
         description: 'Nawet nie wie, kogo bije.',
         type: 'ally',
@@ -904,7 +904,7 @@ const control = [
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\Olga\Desktop\taern\taern-card\src\main.ts */"zUnb");
+module.exports = __webpack_require__(/*! C:\Users\szesz\Desktop\lle\taern-card\src\main.ts */"zUnb");
 
 
 /***/ }),
@@ -1779,6 +1779,7 @@ class CombatService {
         }
     }
     revealAndCombatAbilities(playerCard, oppCard, row) {
+        let abilityTypes = ["silence", "shield", "damage", "weaken", "healing", "strengthen", "summon", "bounce", "ramp"];
         //sprawdzamy czy sa efekty negatywne na poczatku walki
         if (playerCard &&
             playerCard.effect &&
@@ -1936,12 +1937,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _player_hand_hand_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./player/hand/hand.service */ "THtM");
 /* harmony import */ var _player_deck_deck_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./player/deck/deck.service */ "Zsfq");
 /* harmony import */ var _opponent_opponent_service__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./opponent/opponent.service */ "3jE/");
-/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/common */ "ofXK");
-/* harmony import */ var _starting_screen_starting_screen_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./starting-screen/starting-screen.component */ "RPPq");
-/* harmony import */ var _angular_cdk_drag_drop__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @angular/cdk/drag-drop */ "5+WD");
-/* harmony import */ var _opponent_opponent_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./opponent/opponent.component */ "+1ZF");
-/* harmony import */ var _battlefield_battlefield_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./battlefield/battlefield.component */ "93yE");
-/* harmony import */ var _player_player_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./player/player.component */ "0M9o");
+/* harmony import */ var _player_action_points_action_points_service__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./player/action-points/action-points.service */ "MbUL");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @angular/common */ "ofXK");
+/* harmony import */ var _starting_screen_starting_screen_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./starting-screen/starting-screen.component */ "RPPq");
+/* harmony import */ var _angular_cdk_drag_drop__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @angular/cdk/drag-drop */ "5+WD");
+/* harmony import */ var _opponent_opponent_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./opponent/opponent.component */ "+1ZF");
+/* harmony import */ var _battlefield_battlefield_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./battlefield/battlefield.component */ "93yE");
+/* harmony import */ var _player_player_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./player/player.component */ "0M9o");
+
 
 
 
@@ -1961,50 +1964,64 @@ __webpack_require__.r(__webpack_exports__);
 function AppComponent_app_starting_screen_0_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](0, "app-starting-screen");
 } }
-function AppComponent_div_1_p_10_Template(rf, ctx) { if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "p");
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](1);
+function AppComponent_div_1_button_12_Template(rf, ctx) { if (rf & 1) {
+    const _r6 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵgetCurrentView"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "button", 11);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function AppComponent_div_1_button_12_Template_button_click_0_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r6); const ctx_r5 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](2); return ctx_r5.draw(); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](1, " Dobierz ");
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
-} if (rf & 2) {
-    const ctx_r2 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtextInterpolate1"]("Player ", ctx_r2.playerNumber, "");
 } }
-function AppComponent_div_1_p_11_Template(rf, ctx) { if (rf & 1) {
+function AppComponent_div_1_p_14_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "p");
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](1);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
 } if (rf & 2) {
     const ctx_r3 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](2);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtextInterpolate1"]("Tura ", ctx_r3.turnNumber, "");
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtextInterpolate1"]("Player ", ctx_r3.playerNumber, "");
+} }
+function AppComponent_div_1_p_15_Template(rf, ctx) { if (rf & 1) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "p");
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+} if (rf & 2) {
+    const ctx_r4 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](2);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtextInterpolate1"]("Tura ", ctx_r4.turnNumber, "");
 } }
 function AppComponent_div_1_Template(rf, ctx) { if (rf & 1) {
-    const _r5 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵgetCurrentView"]();
+    const _r8 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵgetCurrentView"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "div", 2);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](1, "div", 3);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](2, "div", 4);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](3, "button", 5);
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function AppComponent_div_1_Template_button_click_3_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r5); const ctx_r4 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](); return ctx_r4.sendData(); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function AppComponent_div_1_Template_button_click_3_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r8); const ctx_r7 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](); return ctx_r7.sendData(); });
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](4, " Wy\u015Blij dane ");
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](5, "button", 6);
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function AppComponent_div_1_Template_button_click_5_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r5); const ctx_r6 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](); return ctx_r6.getData(); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function AppComponent_div_1_Template_button_click_5_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r8); const ctx_r9 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](); return ctx_r9.getData(); });
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](6, " Odbierz dane ");
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](7, "button", 7);
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function AppComponent_div_1_Template_button_click_7_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r5); const ctx_r7 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](); return ctx_r7.combat(); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function AppComponent_div_1_Template_button_click_7_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r8); const ctx_r10 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](); return ctx_r10.combat(); });
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](8, " Walka! ");
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](9, "div", 8);
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](10, AppComponent_div_1_p_10_Template, 2, 1, "p", 0);
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](11, AppComponent_div_1_p_11_Template, 2, 1, "p", 0);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](9, "div", 4);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](10, "button", 8);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function AppComponent_div_1_Template_button_click_10_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r8); const ctx_r11 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](); return ctx_r11.enableDevMode(); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](11, " DevMode ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](12, AppComponent_div_1_button_12_Template, 2, 0, "button", 9);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](13, "div", 10);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](14, AppComponent_div_1_p_14_Template, 2, 1, "p", 0);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](15, AppComponent_div_1_p_15_Template, 2, 1, "p", 0);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](12, "app-opponent");
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](13, "app-battlefield");
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](14, "app-player");
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](16, "app-opponent");
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](17, "app-battlefield");
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](18, "app-player");
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
 } if (rf & 2) {
     const ctx_r1 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
@@ -2014,13 +2031,15 @@ function AppComponent_div_1_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("disabled", !ctx_r1.isDataSent);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](2);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("disabled", !ctx_r1.isDataReceived && !ctx_r1.isTurnNumberCorrect);
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](3);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](5);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", ctx_r1.devMode);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](2);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", ctx_r1.playerNumber);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", ctx_r1.playerNumber);
 } }
 class AppComponent {
-    constructor(combatService, turnService, battlefieldService, httpService, playerService, handService, deckService, opponentService) {
+    constructor(combatService, turnService, battlefieldService, httpService, playerService, handService, deckService, opponentService, actionPointsService) {
         this.combatService = combatService;
         this.turnService = turnService;
         this.battlefieldService = battlefieldService;
@@ -2029,12 +2048,14 @@ class AppComponent {
         this.handService = handService;
         this.deckService = deckService;
         this.opponentService = opponentService;
+        this.actionPointsService = actionPointsService;
         this.title = 'taern-card';
         this.isPlayerNumberSet = false;
         this.isDataSent = false;
         this.isDataReceived = false;
         this.isTurnNumberCorrect = false;
         this.turnNumber = 1;
+        this.devMode = false;
         this.turnService.turnSubject.subscribe(turnNumber => this.turnNumber = turnNumber);
         this.playerService.playerNumberSubject.subscribe(playerNumber => this.playerNumber = playerNumber);
     }
@@ -2082,16 +2103,25 @@ class AppComponent {
             }
         });
     }
+    enableDevMode() {
+        this.devMode = true;
+        this.actionPointsService.addActionPoints(11);
+        this.actionPointsService.refreshActionPoints();
+        this.handService.setMaxHandSize(40);
+    }
+    draw() {
+        this.handService.drawCards(1);
+    }
 }
-AppComponent.ɵfac = function AppComponent_Factory(t) { return new (t || AppComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_shared_combat_service__WEBPACK_IMPORTED_MODULE_2__["CombatService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_shared_turn_service__WEBPACK_IMPORTED_MODULE_3__["TurnService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_battlefield_battlefield_service__WEBPACK_IMPORTED_MODULE_4__["BattlefieldService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_shared_http_service__WEBPACK_IMPORTED_MODULE_5__["HttpService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_player_player_service__WEBPACK_IMPORTED_MODULE_6__["PlayerService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_player_hand_hand_service__WEBPACK_IMPORTED_MODULE_7__["HandService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_player_deck_deck_service__WEBPACK_IMPORTED_MODULE_8__["DeckService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_opponent_opponent_service__WEBPACK_IMPORTED_MODULE_9__["OpponentService"])); };
-AppComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineComponent"]({ type: AppComponent, selectors: [["app-root"]], decls: 2, vars: 2, consts: [[4, "ngIf"], ["class", "wrapper", "cdkDropListGroup", "", 4, "ngIf"], ["cdkDropListGroup", "", 1, "wrapper"], [1, "controls"], [1, "buttons"], [1, "sendData", 3, "disabled", "click"], [1, "receiveData", 3, "disabled", "click"], [1, "combat", 3, "disabled", "click"], [1, "info"]], template: function AppComponent_Template(rf, ctx) { if (rf & 1) {
+AppComponent.ɵfac = function AppComponent_Factory(t) { return new (t || AppComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_shared_combat_service__WEBPACK_IMPORTED_MODULE_2__["CombatService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_shared_turn_service__WEBPACK_IMPORTED_MODULE_3__["TurnService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_battlefield_battlefield_service__WEBPACK_IMPORTED_MODULE_4__["BattlefieldService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_shared_http_service__WEBPACK_IMPORTED_MODULE_5__["HttpService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_player_player_service__WEBPACK_IMPORTED_MODULE_6__["PlayerService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_player_hand_hand_service__WEBPACK_IMPORTED_MODULE_7__["HandService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_player_deck_deck_service__WEBPACK_IMPORTED_MODULE_8__["DeckService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_opponent_opponent_service__WEBPACK_IMPORTED_MODULE_9__["OpponentService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_player_action_points_action_points_service__WEBPACK_IMPORTED_MODULE_10__["ActionPointsService"])); };
+AppComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineComponent"]({ type: AppComponent, selectors: [["app-root"]], decls: 2, vars: 2, consts: [[4, "ngIf"], ["class", "wrapper", "cdkDropListGroup", "", 4, "ngIf"], ["cdkDropListGroup", "", 1, "wrapper"], [1, "controls"], [1, "buttons"], [1, "sendData", 3, "disabled", "click"], [1, "receiveData", 3, "disabled", "click"], [1, "combat", 3, "disabled", "click"], [1, "devMode", 3, "click"], ["class", "draw", 3, "click", 4, "ngIf"], [1, "info"], [1, "draw", 3, "click"]], template: function AppComponent_Template(rf, ctx) { if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](0, AppComponent_app_starting_screen_0_Template, 1, 0, "app-starting-screen", 0);
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](1, AppComponent_div_1_Template, 15, 5, "div", 1);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](1, AppComponent_div_1_Template, 19, 6, "div", 1);
     } if (rf & 2) {
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", !ctx.playerNumber);
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", ctx.playerNumber);
-    } }, directives: [_angular_common__WEBPACK_IMPORTED_MODULE_10__["NgIf"], _starting_screen_starting_screen_component__WEBPACK_IMPORTED_MODULE_11__["StartingScreenComponent"], _angular_cdk_drag_drop__WEBPACK_IMPORTED_MODULE_12__["CdkDropListGroup"], _opponent_opponent_component__WEBPACK_IMPORTED_MODULE_13__["OpponentComponent"], _battlefield_battlefield_component__WEBPACK_IMPORTED_MODULE_14__["BattlefieldComponent"], _player_player_component__WEBPACK_IMPORTED_MODULE_15__["PlayerComponent"]], styles: [".wrapper[_ngcontent-%COMP%] {\r\n  display: grid;\r\n  grid-template-areas: \"opponent\" \"battlefield\" \"player\";\r\n  grid-template-rows: 20vh 60vh 20vh;\r\n  grid-template-columns: 100%;\r\n  box-sizing: border-box;\r\n  overflow: hidden;\r\n}\r\n.controls[_ngcontent-%COMP%] {\r\n  position: fixed;\r\n  top: 2em;\r\n  left: 2em;\r\n  display: flex;\r\n  width: 15vw;\r\n  justify-content: space-between;\r\n}\r\n.buttons[_ngcontent-%COMP%] {\r\n  display: flex;\r\n  flex-direction: column;\r\n}\r\nbutton[_ngcontent-%COMP%] {\r\n  margin: 0.5em;\r\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImFwcC5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UsYUFBYTtFQUNiLHNEQUFzRDtFQUN0RCxrQ0FBa0M7RUFDbEMsMkJBQTJCO0VBQzNCLHNCQUFzQjtFQUN0QixnQkFBZ0I7QUFDbEI7QUFDQTtFQUNFLGVBQWU7RUFDZixRQUFRO0VBQ1IsU0FBUztFQUNULGFBQWE7RUFDYixXQUFXO0VBQ1gsOEJBQThCO0FBQ2hDO0FBQ0E7RUFDRSxhQUFhO0VBQ2Isc0JBQXNCO0FBQ3hCO0FBRUE7RUFDRSxhQUFhO0FBQ2YiLCJmaWxlIjoiYXBwLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIud3JhcHBlciB7XHJcbiAgZGlzcGxheTogZ3JpZDtcclxuICBncmlkLXRlbXBsYXRlLWFyZWFzOiBcIm9wcG9uZW50XCIgXCJiYXR0bGVmaWVsZFwiIFwicGxheWVyXCI7XHJcbiAgZ3JpZC10ZW1wbGF0ZS1yb3dzOiAyMHZoIDYwdmggMjB2aDtcclxuICBncmlkLXRlbXBsYXRlLWNvbHVtbnM6IDEwMCU7XHJcbiAgYm94LXNpemluZzogYm9yZGVyLWJveDtcclxuICBvdmVyZmxvdzogaGlkZGVuO1xyXG59XHJcbi5jb250cm9scyB7XHJcbiAgcG9zaXRpb246IGZpeGVkO1xyXG4gIHRvcDogMmVtO1xyXG4gIGxlZnQ6IDJlbTtcclxuICBkaXNwbGF5OiBmbGV4O1xyXG4gIHdpZHRoOiAxNXZ3O1xyXG4gIGp1c3RpZnktY29udGVudDogc3BhY2UtYmV0d2VlbjtcclxufVxyXG4uYnV0dG9ucyB7XHJcbiAgZGlzcGxheTogZmxleDtcclxuICBmbGV4LWRpcmVjdGlvbjogY29sdW1uO1xyXG59XHJcblxyXG5idXR0b24ge1xyXG4gIG1hcmdpbjogMC41ZW07XHJcbn1cclxuIl19 */"] });
+    } }, directives: [_angular_common__WEBPACK_IMPORTED_MODULE_11__["NgIf"], _starting_screen_starting_screen_component__WEBPACK_IMPORTED_MODULE_12__["StartingScreenComponent"], _angular_cdk_drag_drop__WEBPACK_IMPORTED_MODULE_13__["CdkDropListGroup"], _opponent_opponent_component__WEBPACK_IMPORTED_MODULE_14__["OpponentComponent"], _battlefield_battlefield_component__WEBPACK_IMPORTED_MODULE_15__["BattlefieldComponent"], _player_player_component__WEBPACK_IMPORTED_MODULE_16__["PlayerComponent"]], styles: [".wrapper[_ngcontent-%COMP%] {\r\n  display: grid;\r\n  grid-template-areas: \"opponent\" \"battlefield\" \"player\";\r\n  grid-template-rows: 20vh 60vh 20vh;\r\n  grid-template-columns: 100%;\r\n  box-sizing: border-box;\r\n  overflow: hidden;\r\n}\r\n.controls[_ngcontent-%COMP%] {\r\n  position: fixed;\r\n  top: 2em;\r\n  left: 2em;\r\n  display: flex;\r\n  width: 15vw;\r\n  justify-content: space-between;\r\n}\r\n.buttons[_ngcontent-%COMP%] {\r\n  display: flex;\r\n  flex-direction: column;\r\n}\r\nbutton[_ngcontent-%COMP%] {\r\n  margin: 0.5em;\r\n}\r\n.devMode[_ngcontent-%COMP%] {\r\n  background-color: red;\r\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImFwcC5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UsYUFBYTtFQUNiLHNEQUFzRDtFQUN0RCxrQ0FBa0M7RUFDbEMsMkJBQTJCO0VBQzNCLHNCQUFzQjtFQUN0QixnQkFBZ0I7QUFDbEI7QUFDQTtFQUNFLGVBQWU7RUFDZixRQUFRO0VBQ1IsU0FBUztFQUNULGFBQWE7RUFDYixXQUFXO0VBQ1gsOEJBQThCO0FBQ2hDO0FBQ0E7RUFDRSxhQUFhO0VBQ2Isc0JBQXNCO0FBQ3hCO0FBRUE7RUFDRSxhQUFhO0FBQ2Y7QUFFQTtFQUNFLHFCQUFxQjtBQUN2QiIsImZpbGUiOiJhcHAuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi53cmFwcGVyIHtcclxuICBkaXNwbGF5OiBncmlkO1xyXG4gIGdyaWQtdGVtcGxhdGUtYXJlYXM6IFwib3Bwb25lbnRcIiBcImJhdHRsZWZpZWxkXCIgXCJwbGF5ZXJcIjtcclxuICBncmlkLXRlbXBsYXRlLXJvd3M6IDIwdmggNjB2aCAyMHZoO1xyXG4gIGdyaWQtdGVtcGxhdGUtY29sdW1uczogMTAwJTtcclxuICBib3gtc2l6aW5nOiBib3JkZXItYm94O1xyXG4gIG92ZXJmbG93OiBoaWRkZW47XHJcbn1cclxuLmNvbnRyb2xzIHtcclxuICBwb3NpdGlvbjogZml4ZWQ7XHJcbiAgdG9wOiAyZW07XHJcbiAgbGVmdDogMmVtO1xyXG4gIGRpc3BsYXk6IGZsZXg7XHJcbiAgd2lkdGg6IDE1dnc7XHJcbiAganVzdGlmeS1jb250ZW50OiBzcGFjZS1iZXR3ZWVuO1xyXG59XHJcbi5idXR0b25zIHtcclxuICBkaXNwbGF5OiBmbGV4O1xyXG4gIGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47XHJcbn1cclxuXHJcbmJ1dHRvbiB7XHJcbiAgbWFyZ2luOiAwLjVlbTtcclxufVxyXG5cclxuLmRldk1vZGUge1xyXG4gIGJhY2tncm91bmQtY29sb3I6IHJlZDtcclxufVxyXG4iXX0= */"] });
 
 
 /***/ }),
@@ -2116,6 +2146,7 @@ class HandService {
     constructor(deckService) {
         this.deckService = deckService;
         this.hand = [];
+        this.maxHandSize = 8;
         this.handSubject = new rxjs__WEBPACK_IMPORTED_MODULE_0__["Subject"]();
     }
     getHand() {
@@ -2128,7 +2159,7 @@ class HandService {
     drawCards(number) {
         for (let index = 0; index < number; index++) {
             console.log("Gracz dobiera kartę.");
-            this.hand.length < 8 ? this.hand = this.hand.concat(this.deckService.draw(1)) : this.deckService.mill(1);
+            this.hand.length < this.maxHandSize ? this.hand = this.hand.concat(this.deckService.draw(1)) : this.deckService.mill(1);
         }
         this.handSubject.next(this.hand);
     }
@@ -2138,6 +2169,9 @@ class HandService {
     }
     getHandSize() {
         return this.hand.length;
+    }
+    setMaxHandSize(number) {
+        this.maxHandSize = number;
     }
 }
 HandService.ɵfac = function HandService_Factory(t) { return new (t || HandService)(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵinject"](_deck_deck_service__WEBPACK_IMPORTED_MODULE_2__["DeckService"])); };
@@ -2307,15 +2341,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "fXoL");
 /* harmony import */ var _player_deck_deck_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../player/deck/deck.service */ "Zsfq");
 /* harmony import */ var _shared_effects_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../shared/effects.service */ "KvzL");
+/* harmony import */ var _player_player_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../player/player.service */ "ufXC");
+/* harmony import */ var _opponent_opponent_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../opponent/opponent.service */ "3jE/");
+
+
 
 
 
 
 
 class BattlefieldService {
-    constructor(deckService, effectsService) {
+    constructor(deckService, effectsService, playerService, opponentService) {
         this.deckService = deckService;
         this.effectsService = effectsService;
+        this.playerService = playerService;
+        this.opponentService = opponentService;
         this.cardEmitter = new rxjs__WEBPACK_IMPORTED_MODULE_0__["Subject"]();
     }
     getCard(row) {
@@ -2353,6 +2393,15 @@ class BattlefieldService {
         }
     }
     buryTheFallen() {
+        if (this.playerService.getLifePoints() < 0 && this.opponentService.getOppHp() < 0) {
+            console.log("%cRemis", "color: red; font-size: 30px");
+        }
+        else if (this.playerService.getLifePoints() < 0) {
+            console.log("%cGracz wygrywa", "color: red; font-size: 30px");
+        }
+        else {
+            console.log("%cPrzeciwnik wygrywa", "color: red; font-size: 30px");
+        }
         const rows = [
             'mental',
             'ranged',
@@ -2529,7 +2578,7 @@ class BattlefieldService {
         }
     }
 }
-BattlefieldService.ɵfac = function BattlefieldService_Factory(t) { return new (t || BattlefieldService)(_angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵinject"](_player_deck_deck_service__WEBPACK_IMPORTED_MODULE_3__["DeckService"]), _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵinject"](_shared_effects_service__WEBPACK_IMPORTED_MODULE_4__["EffectsService"])); };
+BattlefieldService.ɵfac = function BattlefieldService_Factory(t) { return new (t || BattlefieldService)(_angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵinject"](_player_deck_deck_service__WEBPACK_IMPORTED_MODULE_3__["DeckService"]), _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵinject"](_shared_effects_service__WEBPACK_IMPORTED_MODULE_4__["EffectsService"]), _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵinject"](_player_player_service__WEBPACK_IMPORTED_MODULE_5__["PlayerService"]), _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵinject"](_opponent_opponent_service__WEBPACK_IMPORTED_MODULE_6__["OpponentService"])); };
 BattlefieldService.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵdefineInjectable"]({ token: BattlefieldService, factory: BattlefieldService.ɵfac, providedIn: 'root' });
 
 
